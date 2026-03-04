@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import '../styles/global.css';
+
+const faqItems = [
+  {
+    question: "How fast can you close?",
+    answer: "We can close in as few as 14 days. You pick the closing date that works best for you — whether that's two weeks or two months."
+  },
+  {
+    question: "Do I need to make repairs?",
+    answer: "Absolutely not. We buy homes in any condition — as-is. You don't need to clean, paint, fix, or even mow the lawn."
+  },
+  {
+    question: "Are there any fees or commissions?",
+    answer: "Zero. No agent commissions, no closing costs, no hidden fees. The cash offer you accept is what you walk away with."
+  },
+  {
+    question: "How do you determine your offer?",
+    answer: "We evaluate comparable sales, property condition, and local market data to make a fair cash offer. There's no obligation to accept."
+  },
+];
+
+const situations = [
+  { title: "Foreclosure", desc: "Stop the clock and sell before the bank takes over." },
+  { title: "Inherited Property", desc: "Skip the probate headaches and get cash fast." },
+  { title: "Divorce", desc: "Sell the shared home quickly and move forward." },
+  { title: "Back Taxes", desc: "We pay off delinquent taxes at closing." },
+  { title: "Relocation", desc: "Need to move fast? We close on your timeline." },
+  { title: "Major Repairs", desc: "Foundation, roof, mold — we buy as-is." },
+  { title: "Hoarding", desc: "No judgment. We handle the cleanout." },
+  { title: "Code Violations", desc: "Open violations won't scare us off." },
+  { title: "Squatters", desc: "Occupant issues? We've seen it all." },
+  { title: "Fire Damage", desc: "Smoke, water, structural — we still buy." },
+  { title: "Foundation Issues", desc: "Cracks, settling, bowing walls — no problem." },
+];
+---
+
+<BaseLayout title="Sell My House Fast Kansas City | Saving KC Homebuyers" description="We buy houses in Kansas City for cash. No repairs, no agent fees, close in as few as 14 days. Get your free cash offer today.">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="stars">★★★★★</span> 5-Star Google Rating
+        </div>
+        <h1>Sell Your Kansas City Home Fast — <span class="highlight">For Cash</span></h1>
+        <p class="hero-sub">No repairs. No agent fees. No hassle. Close in as few as <strong>14 days</strong>.</p>
+        <div class="hero-stats">
+          <div class="stat"><strong>100+</strong><span>Homes Purchased</span></div>
+          <div class="stat"><strong>11 yrs</strong><span>In Kansas City</span></div>
+          <div class="stat"><strong>14 days</strong><span>Avg. Close Time</span></div>
+        </div>
+        <div class="hero-ctas">
+          <a href="tel:8164292900" class="btn btn-secondary btn-lg">Call 816-429-2900</a>
+          <a href="#offer-form" class="btn btn-primary btn-lg">Get My Cash Offer</a>
+        </div>
+      </div>
+      <div class="hero-form">
+        <LeadForm source="homepage-hero" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <ProcessSteps />
+
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <h2 class="section-title">Meet Ernest Dodson</h2>
+          <p style="margin-bottom:16px">Ernest has been buying homes in Kansas City for over 11 years. He's helped more than 100 homeowners sell fast — in every situation you can imagine.</p>
+          <p style="margin-bottom:16px">Whether you're facing foreclosure, inherited a property, dealing with divorce, or just need to move on — Ernest and the Saving KC team make it simple.</p>
+          <p><strong>Local. Honest. No pressure.</strong> We're a Kansas City company that treats every homeowner like family.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="card" style="text-align:center; margin-bottom:16px">
+            <div style="font-size:2.5rem; font-weight:900; color:var(--red)">100+</div>
+            <div style="color:var(--grey-500)">KC Homes Purchased</div>
+          </div>
+          <div class="card" style="text-align:center; margin-bottom:16px">
+            <div style="font-size:2.5rem; font-weight:900; color:var(--red)">11</div>
+            <div style="color:var(--grey-500)">Years in Kansas City</div>
+          </div>
+          <div class="card" style="text-align:center">
+            <div class="stars" style="font-size:1.5rem">★★★★★</div>
+            <div style="color:var(--grey-500)">5-Star Google Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITUATIONS -->
+  <section class="section situations-section" style="background:var(--grey-50)">
+    <div class="container">
+      <h2 class="section-title" style="text-align:center">We Buy Houses In Any Situation</h2>
+      <p class="section-subtitle" style="text-align:center">No matter what you're facing, we can help.</p>
+      <div class="situations-grid">
+        {situations.map((s) => (
+          <div class="situation-card card">
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" style="text-align:center">Cash Sale vs. Traditional Listing</h2>
+      <p class="section-subtitle" style="text-align:center">See why homeowners choose our cash offer.</p>
+      <ComparisonTable />
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <Testimonials />
+
+  <!-- SERVICE AREAS -->
+  <section class="section" style="background:var(--grey-50)">
+    <div class="container">
+      <h2 class="section-title" style="text-align:center">Serving the Entire KC Metro</h2>
+      <p class="section-subtitle" style="text-align:center">5 counties, 47+ cities across Missouri and Kansas.</p>
+      <div class="grid-3" style="text-align:center">
+        <div class="card">
+          <h3>Jackson County, MO</h3>
+          <p style="color:var(--grey-500);font-size:0.9rem">Kansas City, Independence, Blue Springs, Lee's Summit, Grandview, Raytown</p>
+        </div>
+        <div class="card">
+          <h3>Clay County, MO</h3>
+          <p style="color:var(--grey-500);font-size:0.9rem">Liberty, Gladstone, Kearney, Excelsior Springs, North KC</p>
+        </div>
+        <div class="card">
+          <h3>Platte County, MO</h3>
+          <p style="color:var(--grey-500);font-size:0.9rem">Platte City, Parkville, Weatherby Lake, Riverside</p>
+        </div>
+        <div class="card">
+          <h3>Wyandotte County, KS</h3>
+          <p style="color:var(--grey-500);font-size:0.9rem">Kansas City KS, Bonner Springs, Edwardsville</p>
+        </div>
+        <div class="card">
+          <h3>Johnson County, KS</h3>
+          <p style="color:var(--grey-500);font-size:0.9rem">Overland Park, Olathe, Shawnee, Lenexa, Merriam, Mission</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} />
+
+  <!-- BOTTOM CTA -->
+  <section class="section bottom-cta" style="background:var(--red); color:var(--white); text-align:center">
+    <div class="container">
+      <h2 style="font-size:2rem; font-weight:800; margin-bottom:12px">Ready to Sell Your Home?</h2>
+      <p style="font-size:1.1rem; margin-bottom:24px; opacity:0.9">Get your free, no-obligation cash offer today.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:8164292900" class="btn btn-lg" style="background:var(--white);color:var(--red)">Call 816-429-2900</a>
+        <a href="#offer-form" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:var(--white);border:2px solid var(--white)">Get My Cash Offer</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--grey-900) 0%, var(--grey-800) 100%);
+    color: var(--white);
+    padding: 80px 0;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero .highlight {
+    color: var(--green);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--grey-300);
+    margin-bottom: 28px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--white);
+  }
+  .stat span {
+    font-size: 0.85rem;
+    color: var(--grey-400);
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+  }
+  .hero-form :global(.lead-form) {
+    background: var(--white);
+    color: var(--grey-800);
+  }
+
+  /* Situations Grid */
+  .situations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .situation-card {
+    text-align: center;
+    padding: 20px 16px;
+  }
+  .situation-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .situation-card p {
+    font-size: 0.85rem;
+    color: var(--grey-500);
+  }
+
+  @media (max-width: 1000px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero-form {
+      max-width: 440px;
+    }
+    .situations-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .hero {
+      padding: 40px 0;
+    }
+    .hero h1 {
+      font-size: 1.7rem;
+    }
+    .hero-stats {
+      gap: 20px;
+    }
+    .hero-ctas {
+      flex-direction: column;
+    }
+    .situations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

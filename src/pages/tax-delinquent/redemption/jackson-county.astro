@@ -1,0 +1,365 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import ComparisonTable from '../../../components/ComparisonTable.astro';
+import FAQ from '../../../components/FAQ.astro';
+import Testimonials from '../../../components/Testimonials.astro';
+import '../../../styles/global.css';
+
+const faqItems = [
+  {
+    question: "How long do I have to redeem my property after a tax sale in Jackson County?",
+    answer: "For first and second offering sales, you have exactly 1 year from the date of the sale. For third-year offerings, you only have 90 days. After the third year, there is no redemption period — the buyer gets the deed immediately."
+  },
+  {
+    question: "How much does it cost to redeem?",
+    answer: "You'll need to pay the full delinquent tax amount plus 10% annual interest, any additional penalties, and recording fees. For a home with $2,500/year unpaid for 3 years, expect $10,000–$12,000 total."
+  },
+  {
+    question: "Where do I go to redeem my property?",
+    answer: "Visit the Jackson County Collector's Office at 415 E 12th St, Floor 1, Kansas City, MO 64106, or call (816) 881-3232."
+  },
+  {
+    question: "What happens if I miss the redemption deadline?",
+    answer: "The tax sale purchaser receives a Collector's Deed, and you permanently lose ownership of your property. There is no extension or appeal."
+  },
+  {
+    question: "Can I sell my house instead of redeeming it?",
+    answer: "Yes. Many homeowners sell to us before the redemption deadline. We pay all back taxes at closing, and you walk away with cash — often within 14 days."
+  },
+  {
+    question: "Does the tax sale affect my credit?",
+    answer: "Tax sales don't directly appear on credit reports, but losing your property can lead to collection actions and other financial consequences."
+  },
+  {
+    question: "What if I only owe one year of taxes?",
+    answer: "Properties typically go to tax sale after 3+ years of delinquency. If you're behind by just one year, you still have time to catch up through the Collector's Office."
+  },
+  {
+    question: "Can I set up a payment plan instead?",
+    answer: "Jackson County offers payment plans for delinquent taxes. Apply by April 30 at the Collector's Office. See our Jackson County Payment Plans guide for details."
+  },
+];
+
+const comparisonRows = [
+  { label: "Timeline", left: "14 days to close", right: "Months to save up" },
+  { label: "Back Taxes", left: "We pay them at closing", right: "You pay full amount + interest" },
+  { label: "Repairs Needed", left: "None", right: "You keep the house as-is" },
+  { label: "Cash in Hand", left: "Yes — walk away with money", right: "No — you spend money" },
+  { label: "Risk", left: "Zero — guaranteed close", right: "Miss a payment = lose home" },
+  { label: "Stress Level", left: "We handle everything", right: "All on you" },
+];
+---
+
+<BaseLayout
+  title="Jackson County Tax Sale Redemption Guide | Saving KC Homebuyers"
+  description="Complete guide to Jackson County MO tax sale redemption. Learn timelines, costs, and your options — including selling your home fast for cash."
+>
+
+  <!-- Breadcrumb -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+      { "@type": "ListItem", "position": 2, "name": "Tax Delinquent", "item": "/tax-delinquent/" },
+      { "@type": "ListItem", "position": 3, "name": "Redemption", "item": "/tax-delinquent/redemption/" },
+      { "@type": "ListItem", "position": 4, "name": "Jackson County" },
+    ],
+  })} />
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <a href="#">Tax Delinquent</a> &rsaquo; <a href="#">Redemption</a> &rsaquo; <span>Jackson County</span>
+      </nav>
+      <h1>Jackson County Tax Sale Redemption: Your Complete Guide</h1>
+      <p class="page-hero-sub">Understand your rights, deadlines, and options before it's too late.</p>
+      <div class="hero-key-stats">
+        <div class="key-stat">
+          <strong>1 Year</strong>
+          <span>Redemption (1st/2nd offering)</span>
+        </div>
+        <div class="key-stat">
+          <strong>90 Days</strong>
+          <span>Redemption (3rd offering)</span>
+        </div>
+        <div class="key-stat">
+          <strong>10%</strong>
+          <span>Annual interest on delinquent taxes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container hybrid-layout">
+      <div class="main-content">
+
+        <!-- Process Timeline -->
+        <h2>How Jackson County Tax Sales Work</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <h3>Taxes Go Unpaid</h3>
+              <p>Property taxes become delinquent on January 1 following the year they were due. Interest and penalties begin accruing immediately.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <h3>First Offering (Year 3+)</h3>
+              <p>After roughly 3 years of delinquency, Jackson County places your property in the annual tax lien sale, typically held in August.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+              <h3>Redemption Period</h3>
+              <p>After the first or second offering, you have <strong>exactly 1 year</strong> to redeem. After the third offering, you have <strong>only 90 days</strong>.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+              <h3>Deed Transfer</h3>
+              <p>If you don't redeem in time, the tax sale purchaser receives a Collector's Deed and <strong>you permanently lose your home</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Critical Callout -->
+        <div class="callout callout-critical">
+          <strong>Critical:</strong> After the third-year offering, you have only 90 days to redeem — and after that, the buyer gets the deed <em>immediately</em> with zero redemption period.
+        </div>
+
+        <!-- Cost Breakdown -->
+        <h2>What Does Redemption Cost?</h2>
+        <p>To redeem your property, you must pay:</p>
+        <ul class="cost-list">
+          <li><strong>Full delinquent tax amount</strong> — all years owed</li>
+          <li><strong>10% annual interest</strong> on the delinquent balance</li>
+          <li><strong>Additional penalties and fees</strong> assessed by the county</li>
+          <li><strong>Recording fees</strong> for the Certificate of Redemption</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <strong>Example:</strong> A home with $2,500/year in taxes unpaid for 3 years could cost $10,000–$12,000 to redeem, including interest and fees.
+        </div>
+
+        <!-- Neighborhoods -->
+        <h2>Impact Across Jackson County</h2>
+        <div class="grid-2" style="margin-top:20px">
+          <div class="card">
+            <h3>South Kansas City</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Older housing stock with lower values means tax sale amounts can rival property equity. Many homeowners find selling makes more financial sense than redeeming.</p>
+          </div>
+          <div class="card">
+            <h3>Independence</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">High concentration of tax-delinquent properties. Independence homeowners facing the third offering should act immediately — 90 days goes fast.</p>
+          </div>
+          <div class="card">
+            <h3>Raytown</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Mid-range homes with steady values. Raytown owners often have enough equity to sell and walk away with cash even after covering back taxes.</p>
+          </div>
+          <div class="card">
+            <h3>Grandview</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Growing area with rising home values. Don't let tax delinquency steal your equity — the sooner you act, the more you keep.</p>
+          </div>
+        </div>
+
+        <!-- Alternative: Sell -->
+        <h2 style="margin-top:40px">Your Alternative: Sell for Cash Before the Deadline</h2>
+        <p>Instead of scrambling to come up with thousands in back taxes, penalties, and interest — many Jackson County homeowners choose to sell to us instead.</p>
+        <div class="callout callout-tip">
+          <strong>How it works:</strong> We buy your home as-is, pay off all delinquent taxes at closing, and you walk away with cash in as few as 14 days. No repairs, no commissions, no stress.
+        </div>
+
+        <ComparisonTable
+          leftTitle="Sell to Saving KC"
+          rightTitle="Redeem on Your Own"
+          rows={comparisonRows}
+        />
+
+        <!-- Contact -->
+        <h2>Jackson County Collector's Office</h2>
+        <div class="card" style="margin-top:16px">
+          <p><strong>Address:</strong> 415 E 12th St, Floor 1, Kansas City, MO 64106</p>
+          <p><strong>Phone:</strong> <a href="tel:8168813232">(816) 881-3232</a></p>
+          <p><strong>Hours:</strong> Monday–Friday, 8:00 AM – 5:00 PM</p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="card">
+          <h4 style="margin-bottom:12px">Other Counties</h4>
+          <div class="county-pills">
+            <a href="/tax-delinquent/payment-plans/jackson-county/" class="county-pill">Jackson Payment Plans</a>
+            <a href="/tax-delinquent/payment-plans/johnson-county/" class="county-pill">Johnson County</a>
+            <a href="#" class="county-pill">Clay County</a>
+            <a href="#" class="county-pill">Platte County</a>
+            <a href="#" class="county-pill">Wyandotte County</a>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--cream)">
+          <h4 style="margin-bottom:12px">Key Facts</h4>
+          <ul class="sidebar-facts">
+            <li>1 year redemption (1st/2nd offering)</li>
+            <li>90 days redemption (3rd offering)</li>
+            <li>10% annual interest rate</li>
+            <li>Tax sale held annually in August</li>
+            <li>Collector's Deed = permanent loss</li>
+          </ul>
+        </div>
+
+        <LeadForm source="jackson-redemption-sidebar" />
+
+        <div class="card">
+          <h4 style="margin-bottom:12px">Related Resources</h4>
+          <a href="/tax-delinquent/payment-plans/jackson-county/" style="display:block;margin-bottom:8px">Jackson County Payment Plans</a>
+          <a href="/tax-delinquent/payment-plans/johnson-county/" style="display:block;margin-bottom:8px">Johnson County Tax Options</a>
+          <a href="/case-studies/" style="display:block">View Case Studies</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- FAQ -->
+  <FAQ items={faqItems} />
+
+  <!-- Bottom CTA -->
+  <section class="section" style="background:var(--red);color:var(--white);text-align:center">
+    <div class="container">
+      <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Don't Lose Your Home to a Tax Sale</h2>
+      <p style="font-size:1.1rem;margin-bottom:24px;opacity:0.9">Get your free cash offer before the deadline.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:8164292900" class="btn btn-lg" style="background:var(--white);color:var(--red)">Call 816-429-2900</a>
+        <a href="/#offer-form" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:var(--white);border:2px solid var(--white)">Get My Cash Offer</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--cream);
+    padding: 40px 0 50px;
+  }
+  .breadcrumb {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    color: var(--grey-500);
+  }
+  .breadcrumb a { color: var(--grey-500); }
+  .breadcrumb span { color: var(--grey-700); font-weight: 600; }
+  .page-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .page-hero-sub {
+    font-size: 1.1rem;
+    color: var(--grey-500);
+    margin-bottom: 28px;
+  }
+  .hero-key-stats {
+    display: flex;
+    gap: 32px;
+  }
+  .key-stat strong {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--red);
+  }
+  .key-stat span {
+    font-size: 0.85rem;
+    color: var(--grey-500);
+  }
+
+  /* Timeline */
+  .timeline {
+    margin: 24px 0 32px;
+  }
+  .timeline-step {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 44px;
+    bottom: 0;
+    width: 2px;
+    background: var(--grey-200);
+  }
+  .timeline-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .timeline-content h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .timeline-content p {
+    color: var(--grey-600);
+    font-size: 0.95rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  .main-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .cost-list {
+    margin: 12px 0 20px 20px;
+  }
+  .cost-list li {
+    margin-bottom: 8px;
+    color: var(--grey-600);
+  }
+
+  .sidebar-facts {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar-facts li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--grey-200);
+    font-size: 0.9rem;
+    color: var(--grey-600);
+  }
+  .sidebar-facts li:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .hero-key-stats { flex-direction: column; gap: 16px; }
+  }
+</style>

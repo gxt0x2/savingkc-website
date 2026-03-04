@@ -1,0 +1,50 @@
+---
+interface Props {
+  leftTitle?: string;
+  rightTitle?: string;
+  rows?: { label: string; left: string; right: string }[];
+}
+
+const {
+  leftTitle = "Cash Sale (Saving KC)",
+  rightTitle = "Traditional MLS Listing",
+  rows = [
+    { label: "Timeline", left: "14 days", right: "60–90+ days" },
+    { label: "Agent Commissions", left: "$0", right: "5–6% of sale price" },
+    { label: "Closing Costs", left: "We pay them", right: "Seller pays ~2%" },
+    { label: "Repairs Needed", left: "None — as-is", right: "Often $5K–$20K+" },
+    { label: "Showings", left: "Zero", right: "Dozens" },
+    { label: "Certainty", left: "Guaranteed close", right: "Buyers can back out" },
+    { label: "Inspections", left: "None required", right: "Required" },
+    { label: "Appraisal", left: "Not needed", right: "Bank-required" },
+  ],
+} = Astro.props;
+---
+
+<div class="comparison-wrapper">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="highlight">{leftTitle}</th>
+        <th>{rightTitle}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td><strong>{row.label}</strong></td>
+          <td class="highlight">{row.left}</td>
+          <td>{row.right}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .comparison-wrapper {
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+</style>

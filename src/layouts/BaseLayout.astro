@@ -1,0 +1,265 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { title, description = "Saving KC Homebuyers — We buy houses in Kansas City for cash. No repairs, no agent fees, close in as few as 14 days.", canonical } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Schema: RealEstateAgent -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Saving KC Homebuyers",
+    "url": "https://savingkc.com",
+    "telephone": "+1-816-429-2900",
+    "email": "ari@savingkc.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kansas City",
+      "addressRegion": "MO"
+    },
+    "areaServed": ["Jackson County", "Clay County", "Platte County", "Wyandotte County", "Johnson County"],
+    "openingHours": "Mo-Su 08:00-20:00"
+  })} />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Saving KC Homebuyers</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#about">About Ernest</a>
+        <a href="/#reviews">Reviews</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="tel:8164292900" class="btn btn-secondary nav-phone">816-429-2900</a>
+        <a href="/#offer-form" class="btn btn-primary">Get My Cash Offer</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/#about">About</a>
+          <a href="/#reviews">Reviews</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/case-studies/">Case Studies</a>
+        </div>
+        <div class="footer-col">
+          <h4>Situations</h4>
+          <a href="#">Foreclosure</a>
+          <a href="#">Inherited Property</a>
+          <a href="#">Divorce</a>
+          <a href="#">Back Taxes</a>
+          <a href="#">Relocation</a>
+        </div>
+        <div class="footer-col">
+          <h4>Tax Delinquent</h4>
+          <a href="/tax-delinquent/redemption/jackson-county/">Jackson County Redemption</a>
+          <a href="/tax-delinquent/payment-plans/jackson-county/">Jackson County Payment Plans</a>
+          <a href="/tax-delinquent/payment-plans/johnson-county/">Johnson County Payment Plans</a>
+        </div>
+        <div class="footer-col">
+          <h4>Service Areas</h4>
+          <a href="/sell-my-house-fast-liberty/">Liberty</a>
+          <a href="#">Independence</a>
+          <a href="#">Blue Springs</a>
+          <a href="#">Grandview</a>
+          <a href="#">Overland Park</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p><a href="tel:8164292900">816-429-2900</a></p>
+          <p><a href="mailto:ari@savingkc.com">ari@savingkc.com</a></p>
+          <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Saving KC Homebuyers. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--grey-200);
+      height: var(--nav-height);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--grey-900);
+    }
+    .nav-logo:hover { text-decoration: none; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: var(--grey-600);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: var(--grey-900);
+      text-decoration: none;
+    }
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .nav-phone {
+      font-weight: 700;
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--grey-700);
+      transition: 0.2s;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 20px;
+        border-bottom: 1px solid var(--grey-200);
+        box-shadow: var(--shadow-lg);
+      }
+      .nav-cta.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: calc(var(--nav-height) + 180px);
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 0 20px 20px;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--grey-900);
+      color: var(--grey-300);
+      padding: 60px 0 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--grey-400);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .footer-col a:hover {
+      color: var(--white);
+    }
+    .footer-col p {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--grey-700);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--grey-500);
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+      });
+    }
+  </script>
+</body>
+</html>

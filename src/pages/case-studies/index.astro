@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const caseStudies = [
+  {
+    name: "Linda M.",
+    location: "Grandview, MO",
+    situation: "Foreclosure",
+    timeline: "14 days",
+    amount: "$12,000",
+    quote: "Ernest made a stressful situation simple. I was facing foreclosure and didn't know what to do. He gave me a fair offer and closed in two weeks. I walked away with cash in hand and my credit intact.",
+    tags: ["Foreclosure", "Jackson County"],
+  },
+  {
+    name: "Marcus J.",
+    location: "Independence, MO",
+    situation: "Back Taxes",
+    timeline: "21 days",
+    amount: "$18,500",
+    quote: "I had years of back taxes piling up and the tax sale was coming. Saving KC paid off all the delinquent taxes at closing and I still walked away with over $18K. They handled everything.",
+    tags: ["Back Taxes", "Jackson County"],
+  },
+  {
+    name: "David & Karen T.",
+    location: "Blue Springs, MO",
+    situation: "Inherited Property",
+    timeline: "30 days",
+    amount: "$47,000",
+    quote: "We inherited my mother's home and none of the siblings wanted to deal with repairs or listing it. Ernest bought it as-is and we split the proceeds. Clean and easy.",
+    tags: ["Probate", "Jackson County"],
+  },
+  {
+    name: "Patricia G.",
+    location: "Liberty, MO",
+    situation: "Divorce",
+    timeline: "18 days",
+    amount: "$31,000",
+    quote: "Going through a divorce is hard enough without having to worry about selling a house. Ernest made one of the hardest parts of the process the easiest.",
+    tags: ["Divorce", "Clay County"],
+  },
+  {
+    name: "Robert & Jean W.",
+    location: "Raytown, MO",
+    situation: "Hoarding",
+    timeline: "25 days",
+    amount: "$22,000",
+    quote: "Other buyers took one look and ran. Ernest didn't flinch. He bought the house as-is and handled the cleanout himself. No judgment, just professionalism.",
+    tags: ["Hoarding", "Jackson County"],
+  },
+  {
+    name: "Angela R.",
+    location: "Overland Park, KS",
+    situation: "Relocation",
+    timeline: "14 days",
+    amount: "$55,000",
+    quote: "My job transferred me to Texas with two weeks notice. I couldn't wait for a traditional sale. Saving KC closed on my schedule and I moved stress-free.",
+    tags: ["Relocation", "Johnson County"],
+  },
+];
+---
+
+<BaseLayout title="Case Studies | Saving KC Homebuyers" description="Real KC deals, real results. See how we've helped 100+ Kansas City homeowners sell their homes fast for cash.">
+
+  <!-- Hero -->
+  <section class="cs-hero">
+    <div class="container">
+      <h1>Real KC Deals. Real Results.</h1>
+      <p>We've helped 100+ Kansas City homeowners sell fast with cash closings and zero hassle. Here are some of their stories.</p>
+    </div>
+  </section>
+
+  <!-- Case Studies Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="cs-grid">
+        {caseStudies.map((cs) => (
+          <div class="cs-card card">
+            <div class="cs-tags">
+              {cs.tags.map((tag) => (
+                <span class="badge badge-red">{tag}</span>
+              ))}
+            </div>
+            <h3>{cs.name} — {cs.location}</h3>
+            <div class="cs-stats">
+              <div class="cs-stat">
+                <span class="cs-stat-label">Timeline</span>
+                <span class="cs-stat-value">{cs.timeline}</span>
+              </div>
+              <div class="cs-stat">
+                <span class="cs-stat-label">Cash to Seller</span>
+                <span class="cs-stat-value cs-amount">{cs.amount}</span>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <blockquote>"{cs.quote}"</blockquote>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--red);color:var(--white);text-align:center">
+    <div class="container">
+      <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Your Story Could Be Next</h2>
+      <p style="font-size:1.1rem;margin-bottom:24px;opacity:0.9">Get your free, no-obligation cash offer today.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:8164292900" class="btn btn-lg" style="background:var(--white);color:var(--red)">Call 816-429-2900</a>
+        <a href="/#offer-form" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:var(--white);border:2px solid var(--white)">Get My Cash Offer</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .cs-hero {
+    background: var(--grey-900);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+  }
+  .cs-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .cs-hero p {
+    font-size: 1.1rem;
+    color: var(--grey-300);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+  .cs-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cs-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  .cs-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .cs-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+  }
+  .cs-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .cs-stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--grey-400);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .cs-stat-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+  .cs-amount {
+    color: var(--green);
+  }
+  .cs-card .stars {
+    margin-bottom: 8px;
+  }
+  .cs-card blockquote {
+    font-style: italic;
+    color: var(--grey-600);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .cs-hero h1 { font-size: 1.8rem; }
+    .cs-grid { grid-template-columns: 1fr; }
+  }
+</style>

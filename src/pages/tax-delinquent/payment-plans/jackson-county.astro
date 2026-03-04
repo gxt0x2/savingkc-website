@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import ComparisonTable from '../../../components/ComparisonTable.astro';
+import FAQ from '../../../components/FAQ.astro';
+import Testimonials from '../../../components/Testimonials.astro';
+import '../../../styles/global.css';
+
+const faqItems = [
+  {
+    question: "When is the deadline to apply for a Jackson County payment plan?",
+    answer: "You must apply by April 30 at the Jackson County Collector's Office."
+  },
+  {
+    question: "What happens if I miss a payment?",
+    answer: "Miss any single payment and the entire plan is voided. All remaining delinquent taxes become immediately due, and your property becomes eligible for tax sale."
+  },
+  {
+    question: "How much interest will I pay?",
+    answer: "Jackson County charges a 9% one-time penalty on delinquent taxes plus up to 1.5% per month ongoing interest."
+  },
+  {
+    question: "Can I still sell my house while on a payment plan?",
+    answer: "Yes. We buy homes with active payment plans. We pay off all remaining delinquent taxes at closing and you walk away with cash."
+  },
+  {
+    question: "Are there any programs for senior citizens?",
+    answer: "Missouri offers property tax credit programs for seniors. Contact the Jackson County Collector's Office for eligibility details."
+  },
+  {
+    question: "What if I can't afford the payment plan?",
+    answer: "If the payment plan isn't feasible, selling your home for cash may be a better option. We handle all back taxes at closing, so you walk away with money instead of debt."
+  },
+  {
+    question: "How long is the payment plan?",
+    answer: "Plans typically run 12 months, but the exact terms depend on the amount owed and your agreement with the Collector's Office."
+  },
+  {
+    question: "Will a payment plan stop a tax sale?",
+    answer: "Yes — an active, in-good-standing payment plan will keep your property out of the annual August tax sale. But if you default, it goes right back in."
+  },
+];
+
+const comparisonRows = [
+  { label: "Timeline", left: "14 days to close", right: "12+ months of payments" },
+  { label: "Back Taxes", left: "We pay them all at closing", right: "You pay over time + interest" },
+  { label: "Risk", left: "Zero — guaranteed close", right: "One missed payment = plan voided" },
+  { label: "Cash in Hand", left: "Yes — walk away with money", right: "No — you spend money" },
+  { label: "Interest", left: "None to you", right: "9% penalty + 1.5%/mo" },
+  { label: "Stress", left: "We handle everything", right: "12 months of deadlines" },
+];
+---
+
+<BaseLayout
+  title="Jackson County Tax Payment Plans Guide | Saving KC Homebuyers"
+  description="Complete guide to Jackson County MO property tax payment plans. Learn deadlines, interest rates, and alternatives including selling your home for cash."
+>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+      { "@type": "ListItem", "position": 2, "name": "Tax Delinquent", "item": "/tax-delinquent/" },
+      { "@type": "ListItem", "position": 3, "name": "Payment Plans", "item": "/tax-delinquent/payment-plans/" },
+      { "@type": "ListItem", "position": 4, "name": "Jackson County" },
+    ],
+  })} />
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <a href="#">Tax Delinquent</a> &rsaquo; <a href="#">Payment Plans</a> &rsaquo; <span>Jackson County</span>
+      </nav>
+      <h1>Jackson County Tax Payment Plans: What You Need to Know</h1>
+      <p class="page-hero-sub">Apply by April 30 at the Jackson County Collector's Office — but know your alternatives.</p>
+      <div class="hero-key-stats">
+        <div class="key-stat">
+          <strong>April 30</strong>
+          <span>Application deadline</span>
+        </div>
+        <div class="key-stat">
+          <strong>9%</strong>
+          <span>One-time penalty</span>
+        </div>
+        <div class="key-stat">
+          <strong>1.5%/mo</strong>
+          <span>Ongoing interest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container hybrid-layout">
+      <div class="main-content">
+
+        <!-- Process Timeline -->
+        <h2>How Tax Delinquency Leads to Tax Sale</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <h3>Taxes Become Delinquent</h3>
+              <p>Property taxes are due December 31. On January 1, unpaid taxes become delinquent with penalties and interest starting immediately.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <h3>Payment Plan Window Opens</h3>
+              <p>Before April 30, you can apply for a payment plan at the Collector's Office. This is your best chance to avoid the tax sale.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+              <h3>August Tax Sale</h3>
+              <p>Properties without payment plans or full payment are offered at the annual tax lien sale, typically held each August.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+              <h3>Redemption or Loss</h3>
+              <p>After the sale, you have a limited window to redeem — or you lose your property permanently.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Plan Details -->
+        <h2>How Jackson County Payment Plans Work</h2>
+        <p>The Jackson County Collector's Office allows delinquent property owners to set up payment plans to avoid tax sale. Here's what you need to know:</p>
+
+        <div class="callout callout-info">
+          <strong>Deadline:</strong> You must apply by <strong>April 30</strong> at the Jackson County Collector's Office.
+        </div>
+
+        <h3>Costs & Interest</h3>
+        <ul class="cost-list">
+          <li><strong>9% one-time penalty</strong> on the delinquent tax amount</li>
+          <li><strong>Up to 1.5% per month</strong> ongoing interest</li>
+          <li><strong>Full delinquent amount</strong> must be paid by end of plan</li>
+        </ul>
+
+        <div class="callout callout-critical">
+          <strong>Warning:</strong> Miss any single payment and the whole plan is voided. All remaining taxes become immediately due, and your property goes to tax sale.
+        </div>
+
+        <!-- Neighborhoods -->
+        <h2>Neighborhood Impact</h2>
+        <div class="grid-2" style="margin-top:20px">
+          <div class="card">
+            <h3>South Kansas City</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Lower property values can mean the payment plan amount rivals what you'd walk away with by selling. Do the math before committing to a plan.</p>
+          </div>
+          <div class="card">
+            <h3>Independence</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">High delinquency rates. If you're already struggling to pay taxes, adding 9% + monthly interest to the burden may not be sustainable.</p>
+          </div>
+          <div class="card">
+            <h3>Raytown</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Moderate home values with good equity potential. Selling may net you significantly more than the cost of catching up on taxes.</p>
+          </div>
+          <div class="card">
+            <h3>Grandview</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Rising property values mean more equity to protect. Whether you choose a payment plan or sell, act before the August tax sale.</p>
+          </div>
+        </div>
+
+        <!-- Alternative -->
+        <h2 style="margin-top:40px">Your Alternative: Sell for Cash</h2>
+        <p>If a 12-month payment plan with 9% penalties and monthly interest isn't realistic for you, there's another option: sell your home for cash and walk away debt-free.</p>
+
+        <div class="callout callout-tip">
+          <strong>How it works:</strong> We buy your home as-is, pay all delinquent taxes at closing, and you walk away with cash in as few as 14 days. No repairs, no commissions, no 12 months of worry.
+        </div>
+
+        <ComparisonTable
+          leftTitle="Sell to Saving KC"
+          rightTitle="Payment Plan"
+          rows={comparisonRows}
+        />
+
+        <!-- Contact Info -->
+        <h2>Jackson County Collector's Office</h2>
+        <div class="card" style="margin-top:16px">
+          <p><strong>Address:</strong> 415 E 12th St, Floor 1, Kansas City, MO 64106</p>
+          <p><strong>Phone:</strong> <a href="tel:8168813232">(816) 881-3232</a></p>
+          <p><strong>Hours:</strong> Monday–Friday, 8:00 AM – 5:00 PM</p>
+          <p><strong>Payment Plan Deadline:</strong> April 30</p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="card">
+          <h4 style="margin-bottom:12px">Other Counties</h4>
+          <div class="county-pills">
+            <a href="/tax-delinquent/redemption/jackson-county/" class="county-pill">Jackson Redemption</a>
+            <a href="/tax-delinquent/payment-plans/johnson-county/" class="county-pill">Johnson County</a>
+            <a href="#" class="county-pill">Clay County</a>
+            <a href="#" class="county-pill">Platte County</a>
+            <a href="#" class="county-pill">Wyandotte County</a>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--cream)">
+          <h4 style="margin-bottom:12px">Key Facts</h4>
+          <ul class="sidebar-facts">
+            <li>Apply by April 30</li>
+            <li>9% one-time penalty</li>
+            <li>Up to 1.5%/mo ongoing interest</li>
+            <li>One missed payment = plan voided</li>
+            <li>August tax sale if no plan in place</li>
+          </ul>
+        </div>
+
+        <LeadForm source="jackson-payment-plans-sidebar" />
+
+        <div class="card">
+          <h4 style="margin-bottom:12px">Related Resources</h4>
+          <a href="/tax-delinquent/redemption/jackson-county/" style="display:block;margin-bottom:8px">Jackson County Redemption Guide</a>
+          <a href="/tax-delinquent/payment-plans/johnson-county/" style="display:block;margin-bottom:8px">Johnson County Tax Options</a>
+          <a href="/case-studies/" style="display:block">View Case Studies</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Testimonials />
+  <FAQ items={faqItems} />
+
+  <section class="section" style="background:var(--red);color:var(--white);text-align:center">
+    <div class="container">
+      <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Behind on Property Taxes?</h2>
+      <p style="font-size:1.1rem;margin-bottom:24px;opacity:0.9">Get your free cash offer — we pay off all back taxes at closing.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:8164292900" class="btn btn-lg" style="background:var(--white);color:var(--red)">Call 816-429-2900</a>
+        <a href="/#offer-form" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:var(--white);border:2px solid var(--white)">Get My Cash Offer</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--cream);
+    padding: 40px 0 50px;
+  }
+  .breadcrumb {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    color: var(--grey-500);
+  }
+  .breadcrumb a { color: var(--grey-500); }
+  .breadcrumb span { color: var(--grey-700); font-weight: 600; }
+  .page-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .page-hero-sub {
+    font-size: 1.1rem;
+    color: var(--grey-500);
+    margin-bottom: 28px;
+  }
+  .hero-key-stats {
+    display: flex;
+    gap: 32px;
+  }
+  .key-stat strong {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--red);
+  }
+  .key-stat span {
+    font-size: 0.85rem;
+    color: var(--grey-500);
+  }
+  .timeline {
+    margin: 24px 0 32px;
+  }
+  .timeline-step {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 44px;
+    bottom: 0;
+    width: 2px;
+    background: var(--grey-200);
+  }
+  .timeline-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .timeline-content h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .timeline-content p {
+    color: var(--grey-600);
+    font-size: 0.95rem;
+  }
+  .main-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  .main-content h2:first-child { margin-top: 0; }
+  .cost-list {
+    margin: 12px 0 20px 20px;
+  }
+  .cost-list li {
+    margin-bottom: 8px;
+    color: var(--grey-600);
+  }
+  .sidebar-facts {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar-facts li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--grey-200);
+    font-size: 0.9rem;
+    color: var(--grey-600);
+  }
+  .sidebar-facts li:last-child { border-bottom: none; }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .hero-key-stats { flex-direction: column; gap: 16px; }
+  }
+</style>

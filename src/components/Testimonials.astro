@@ -1,0 +1,60 @@
+---
+const testimonials = [
+  {
+    quote: "Ernest made the entire process so easy. We were facing foreclosure and he closed in just 14 days. Lifesaver!",
+    author: "Linda M.",
+    location: "Grandview, MO",
+  },
+  {
+    quote: "I inherited a property with years of back taxes. Saving KC handled everything and I walked away with cash.",
+    author: "Marcus J.",
+    location: "Independence, MO",
+  },
+  {
+    quote: "After my divorce, I needed to sell fast. No repairs, no showings, no stress. Highly recommend!",
+    author: "Sarah K.",
+    location: "Blue Springs, MO",
+  },
+  {
+    quote: "Professional, fair offer, and they closed when they said they would. Can't ask for more than that.",
+    author: "David T.",
+    location: "Liberty, MO",
+  },
+  {
+    quote: "We had a hoarder situation and other buyers ran. Ernest didn't flinch. Bought it as-is and closed fast.",
+    author: "Robert & Jean W.",
+    location: "Raytown, MO",
+  },
+];
+---
+
+<section class="section testimonials-section" id="reviews">
+  <div class="container">
+    <h2 class="section-title">What KC Homeowners Say</h2>
+    <p class="section-subtitle">Real reviews from real sellers across the Kansas City metro.</p>
+    <div class="testimonials-grid">
+      {testimonials.map((t) => (
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"{t.quote}"</blockquote>
+          <div class="author">{t.author}</div>
+          <div class="location">{t.location}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>

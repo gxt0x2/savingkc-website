@@ -1,0 +1,71 @@
+---
+interface Props {
+  items: { question: string; answer: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {items.map((item) => (
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>{item.question}</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+})} />
+
+<style>
+  .faq-list {
+    max-width: 800px;
+  }
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--grey-400);
+    transition: transform 0.2s;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach((q) => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const answer = item?.querySelector('.faq-answer') as HTMLElement;
+      const toggle = q.querySelector('.faq-toggle');
+      if (answer) {
+        const isOpen = answer.style.display === 'block';
+        answer.style.display = isOpen ? 'none' : 'block';
+        if (toggle) toggle.textContent = isOpen ? '+' : '−';
+      }
+    });
+  });
+  // Initially hide answers
+  document.querySelectorAll('.faq-answer').forEach((a: HTMLElement) => {
+    a.style.display = 'none';
+  });
+</script>

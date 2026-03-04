@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import ComparisonTable from '../../../components/ComparisonTable.astro';
+import FAQ from '../../../components/FAQ.astro';
+import Testimonials from '../../../components/Testimonials.astro';
+import '../../../styles/global.css';
+
+const faqItems = [
+  {
+    question: "How do property tax sales work in Kansas vs. Missouri?",
+    answer: "Kansas is significantly harsher. Once the sheriff's deed is recorded, ownership transfers permanently — zero redemption, zero exceptions. Missouri gives you up to 1 year to redeem after the first/second offering."
+  },
+  {
+    question: "What is the SAFESR program?",
+    answer: "SAFESR provides a 75% property tax refund for homeowners age 65 or older with home values under $350,000. It's one of the best relief programs available in Johnson County."
+  },
+  {
+    question: "Can I split my tax payments in Johnson County?",
+    answer: "Yes. For current-year taxes, you can make a split payment: half by December 20 and the second half by May 10. This only applies to current taxes, not delinquent amounts."
+  },
+  {
+    question: "What if I'm low-income and can't pay my taxes?",
+    answer: "Kansas offers a Property Tax Relief Program for low-income residents. Contact the Johnson County Treasurer's Office for eligibility details and application assistance."
+  },
+  {
+    question: "How long before my home goes to tax sale in Kansas?",
+    answer: "Properties with unpaid taxes for approximately 3 years become eligible for the sheriff's tax foreclosure sale. The exact timeline depends on when the county files the foreclosure."
+  },
+  {
+    question: "Can I sell my house with delinquent taxes in Johnson County?",
+    answer: "Yes. We buy homes with delinquent taxes in Johnson County. We pay off all back taxes at closing, and you walk away with cash in as few as 14 days."
+  },
+  {
+    question: "Is there a redemption period after a Kansas tax sale?",
+    answer: "No. Once the sheriff's deed is recorded in Kansas, there is no redemption period. Ownership transfers permanently and immediately to the buyer."
+  },
+  {
+    question: "What are typical property taxes in Johnson County?",
+    answer: "Johnson County has some of the highest property tax rates in Kansas. On a $350,000 home, expect $4,000–$6,000 annually depending on your city and school district."
+  },
+];
+
+const comparisonRows = [
+  { label: "Timeline", left: "14 days to close", right: "Unknown — foreclosure timeline" },
+  { label: "Back Taxes", left: "We pay them at closing", right: "You pay full amount" },
+  { label: "Risk", left: "Zero — guaranteed close", right: "No redemption in Kansas" },
+  { label: "Cash in Hand", left: "Yes", right: "No — you spend money" },
+  { label: "Kansas Foreclosure", left: "Avoided entirely", right: "Sheriff's deed = permanent loss" },
+  { label: "Stress", left: "We handle everything", right: "All on you" },
+];
+---
+
+<BaseLayout
+  title="Johnson County KS Tax Payment Options | Saving KC Homebuyers"
+  description="Guide to Johnson County Kansas property tax payment options, relief programs, and alternatives. Learn about SAFESR, split payments, and selling for cash."
+>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+      { "@type": "ListItem", "position": 2, "name": "Tax Delinquent", "item": "/tax-delinquent/" },
+      { "@type": "ListItem", "position": 3, "name": "Payment Plans", "item": "/tax-delinquent/payment-plans/" },
+      { "@type": "ListItem", "position": 4, "name": "Johnson County" },
+    ],
+  })} />
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> &rsaquo; <a href="#">Tax Delinquent</a> &rsaquo; <a href="#">Payment Plans</a> &rsaquo; <span>Johnson County</span>
+      </nav>
+      <h1>Johnson County Tax Payment Options & Relief Programs</h1>
+      <p class="page-hero-sub">Kansas law is harsh — no redemption after sheriff's deed. Know your options before it's too late.</p>
+      <div class="hero-key-stats">
+        <div class="key-stat">
+          <strong>0 Days</strong>
+          <span>Redemption after sheriff's deed</span>
+        </div>
+        <div class="key-stat">
+          <strong>75%</strong>
+          <span>SAFESR tax refund (seniors)</span>
+        </div>
+        <div class="key-stat">
+          <strong>$4K–$6K</strong>
+          <span>Typical annual taxes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container hybrid-layout">
+      <div class="main-content">
+
+        <!-- Critical Kansas Warning -->
+        <div class="callout callout-critical">
+          <strong>Kansas Law — No Redemption:</strong> Once the sheriff's deed is recorded, ownership transfers permanently to the buyer. Zero redemption. Zero exceptions. This is fundamentally different from Missouri's 1-year redemption period.
+        </div>
+
+        <!-- Process Timeline -->
+        <h2>How Tax Delinquency Works in Johnson County</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <h3>Taxes Become Delinquent</h3>
+              <p>First half due December 20, second half due May 10. Late payments incur interest and penalties starting immediately.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <h3>County Files Foreclosure</h3>
+              <p>After approximately 3 years of non-payment, Johnson County files a tax foreclosure action in district court.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+              <h3>Sheriff's Tax Sale</h3>
+              <p>Your property is sold at a sheriff's auction. The highest bidder wins.</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+              <h3>Permanent Ownership Transfer</h3>
+              <p>The sheriff's deed is recorded. <strong>You permanently lose your home. No redemption. No appeal.</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Relief Programs -->
+        <h2>Available Relief Programs</h2>
+
+        <div class="relief-card card" style="margin-bottom:20px; border-left:4px solid var(--green)">
+          <h3>SAFESR (Senior Refund)</h3>
+          <p><strong>75% property tax refund</strong> for homeowners age 65+ with home values under $350,000.</p>
+          <p style="color:var(--grey-500);font-size:0.9rem;margin-top:8px">This is one of the most generous senior tax programs in the region. If you qualify, apply through the Kansas Department of Revenue.</p>
+        </div>
+
+        <div class="relief-card card" style="margin-bottom:20px; border-left:4px solid var(--blue)">
+          <h3>Property Tax Relief Program</h3>
+          <p>Kansas offers tax relief for <strong>low-income residents</strong> who meet income and property value thresholds.</p>
+          <p style="color:var(--grey-500);font-size:0.9rem;margin-top:8px">Contact the Johnson County Treasurer's Office for eligibility details.</p>
+        </div>
+
+        <div class="relief-card card" style="margin-bottom:20px; border-left:4px solid var(--amber)">
+          <h3>Split-Payment Option</h3>
+          <p>For <strong>current-year taxes only</strong>, you can split payments: half by December 20, second half by May 10.</p>
+          <p style="color:var(--grey-500);font-size:0.9rem;margin-top:8px">This does not apply to delinquent taxes. If you're already behind, you need a different solution.</p>
+        </div>
+
+        <!-- Neighborhoods -->
+        <h2>Impact Across Johnson County</h2>
+        <div class="grid-2" style="margin-top:20px">
+          <div class="card">
+            <h3>Overland Park</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Higher property values mean higher annual taxes ($5K–$7K). But it also means more equity to protect or cash out before foreclosure.</p>
+          </div>
+          <div class="card">
+            <h3>Olathe</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Growing suburbs with strong demand. Homes here sell quickly, making a cash sale a fast exit from tax trouble.</p>
+          </div>
+          <div class="card">
+            <h3>Shawnee</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Mid-range homes with solid neighborhood appeal. Tax delinquency here is often from temporary financial hardship — selling can be the reset you need.</p>
+          </div>
+          <div class="card">
+            <h3>Merriam / Mission</h3>
+            <p style="color:var(--grey-500);font-size:0.9rem">Smaller, older homes closer to the state line. Lower values but steady demand from investors and first-time buyers.</p>
+          </div>
+        </div>
+
+        <!-- Alternative -->
+        <h2 style="margin-top:40px">Your Alternative: Sell for Cash Before the Sheriff's Sale</h2>
+        <p>Kansas gives you zero room for error. Once the sheriff's deed is recorded, it's over. But you still have time to sell your home, pay off all back taxes, and walk away with cash.</p>
+
+        <div class="callout callout-tip">
+          <strong>How it works:</strong> We buy your home as-is, pay all delinquent taxes at closing, and close in as few as 14 days. No repairs, no commissions, no risk of losing everything to the sheriff's sale.
+        </div>
+
+        <ComparisonTable
+          leftTitle="Sell to Saving KC"
+          rightTitle="Face the Sheriff's Sale"
+          rows={comparisonRows}
+        />
+
+        <!-- Contact -->
+        <h2>Johnson County Treasurer's Office</h2>
+        <div class="card" style="margin-top:16px">
+          <p><strong>Address:</strong> 111 S Cherry St, Suite 1200, Olathe, KS 66061</p>
+          <p><strong>Phone:</strong> <a href="tel:9137155085">(913) 715-5085</a></p>
+          <p><strong>Hours:</strong> Monday–Friday, 8:00 AM – 5:00 PM</p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="card">
+          <h4 style="margin-bottom:12px">Other Counties</h4>
+          <div class="county-pills">
+            <a href="/tax-delinquent/redemption/jackson-county/" class="county-pill">Jackson Redemption</a>
+            <a href="/tax-delinquent/payment-plans/jackson-county/" class="county-pill">Jackson Payment Plans</a>
+            <a href="#" class="county-pill">Clay County</a>
+            <a href="#" class="county-pill">Platte County</a>
+            <a href="#" class="county-pill">Wyandotte County</a>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--red-light)">
+          <h4 style="margin-bottom:12px;color:var(--red)">Kansas Warning</h4>
+          <p style="font-size:0.9rem;color:var(--grey-700)"><strong>No redemption</strong> after sheriff's deed is recorded. Unlike Missouri, Kansas gives you zero second chances.</p>
+        </div>
+
+        <div class="card" style="background:var(--cream)">
+          <h4 style="margin-bottom:12px">Key Facts</h4>
+          <ul class="sidebar-facts">
+            <li>No redemption after sheriff's deed</li>
+            <li>SAFESR: 75% refund for seniors 65+</li>
+            <li>Split payments: Dec 20 / May 10</li>
+            <li>$4K–$6K typical annual taxes</li>
+            <li>~3 years to foreclosure filing</li>
+          </ul>
+        </div>
+
+        <LeadForm source="johnson-county-sidebar" />
+
+        <div class="card">
+          <h4 style="margin-bottom:12px">Related Resources</h4>
+          <a href="/tax-delinquent/redemption/jackson-county/" style="display:block;margin-bottom:8px">Jackson County Redemption Guide</a>
+          <a href="/tax-delinquent/payment-plans/jackson-county/" style="display:block;margin-bottom:8px">Jackson County Payment Plans</a>
+          <a href="/case-studies/" style="display:block">View Case Studies</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Testimonials />
+  <FAQ items={faqItems} />
+
+  <section class="section" style="background:var(--red);color:var(--white);text-align:center">
+    <div class="container">
+      <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Kansas Doesn't Give Second Chances</h2>
+      <p style="font-size:1.1rem;margin-bottom:24px;opacity:0.9">Sell before the sheriff's sale. Get your free cash offer today.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:8164292900" class="btn btn-lg" style="background:var(--white);color:var(--red)">Call 816-429-2900</a>
+        <a href="/#offer-form" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:var(--white);border:2px solid var(--white)">Get My Cash Offer</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--cream);
+    padding: 40px 0 50px;
+  }
+  .breadcrumb {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    color: var(--grey-500);
+  }
+  .breadcrumb a { color: var(--grey-500); }
+  .breadcrumb span { color: var(--grey-700); font-weight: 600; }
+  .page-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .page-hero-sub {
+    font-size: 1.1rem;
+    color: var(--grey-500);
+    margin-bottom: 28px;
+  }
+  .hero-key-stats {
+    display: flex;
+    gap: 32px;
+  }
+  .key-stat strong {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--red);
+  }
+  .key-stat span {
+    font-size: 0.85rem;
+    color: var(--grey-500);
+  }
+  .timeline {
+    margin: 24px 0 32px;
+  }
+  .timeline-step {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 44px;
+    bottom: 0;
+    width: 2px;
+    background: var(--grey-200);
+  }
+  .timeline-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .timeline-content h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .timeline-content p {
+    color: var(--grey-600);
+    font-size: 0.95rem;
+  }
+  .main-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  .main-content h2:first-child { margin-top: 0; }
+  .cost-list {
+    margin: 12px 0 20px 20px;
+  }
+  .cost-list li {
+    margin-bottom: 8px;
+    color: var(--grey-600);
+  }
+  .sidebar-facts {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar-facts li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--grey-200);
+    font-size: 0.9rem;
+    color: var(--grey-600);
+  }
+  .sidebar-facts li:last-child { border-bottom: none; }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 1.6rem; }
+    .hero-key-stats { flex-direction: column; gap: 16px; }
+  }
+</style>
