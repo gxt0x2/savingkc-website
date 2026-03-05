@@ -33,6 +33,7 @@ interface Props {
   stateName?: string;
   medianValue?: string;
   contactItems?: { label: string; value: string; href?: string }[];
+  pillsTitle?: string;
   countyPills?: { label: string; href: string }[];
   relatedLinks?: { label: string; href: string }[];
   canonical?: string;
@@ -49,6 +50,7 @@ const {
   facts,
   locationName,
   contactItems,
+  pillsTitle = 'Nearby Counties',
   countyPills,
   relatedLinks,
   canonical,
@@ -172,7 +174,7 @@ const faqs = [
       {contactItems && contactItems.length > 0 && <ContactSidebar items={contactItems} />}
       {countyPills && countyPills.length > 0 && (
         <div class="sidebar-box">
-          <h3>Nearby Counties</h3>
+          <h3>{pillsTitle}</h3>
           <div class="county-pills">
             {countyPills.map((pill) => (
               <a href={pill.href} class="county-pill">{pill.label}</a>
