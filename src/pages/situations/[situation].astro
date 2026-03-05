@@ -1,0 +1,168 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { situations, getSituationBySlug } from '@/data/situations';
+import { brand } from '@/data/brand';
+
+export function getStaticPaths() {
+  return situations.map((s) => ({
+    params: { situation: s.slug },
+    props: { situation: s },
+  }));
+}
+
+const { situation } = Astro.props;
+
+const otherSituations = situations.filter((s) => s.slug !== situation.slug).slice(0, 6);
+---
+
+<BaseLayout title={situation.metaTitle} description={situation.metaDescription} canonical={`${brand.domain}/situations/${situation.slug}/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[
+        { label: 'Situations', href: '/situations/' },
+        { label: situation.title },
+      ]} />
+
+      <header class="hero">
+        <h1>{situation.heroHeading}</h1>
+        <p class="hero-sub">{situation.heroSubheading}</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> {situation.shortAnswer}</p>
+      </div>
+
+      {situation.sections.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+      {situation.steps && situation.steps.length > 0 && (
+        <ProcessSteps steps={situation.steps} />
+      )}
+
+      {situation.comparison && situation.comparison.length > 0 && (
+        <ComparisonTable rows={situation.comparison} />
+      )}
+
+      {situation.keyTerms && situation.keyTerms.length > 0 && (
+        <section class="content-section">
+          <h2>Key Terms to Know</h2>
+          <dl class="terms-list">
+            {situation.keyTerms.map((kt) => (
+              <>
+                <dt>{kt.term}</dt>
+                <dd>{kt.definition}</dd>
+              </>
+            ))}
+          </dl>
+        </section>
+      )}
+
+      {situation.faqs && situation.faqs.length > 0 && (
+        <FAQ items={situation.faqs} />
+      )}
+
+      <section class="content-section">
+        <h2>Other Situations We Handle</h2>
+        <div class="other-grid">
+          {otherSituations.map((s) => (
+            <a href={`/situations/${s.slug}/`} class="other-card">
+              <span class="other-title">{s.title}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
+
+  .terms-list {
+    margin: 0;
+    padding: 0;
+  }
+  .terms-list dt {
+    font-weight: 700;
+    color: var(--grey-900);
+    margin-top: 16px;
+  }
+  .terms-list dd {
+    margin: 4px 0 0 0;
+    color: var(--grey-600);
+    line-height: 1.6;
+  }
+
+  .other-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .other-card {
+    display: block;
+    padding: 14px 18px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .other-card:hover { border-color: var(--red); box-shadow: var(--shadow); text-decoration: none; }
+  .other-title { font-weight: 600; color: var(--grey-800); font-size: 0.95rem; }
+  .other-card:hover .other-title { color: var(--red); }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .hero h1 { font-size: 1.8rem; }
+    .other-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

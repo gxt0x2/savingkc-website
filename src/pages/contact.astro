@@ -1,0 +1,102 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { brand } from '@/data/brand';
+---
+
+<BrandPageTemplate
+  title="Contact Us - Get Your Free Cash Offer Today"
+  description={`Contact ${brand.name} to get a free, no-obligation cash offer on your Kansas City home. Call ${brand.phoneFormatted} or fill out our form.`}
+  canonical={`${brand.domain}/contact/`}
+  breadcrumbs={[{ label: 'Contact' }]}
+  showSidebar={false}
+>
+  <div class="contact-wrapper">
+    <h1 class="contact-title">Get Your Free Cash Offer</h1>
+    <p class="contact-desc">
+      Fill out the form below and we will contact you within 24 hours with a fair, no-obligation cash offer for your property.
+    </p>
+
+    <LeadForm source="contact-page" />
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Call Us</h3>
+        <a href={`tel:${brand.phone}`} class="contact-link">{brand.phoneFormatted}</a>
+      </div>
+      <div class="contact-card">
+        <h3>Email Us</h3>
+        <a href={`mailto:${brand.email}`} class="contact-link">{brand.email}</a>
+      </div>
+      <div class="contact-card">
+        <h3>Visit Us</h3>
+        <p class="contact-address">{brand.address.full}</p>
+      </div>
+    </div>
+  </div>
+</BrandPageTemplate>
+
+<style>
+  .contact-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .contact-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .contact-card {
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  .contact-card h3 {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .contact-link {
+    color: var(--red);
+  }
+
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+
+  .contact-address {
+    font-size: 0.875rem;
+    color: var(--grey-700);
+  }
+
+  @media (max-width: 640px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

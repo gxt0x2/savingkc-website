@@ -1,0 +1,60 @@
+---
+interface Props {
+  type: 'warning' | 'info' | 'fact';
+  text: string;
+}
+
+const { type, text } = Astro.props;
+
+const config = {
+  warning: { class: 'callout callout-critical', icon: '\u26A0\uFE0F', label: 'Warning' },
+  info: { class: 'callout callout-info', icon: '\u2139\uFE0F', label: 'Good to Know' },
+  fact: { class: 'callout callout-tip', icon: '\u2713', label: 'Key Fact' },
+};
+
+const style = config[type];
+---
+
+<div class={style.class}>
+  <div class="callout-inner">
+    <span class="callout-icon" aria-hidden="true">{style.icon}</span>
+    <div>
+      <p class="callout-label">{style.label}</p>
+      <p class="callout-text">{text}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .callout-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .callout-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.875rem;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .callout-label {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    color: var(--grey-500);
+  }
+
+  .callout-text {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+</style>

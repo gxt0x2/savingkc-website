@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { taxDelinquentData } from '@/data/problem-hubs/tax-delinquent';
+import { allCounties } from '@/data/counties';
+import { situations } from '@/data/situations';
+import { brand } from '@/data/brand';
+import { countyUrl, situationUrl } from '@/lib/urls';
+
+const data = taxDelinquentData;
+const situationLabels = situations.map((s) => ({ slug: s.slug, title: s.title }));
+---
+
+<BaseLayout title={data.metaTitle} description={data.metaDescription} canonical={`${brand.domain}/tax-delinquent/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[{ label: 'Tax-Delinquent Properties' }]} />
+
+      <header class="hero">
+        <h1>{data.heroHeading}</h1>
+        <p class="hero-sub">{data.heroSubheading}</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> {data.shortAnswer}</p>
+      </div>
+
+      {data.sections.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+      {data.steps && data.steps.length > 0 && (
+        <ProcessSteps steps={data.steps} />
+      )}
+
+      {data.faqs && data.faqs.length > 0 && (
+        <FAQ items={data.faqs} />
+      )}
+
+      <section class="content-section">
+        <h2>Counties We Serve</h2>
+        <div class="pill-nav">
+          {allCounties.map((c) => (
+            <a href={countyUrl(c.state, c.slug)} class="pill">{c.name} County, {c.stateName}</a>
+          ))}
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Related Situations</h2>
+        <div class="related-links">
+          {situationLabels.slice(0, 6).map((s) => (
+            <a href={situationUrl(s.slug)} class="related-link">{s.title}</a>
+          ))}
+        </div>
+      </section>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
+
+  .pill-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pill:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .related-link {
+    padding: 8px 20px;
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    font-weight: 500;
+    color: var(--grey-700);
+    font-size: 0.9rem;
+  }
+  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

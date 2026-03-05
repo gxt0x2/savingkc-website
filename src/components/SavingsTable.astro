@@ -1,0 +1,201 @@
+---
+import type { SavingsRow } from '@/types/situation';
+
+interface Props {
+  rows: SavingsRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="savings-section">
+  <h2>Potential Savings Breakdown</h2>
+
+  <!-- Desktop table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Traditional Cost</th>
+          <th>Cash Offer Cost</th>
+          <th class="th-savings">Savings</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, i) => (
+          <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+            <td class="scenario-cell">{row.scenario}</td>
+            <td class="cost-cell">{row.traditionalCost}</td>
+            <td class="cost-cell">{row.cashOfferCost}</td>
+            <td class="savings-cell">{row.savings}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mobile cards -->
+  <div class="mobile-cards">
+    {rows.map((row) => (
+      <div class="mobile-card">
+        <p class="mobile-scenario">{row.scenario}</p>
+        <div class="mobile-costs">
+          <div class="mobile-row">
+            <span class="mobile-label">Traditional</span>
+            <span class="mobile-value">{row.traditionalCost}</span>
+          </div>
+          <div class="mobile-row">
+            <span class="mobile-label">Cash Offer</span>
+            <span class="mobile-value">{row.cashOfferCost}</span>
+          </div>
+          <div class="mobile-row mobile-savings-row">
+            <span class="mobile-label">Savings</span>
+            <span class="mobile-savings">{row.savings}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .savings-section {
+    margin: 40px 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-md);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey-200);
+  }
+
+  th {
+    background: var(--grey-50);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--grey-600);
+  }
+
+  .th-savings {
+    color: var(--green-dark);
+  }
+
+  .row-even {
+    background: var(--white);
+  }
+
+  .row-odd {
+    background: var(--grey-50);
+  }
+
+  tbody tr:hover {
+    background: rgba(250, 246, 237, 0.5);
+  }
+
+  .scenario-cell {
+    font-weight: 500;
+    color: var(--grey-900);
+  }
+
+  .cost-cell {
+    color: var(--grey-600);
+  }
+
+  .savings-cell {
+    font-weight: 700;
+    color: var(--green-dark);
+    background: rgba(240, 253, 244, 0.3);
+  }
+
+  /* Mobile cards */
+  .mobile-cards {
+    display: none;
+  }
+
+  .mobile-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-md);
+    padding: 16px;
+  }
+
+  .mobile-scenario {
+    font-weight: 700;
+    color: var(--grey-900);
+    margin-bottom: 12px;
+    font-size: 0.9375rem;
+  }
+
+  .mobile-costs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .mobile-label {
+    color: var(--grey-500);
+  }
+
+  .mobile-value {
+    color: var(--grey-700);
+  }
+
+  .mobile-savings-row {
+    padding-top: 8px;
+    border-top: 1px solid var(--grey-100);
+    margin-top: 4px;
+  }
+
+  .mobile-savings {
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+
+  @media (max-width: 640px) {
+    .table-wrapper {
+      display: none;
+    }
+
+    .mobile-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      font-size: 0.85rem;
+    }
+  }
+</style>

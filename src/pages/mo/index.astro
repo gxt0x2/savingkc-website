@@ -1,0 +1,273 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { getCountiesByState } from '@/data/counties';
+import { countyUrl } from '@/lib/urls';
+import { brand } from '@/data/brand';
+
+const title = 'Sell Your House for Cash in Missouri | KC Metro Counties';
+const description = 'We buy houses in Jackson, Clay, and Platte counties in Missouri. Get a fair cash offer and close in as few as 7 days. No repairs, no commissions.';
+
+const counties = getCountiesByState('mo');
+
+const countyPills = counties.map((c) => ({
+  label: `${c.name} County`,
+  href: countyUrl('mo', c.slug),
+}));
+
+const sections = [
+  {
+    heading: 'How Do Property Taxes Work in Missouri?',
+    content: 'Missouri property taxes are governed by RSMo Chapter 140, which establishes the tax lien certificate system used across the state. When a homeowner falls behind on property taxes, the county collector is responsible for collecting the debt. The collector adds a 2% penalty to the delinquent balance and charges 10% annual interest on the unpaid amount. These costs compound quickly and can turn a manageable tax bill into a serious financial burden within a single year.\n\nThe county collector plays a central role in the process. Each Missouri county has an elected collector who tracks delinquent accounts, publishes notice of upcoming tax lien sales, and conducts the annual auction. In the KC metro, that means Jackson County, Clay County, and Platte County each run their own process on their own timeline. If you own property in any of these counties and fall behind, the collector\'s office is both your first point of contact and the entity that will ultimately sell a lien against your property if you don\'t pay.\n\nThe tax lien certificate system works differently from a straight foreclosure. The county does not take your house. Instead, it sells a certificate representing your tax debt to a third-party investor at public auction. That investor now holds the right to collect the debt plus interest. You still own the property during the redemption period, but the clock is ticking. If you don\'t pay within one year, the certificate holder can petition the court for a collector\'s deed and take ownership of your home.',
+    callout: { type: 'info' as const, text: 'RSMo 140.010 defines the tax lien process in Missouri. It authorizes county collectors to sell tax lien certificates on properties with delinquent taxes and establishes the legal framework for redemption and deed transfer.' },
+  },
+  {
+    heading: 'What Happens at a Missouri Tax Lien Sale?',
+    content: 'Each August, Missouri county collectors hold public auctions to sell tax lien certificates on properties with unpaid taxes. The collector publishes a list of delinquent properties in a local newspaper at least 30 days before the sale. In Jackson County, that list has historically appeared in the Kansas City Star. Investors, speculators, and institutional buyers show up to bid on the certificates.\n\nAt the auction, bidders compete to purchase the tax lien certificate. The winning bidder pays the delinquent tax amount plus penalties and costs. In return, they receive a certificate that entitles them to collect the debt from the property owner, plus 10% annual interest. The property owner still holds the deed during this period, but the lien is now attached to the property and must be satisfied before the home can be sold or refinanced.\n\nAfter the certificate is sold, the property owner enters a one-year redemption period. During that year, the owner can redeem the property by paying the full delinquent amount plus interest and any costs the certificate holder has incurred. If the owner does not redeem within the year, the certificate holder can file a petition in circuit court for a collector\'s deed under RSMo 140.405. Once the court grants the deed, ownership transfers to the certificate holder. The former owner loses the property entirely, regardless of how much equity they had built.',
+    callout: { type: 'warning' as const, text: 'Jackson County published over 4,200 properties on its delinquent tax list in a recent cycle. Many of those homeowners had enough equity to sell for cash and walk away with money. They just did not know it was an option.' },
+  },
+  {
+    heading: 'Key Missouri Statutes You Should Know',
+    content: 'Several sections of Missouri Revised Statutes Chapter 140 directly affect homeowners facing tax delinquency. RSMo 140.010 is the foundation. It defines the tax lien, authorizes county collectors to sell certificates at auction, and establishes the legal relationship between the property owner, the county, and the certificate purchaser. Every tax lien sale in Missouri operates under this statute.\n\nRSMo 140.150 governs the collector\'s sale process itself. It sets the rules for how and when the county collector conducts the annual auction, including notice requirements, bidding procedures, and what happens when a certificate goes unsold. This is the statute that requires the 30-day publication notice before the sale.\n\nRSMo 140.340 covers the redemption process. It gives the property owner one year from the date of the certificate sale to redeem the property by paying the full delinquent amount, 10% annual interest, and all costs incurred by the certificate holder. This statute is what protects homeowners from immediate loss of their property, but only if they act within the window.\n\nRSMo 140.405 is the statute that ends the process. After the one-year redemption period expires, the certificate holder can petition the circuit court for a collector\'s deed. Once the court grants this deed, ownership of the property transfers to the certificate holder. The former owner has no further claim to the property or its equity. This is the point of no return, and it is why selling before the redemption period expires is critical for homeowners who cannot pay the debt.',
+  },
+  {
+    heading: 'How Selling for Cash Protects Your Equity',
+    content: 'When a property goes through the full tax lien process, the homeowner loses everything. A $5,000 tax debt can cost you a home worth $120,000. The certificate holder pays the tax debt at auction and, after one year, takes ownership of the entire property. Your mortgage payments, your improvements, your equity built over years of ownership, all of it is gone.\n\nA cash sale stops that process. When you sell your property to a cash buyer before the tax sale or during the redemption period, the title company pays off the delinquent taxes directly from the sale proceeds. Your mortgage gets paid off. Any other liens are cleared. Whatever remains is your cash to keep. On a home worth $120,000 with $5,000 in back taxes and a $60,000 mortgage, you could walk away with roughly $55,000 instead of losing everything at auction.\n\nThe math is straightforward. At a tax lien sale, the investor pays $5,000 for a certificate and eventually gets a $120,000 property. You get nothing. In a cash sale, you get the full fair market value minus what you owe. The difference between those two outcomes is the equity you protect by acting before the deadline.\n\nSelling for cash also eliminates the stress of trying to catch up on payments. There are no more letters from the collector, no more compounding interest, and no auction date hanging over your head. You close on your terms, on your schedule, and move forward with cash in hand.',
+    callout: { type: 'fact' as const, text: 'Missouri counties offer partial payment plans through the county collector\'s office to help homeowners avoid the tax sale. Contact your county collector to discuss options. But if you cannot keep up with the plan, selling for cash may be the more practical way to protect your equity.' },
+  },
+];
+
+const steps = [
+  { title: 'Contact Us', description: 'Call us or fill out the form on this page. Tell us about your property and your situation. There is no obligation and no pressure.' },
+  { title: 'Get Your Cash Offer', description: 'We visit the property, assess its condition, and present you with a fair cash offer within 24 hours. No repairs needed, no cleaning required.' },
+  { title: 'Choose Your Closing Date', description: 'You pick the closing date that works for you. We can close in as few as 7 days if you need to move fast, or wait longer if you need more time.' },
+  { title: 'Get Paid', description: 'Sign the paperwork at a local title company. The title company pays off your back taxes, mortgage, and any liens from the proceeds. You receive the remaining funds the same day.' },
+];
+
+const comparison = [
+  { factor: 'Repairs', traditional: 'Required before listing', cashOffer: 'None. We buy as-is.' },
+  { factor: 'Agent Commissions', traditional: '5-6% of sale price', cashOffer: 'Zero commissions' },
+  { factor: 'Closing Costs', traditional: 'Seller pays 2-3%', cashOffer: 'We cover closing costs' },
+  { factor: 'Time to Close', traditional: '60-90 days average', cashOffer: 'As few as 7 days' },
+  { factor: 'Showings', traditional: 'Weeks of open houses and tours', cashOffer: 'One visit from us' },
+  { factor: 'Financing Risk', traditional: 'Buyer loan can fall through', cashOffer: 'No financing contingency' },
+];
+
+const facts = [
+  { label: 'Redemption Period', value: '1 Year' },
+  { label: 'Governing Law', value: 'RSMo Ch. 140' },
+  { label: 'Counties Served', value: '3' },
+  { label: 'Interest Rate', value: '10% annually' },
+];
+
+const faqs = [
+  { question: 'How fast can you close on a Missouri property?', answer: 'We can close in as few as 7 days from the date you accept our offer. The exact timeline depends on the title work, but most Missouri closings happen within 7 to 14 days. If you have a tax sale deadline approaching, we prioritize speed to beat the auction date.' },
+  { question: 'Can I sell my house if I owe back taxes in Missouri?', answer: 'Yes. You can sell at any time before the tax lien process is finalized. You do not need to pay off the back taxes before selling. The title company handles the payoff at closing from your sale proceeds. Whatever is left after taxes, mortgage, and liens are paid belongs to you.' },
+  { question: 'What is the redemption period in Missouri?', answer: 'Missouri gives property owners one year from the date the tax lien certificate is sold at auction to redeem the property. To redeem, you must pay the full delinquent amount plus 10% annual interest and any costs the certificate holder incurred. After one year, the certificate holder can petition the court for a collector\'s deed and take ownership.' },
+  { question: 'How does the Jackson County reassessment affect my taxes?', answer: 'Recent reassessments in Jackson County significantly increased assessed property values for many homeowners, causing tax bills to spike. Some owners saw their assessed values double. If your tax bill jumped beyond what you can afford, you can appeal the assessment through the Board of Equalization or sell the property before the debt compounds.' },
+  { question: 'Can I set up a payment plan with the county collector?', answer: 'Yes. Missouri counties offer partial payment plans to help homeowners avoid the tax sale. Contact your county collector\'s office to discuss what options are available. However, if you fall behind on the payment plan, the county can still proceed with the tax lien sale. If you cannot realistically keep up with payments, selling for cash may protect more of your equity.' },
+  { question: 'Will you buy a house with an existing tax lien?', answer: 'Yes. We regularly purchase properties that already have tax lien certificates sold against them. As long as the one-year redemption period has not expired, you can still sell. We work with the county collector and title company to clear the lien at closing. The lien payoff amount is deducted from your sale proceeds.' },
+  { question: 'What fees do I pay when selling for cash?', answer: 'None. We cover the closing costs. There are no agent commissions, no listing fees, and no repair costs. The only deductions from your sale proceeds are what you owe: back taxes, mortgage payoff, and any other liens on the property. Everything else is your cash.' },
+  { question: 'Can I sell if I am behind on my mortgage too?', answer: 'Yes. Many homeowners who are behind on taxes are also behind on mortgage payments. As long as your property is worth more than the combined debt (mortgage balance, back taxes, penalties, and liens), you can sell for cash and walk away with the difference. The title company pays off all debts at closing.' },
+  { question: 'What happens if I just let the property go to tax sale?', answer: 'If you do nothing, the county sells a tax lien certificate at auction. An investor pays your tax debt and earns 10% interest. After one year, if you have not redeemed, the investor petitions the court for a collector\'s deed and takes ownership of your property. You lose the house and all the equity in it. A $5,000 tax debt can cost you a $120,000 home.' },
+  { question: 'Do you buy properties in all three Missouri counties?', answer: 'Yes. We buy houses in Jackson County, Clay County, and Platte County. That covers the entire Missouri side of the Kansas City metro, including Kansas City, Independence, Blue Springs, Lee\'s Summit, Liberty, Gladstone, Kearney, and Platte City.' },
+];
+
+const relatedLinks = [
+  { label: 'Tax-Delinquent Properties', href: '/tax-delinquent/' },
+  { label: 'Probate Properties', href: '/probate/' },
+  { label: 'Pre-Foreclosure', href: '/situations/pre-foreclosure/' },
+  { label: 'Inherited Property', href: '/situations/inherited-property/' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={`${brand.domain}/mo/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[{ label: 'Missouri' }]} />
+
+      <header class="hero">
+        <h1>Sell Your House for Cash in Missouri</h1>
+        <p class="hero-sub">We buy houses across Jackson, Clay, and Platte counties on the Missouri side of the Kansas City metro. Get a fair cash offer and close on your timeline.</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> Yes, we buy houses in any condition across all three Missouri counties in the KC metro. Whether you are behind on taxes, dealing with probate, or just need to sell fast, we make fair cash offers and can close in as few as 7 days.</p>
+      </div>
+
+      <!-- County pills -->
+      <nav class="pill-nav" aria-label="Missouri counties">
+        {countyPills.map((pill) => (
+          <a href={pill.href} class="pill">{pill.label}</a>
+        ))}
+      </nav>
+
+      <!-- Facts bar -->
+      <div class="facts-bar">
+        {facts.map((f) => (
+          <div class="fact">
+            <span class="fact-label">{f.label}</span>
+            <span class="fact-value">{f.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Sections -->
+      {sections.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+      <!-- County list -->
+      <section class="content-section">
+        <h2>Counties We Serve in Missouri</h2>
+        <div class="card-grid">
+          {counties.map((c) => (
+            <a href={countyUrl('mo', c.slug)} class="location-card">
+              <h3>{c.name} County</h3>
+              <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
+              <p>{c.description.substring(0, 120)}...</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <ProcessSteps steps={steps} />
+      <ComparisonTable rows={comparison} />
+      <FAQ items={faqs} />
+
+      <!-- Related links -->
+      <section class="content-section">
+        <h2>Related Resources</h2>
+        <div class="related-links">
+          {relatedLinks.map((link) => (
+            <a href={link.href} class="related-link">{link.label}</a>
+          ))}
+        </div>
+      </section>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .pill-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pill:hover {
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: var(--grey-50);
+    border-radius: var(--radius);
+  }
+  .fact { text-align: center; }
+  .fact-label { display: block; font-size: 0.8rem; color: var(--grey-500); margin-bottom: 4px; }
+  .fact-value { display: block; font-size: 1.1rem; font-weight: 700; color: var(--grey-900); }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .location-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .location-card:hover {
+    border-color: var(--red);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+  .location-card h3 { font-size: 1.1rem; color: var(--grey-900); margin-bottom: 4px; }
+  .card-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .location-card p { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .related-link {
+    padding: 8px 20px;
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .facts-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

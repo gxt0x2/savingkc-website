@@ -1,0 +1,99 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import { brand } from '@/data/brand';
+---
+
+<BrandPageTemplate
+  title="Terms of Service"
+  description={`Terms of Service for ${brand.name}. Review the terms and conditions governing the use of our website and services.`}
+  canonical={`${brand.domain}/terms/`}
+  breadcrumbs={[{ label: 'Terms of Service' }]}
+  showSidebar={false}
+>
+  <h1 class="page-title">Terms of Service</h1>
+  <div class="legal-content">
+    <p class="last-updated">Last updated: March 1, 2026</p>
+
+    <section>
+      <h2>What Are These Terms?</h2>
+      <p>
+        These terms govern your use of the {brand.name} website at <a href={brand.domain}>{brand.domain}</a>. By accessing or using our website, you agree to these terms. If you do not agree, please do not use the site.
+      </p>
+    </section>
+
+    <section>
+      <h2>What Services Do We Provide?</h2>
+      <p>
+        {brand.name} provides information about our home buying services in the Kansas City metropolitan area. Content on this site is for informational purposes and does not constitute legal, financial, or real estate advice. We are not licensed real estate agents. We are direct home buyers.
+      </p>
+    </section>
+
+    <section>
+      <h2>What About Our Cash Offers?</h2>
+      <p>
+        Cash offers presented through our process are subject to property inspection and verification. Final purchase terms are outlined in the purchase agreement, which both parties must sign. You are under no obligation to accept any offer.
+      </p>
+    </section>
+
+    <section>
+      <h2>Who Owns the Content?</h2>
+      <p>
+        All content on this website, including text, graphics, and logos, is the property of {brand.name} and is protected by applicable intellectual property laws. You may not reproduce or distribute any content without our written permission.
+      </p>
+    </section>
+
+    <section>
+      <h2>What Is Our Liability?</h2>
+      <p>
+        {brand.name} provides this website on an &ldquo;as is&rdquo; basis. We make no warranties about the accuracy or completeness of the information presented. We are not liable for any damages arising from your use of this website.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Can You Contact Us?</h2>
+      <p>
+        For questions about these terms, contact us at <a href={`mailto:${brand.email}`}>{brand.email}</a> or call <a href={`tel:${brand.phone}`}>{brand.phoneFormatted}</a>.
+      </p>
+    </section>
+  </div>
+</BrandPageTemplate>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .last-updated {
+    color: var(--grey-500);
+    margin-bottom: 24px;
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  p {
+    color: var(--grey-700);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

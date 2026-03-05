@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found - Saving KC Homebuyers" description="The page you're looking for doesn't exist.">
+  <div class="not-found">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you are looking for does not exist or has been moved. Let us help you find what you need.</p>
+    <div class="not-found-actions">
+      <a href="/" class="btn btn-primary btn-lg">Go Home</a>
+      <a href="/contact/" class="btn btn-secondary btn-lg">Contact Us</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .not-found h1 {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--red);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .not-found h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--grey-900);
+  }
+
+  .not-found p {
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    max-width: 480px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .not-found-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .not-found h1 {
+      font-size: 4rem;
+    }
+
+    .not-found-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>

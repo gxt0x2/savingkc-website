@@ -1,0 +1,223 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageShell from '@/components/PageShell.astro';
+import ShortAnswerBlock from '@/components/ShortAnswerBlock.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import StepTimeline from '@/components/StepTimeline.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import CountyCards from '@/components/CountyCards.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import FAQ from '@/components/FAQ.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import QuickFactsSidebar from '@/components/QuickFactsSidebar.astro';
+import RelatedLinks from '@/components/RelatedLinks.astro';
+import type { BreadcrumbItem } from '@/types/content';
+import type { CountyData } from '@/types/geo';
+import type { FAQItem, ComparisonRow, ProcessStep } from '@/types/situation';
+
+interface ContentSection {
+  heading: string;
+  content: string;
+  callout?: {
+    type: 'warning' | 'info' | 'fact';
+    text: string;
+  };
+}
+
+interface Props {
+  title: string;
+  description: string;
+  shortAnswer: string;
+  breadcrumbs: BreadcrumbItem[];
+  sections: ContentSection[];
+  counties: CountyData[];
+  steps: ProcessStep[];
+  comparison: ComparisonRow[];
+  faqs: FAQItem[];
+  facts: { label: string; value: string }[];
+  relatedLinks?: { label: string; href: string }[];
+  countyPills?: { label: string; href: string }[];
+  canonical?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
+const {
+  title,
+  description,
+  shortAnswer,
+  breadcrumbs,
+  sections,
+  counties,
+  steps,
+  comparison,
+  faqs,
+  facts,
+  relatedLinks,
+  countyPills,
+  canonical,
+  metaTitle,
+  metaDescription,
+} = Astro.props;
+
+const comparisonRows = comparison.map(r => ({
+  label: r.factor,
+  left: r.cashOffer,
+  right: r.traditional,
+}));
+---
+
+<BaseLayout title={metaTitle || title} description={metaDescription || description} canonical={canonical}>
+  <PageShell breadcrumbs={breadcrumbs}>
+    <h1 class="page-title">{title}</h1>
+    <p class="page-desc">{description}</p>
+
+    <ShortAnswerBlock answer={shortAnswer} />
+
+    {sections.map((section) => (
+      <section class="content-section">
+        <h2>{section.heading}</h2>
+        <div class="section-body">
+          {section.content.split('\n\n').map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        {section.callout && (
+          <CalloutBox type={section.callout.type} text={section.callout.text} />
+        )}
+      </section>
+    ))}
+
+    <StepTimeline steps={steps} />
+
+    <CountyCards counties={counties} title="Counties We Serve" />
+
+    <ComparisonTable rows={comparisonRows} />
+
+    <slot />
+
+    <FAQ items={faqs} />
+
+    {relatedLinks && relatedLinks.length > 0 && (
+      <RelatedLinks title="Related Resources" links={relatedLinks} />
+    )}
+
+    <CalibratedQuestionCTA />
+
+    <Fragment slot="sidebar">
+      <LeadForm />
+      {countyPills && countyPills.length > 0 && (
+        <div class="sidebar-box">
+          <h3>Counties We Serve</h3>
+          <div class="county-pills">
+            {countyPills.map((pill) => (
+              <a href={pill.href} class="county-pill">{pill.label}</a>
+            ))}
+          </div>
+        </div>
+      )}
+      <QuickFactsSidebar facts={facts} />
+      {relatedLinks && relatedLinks.length > 0 && (
+        <div class="sidebar-box">
+          <h3>Related Resources</h3>
+          <ul class="sidebar-links">
+            {relatedLinks.map((link) => (
+              <li>
+                <a href={link.href}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </Fragment>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sidebar-box {
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  .sidebar-box h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+  }
+
+  .sidebar-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--grey-700);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .sidebar-links a:hover {
+    color: var(--red);
+  }
+
+  .sidebar-links svg {
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  facts: { label: string; value: string }[];
+  title?: string;
+}
+
+const { facts, title = 'Quick Facts' } = Astro.props;
+---
+
+<div class="card quick-facts">
+  <h3>{title}</h3>
+  <dl>
+    {facts.map((fact) => (
+      <div class="fact-row">
+        <dt>{fact.label}</dt>
+        <dd>{fact.value}</dd>
+      </div>
+    ))}
+  </dl>
+</div>
+
+<style>
+  .quick-facts {
+    background: var(--grey-50);
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+  }
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  dt {
+    font-size: 0.875rem;
+    color: var(--grey-500);
+  }
+
+  dd {
+    font-weight: 700;
+    color: var(--grey-900);
+  }
+</style>

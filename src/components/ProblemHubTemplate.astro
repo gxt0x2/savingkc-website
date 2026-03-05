@@ -1,0 +1,252 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageShell from '@/components/PageShell.astro';
+import ShortAnswerBlock from '@/components/ShortAnswerBlock.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import CountyCards from '@/components/CountyCards.astro';
+import FAQ from '@/components/FAQ.astro';
+import RelatedLinks from '@/components/RelatedLinks.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import type { ProblemHubData } from '@/types/content';
+import type { CountyData } from '@/types/geo';
+
+interface Props {
+  data: ProblemHubData;
+  counties: CountyData[];
+  situationLabels: { slug: string; title: string }[];
+}
+
+const { data, counties, situationLabels } = Astro.props;
+
+const breadcrumbs = [{ label: data.title }];
+
+const relatedLinks = data.relatedSituations
+  .map((slug) => {
+    const sit = situationLabels.find((s) => s.slug === slug);
+    return sit ? { label: sit.title, href: `/situations/${sit.slug}/` } : null;
+  })
+  .filter((link): link is { label: string; href: string } => link !== null);
+
+const moCounties = counties.filter((c) => c.state === 'mo');
+const ksCounties = counties.filter((c) => c.state === 'ks');
+
+const stateInfos = [data.moInfo, data.ksInfo];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: data.faqs.map(f => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  canonical={`https://savingkchomebuyers.com/${data.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <PageShell breadcrumbs={breadcrumbs}>
+    <h1 class="page-title">{data.heroHeading}</h1>
+    <p class="page-desc">{data.heroSubheading}</p>
+
+    <ShortAnswerBlock answer={data.shortAnswer} />
+
+    <!-- Content Sections -->
+    {data.sections?.map((section) => (
+      <section class="content-section">
+        <h2>{section.heading}</h2>
+        <div class="section-body">
+          {section.content.split('\n\n').map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        {section.callout && (
+          <CalloutBox type={section.callout.type} text={section.callout.text} />
+        )}
+      </section>
+    ))}
+
+    <!-- MO vs KS Comparison -->
+    <div class="state-comparison">
+      {stateInfos.map((info) => (
+        <div class="state-panel card">
+          <h2>How Does the {data.title} Process Work in {info.stateName}?</h2>
+          <div class="state-body">
+            {info.process.split('\n\n').map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+          <div class="state-timeline-box">
+            <p class="timeline-label">Typical Timeline</p>
+            <p class="timeline-value">{info.timeline}</p>
+          </div>
+          <ul class="state-facts">
+            {info.keyFacts.map((fact) => (
+              <li>
+                <span class="fact-dot"></span>
+                {fact}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- County Cards by State -->
+    {moCounties.length > 0 && (
+      <CountyCards counties={moCounties} title="Missouri Counties We Serve" />
+    )}
+    {ksCounties.length > 0 && (
+      <CountyCards counties={ksCounties} title="Kansas Counties We Serve" />
+    )}
+
+    <!-- FAQ -->
+    <FAQ items={data.faqs} />
+
+    <!-- Related -->
+    {relatedLinks.length > 0 && (
+      <RelatedLinks title="Related Situations" links={relatedLinks} />
+    )}
+
+    <CalibratedQuestionCTA />
+
+    <Fragment slot="sidebar">
+      <LeadForm />
+    </Fragment>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .state-comparison {
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .state-panel {
+    border: 1px solid var(--grey-200);
+  }
+
+  .state-panel h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .state-body {
+    color: var(--grey-700);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .state-body p {
+    margin-bottom: 12px;
+  }
+
+  .state-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .state-timeline-box {
+    background: var(--grey-50);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .timeline-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--grey-500);
+  }
+
+  .timeline-value {
+    font-weight: 700;
+    color: var(--grey-900);
+  }
+
+  .state-facts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .state-facts li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--grey-700);
+  }
+
+  .fact-dot {
+    color: var(--red);
+    font-weight: 700;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .fact-dot::before {
+    content: '\2022';
+  }
+
+  @media (max-width: 768px) {
+    .state-comparison {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import type { ProcessStep } from '@/types/situation';
+
+interface Props {
+  steps: ProcessStep[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="step-timeline">
+  <h2>What Are the Steps to Get a Cash Offer?</h2>
+  <div class="timeline">
+    {steps.map((step, i) => (
+      <div class="step">
+        <div class="step-indicator">
+          <div class="step-circle">{i + 1}</div>
+          {i < steps.length - 1 && <div class="step-line" />}
+        </div>
+        <div class:list={["step-content", { "step-last": i === steps.length - 1 }]}>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .step-timeline {
+    margin: 40px 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+  }
+
+  .step-indicator {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s;
+  }
+
+  .step:hover .step-circle {
+    transform: scale(1.1);
+  }
+
+  .step-line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(220, 38, 38, 0.3), var(--grey-200));
+    margin: 4px 0;
+  }
+
+  .step-content {
+    padding-bottom: 32px;
+  }
+
+  .step-content.step-last {
+    padding-bottom: 0;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--grey-900);
+    margin-top: 8px;
+  }
+
+  .step-content p {
+    color: var(--grey-700);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+</style>

@@ -27,17 +27,18 @@ const faqItems = [
 ];
 
 const situations = [
-  { title: "Foreclosure", desc: "Stop the clock and sell before the bank takes over." },
-  { title: "Inherited Property", desc: "Skip the probate headaches and get cash fast." },
-  { title: "Divorce", desc: "Sell the shared home quickly and move forward." },
-  { title: "Back Taxes", desc: "We pay off delinquent taxes at closing." },
-  { title: "Relocation", desc: "Need to move fast? We close on your timeline." },
-  { title: "Major Repairs", desc: "Foundation, roof, mold — we buy as-is." },
-  { title: "Hoarding", desc: "No judgment. We handle the cleanout." },
-  { title: "Code Violations", desc: "Open violations won't scare us off." },
-  { title: "Squatters", desc: "Occupant issues? We've seen it all." },
-  { title: "Fire Damage", desc: "Smoke, water, structural — we still buy." },
-  { title: "Foundation Issues", desc: "Cracks, settling, bowing walls — no problem." },
+  { slug: "pre-foreclosure", title: "Pre-Foreclosure", desc: "Stop the clock and sell before the bank takes over." },
+  { slug: "inherited-property", title: "Inherited Property", desc: "Skip the probate headaches and get cash fast." },
+  { slug: "divorce", title: "Divorce", desc: "Sell the shared home quickly and move forward." },
+  { slug: "behind-on-payments", title: "Behind on Payments", desc: "Falling behind? A cash sale stops the spiral." },
+  { slug: "vacant-property", title: "Vacant Property", desc: "Empty houses drain your wallet. Sell and stop the bleeding." },
+  { slug: "foundation-issues", title: "Foundation Issues", desc: "Cracks, settling, bowing walls — no problem." },
+  { slug: "hoarder-house", title: "Hoarder House", desc: "No judgment. We handle the cleanout." },
+  { slug: "code-violations", title: "Code Violations", desc: "Open violations won't scare us off." },
+  { slug: "bad-tenants", title: "Bad Tenants", desc: "Problem tenants? We've seen it all." },
+  { slug: "fire-damage", title: "Fire Damage", desc: "Smoke, water, structural — we still buy." },
+  { slug: "water-damage", title: "Water Damage", desc: "Flooding, burst pipes, roof leaks — we buy as-is." },
+  { slug: "mold", title: "Mold Problems", desc: "Skip the expensive remediation. Sell for cash." },
 ];
 ---
 
@@ -106,10 +107,10 @@ const situations = [
       <p class="section-subtitle" style="text-align:center">No matter what you're facing, we can help.</p>
       <div class="situations-grid">
         {situations.map((s) => (
-          <div class="situation-card card">
+          <a href={`/situations/${s.slug}/`} class="situation-card card">
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -133,26 +134,26 @@ const situations = [
       <h2 class="section-title" style="text-align:center">Serving the Entire KC Metro</h2>
       <p class="section-subtitle" style="text-align:center">5 counties, 47+ cities across Missouri and Kansas.</p>
       <div class="grid-3" style="text-align:center">
-        <div class="card">
+        <a href="/mo/jackson/" class="card" style="text-decoration:none;color:inherit">
           <h3>Jackson County, MO</h3>
           <p style="color:var(--grey-500);font-size:0.9rem">Kansas City, Independence, Blue Springs, Lee's Summit, Grandview, Raytown</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/mo/clay/" class="card" style="text-decoration:none;color:inherit">
           <h3>Clay County, MO</h3>
           <p style="color:var(--grey-500);font-size:0.9rem">Liberty, Gladstone, Kearney, Excelsior Springs, North KC</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/mo/platte/" class="card" style="text-decoration:none;color:inherit">
           <h3>Platte County, MO</h3>
           <p style="color:var(--grey-500);font-size:0.9rem">Platte City, Parkville, Weatherby Lake, Riverside</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/ks/wyandotte/" class="card" style="text-decoration:none;color:inherit">
           <h3>Wyandotte County, KS</h3>
           <p style="color:var(--grey-500);font-size:0.9rem">Kansas City KS, Bonner Springs, Edwardsville</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/ks/johnson/" class="card" style="text-decoration:none;color:inherit">
           <h3>Johnson County, KS</h3>
           <p style="color:var(--grey-500);font-size:0.9rem">Overland Park, Olathe, Shawnee, Lenexa, Merriam, Mission</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -251,6 +252,18 @@ const situations = [
   .situation-card p {
     font-size: 0.85rem;
     color: var(--grey-500);
+  }
+  .situation-card:hover {
+    text-decoration: none;
+    border-color: var(--red);
+  }
+  .situation-card:hover h3 {
+    color: var(--red);
+  }
+  a.situation-card {
+    color: inherit;
+    text-decoration: none;
+    display: block;
   }
 
   @media (max-width: 1000px) {

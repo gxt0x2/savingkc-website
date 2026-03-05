@@ -1,0 +1,384 @@
+import type { CountyData } from '@/types/geo';
+
+export const johnson: CountyData = {
+  name: 'Johnson County',
+  slug: 'johnson',
+  state: 'ks',
+  stateName: 'Kansas',
+  description:
+    'Johnson County is the most affluent and populous county in Kansas, anchoring the southern portion of the KC metro. Home to nationally ranked schools, corporate headquarters, and master-planned communities, Johnson County commands the highest home values in the region. But distressed properties and motivated sellers still create opportunities for informed buyers.',
+  seatCity: 'Olathe',
+  population: '613,434',
+  medianHomeValue: '$340,000',
+  taxLienInfo:
+    'Johnson County holds tax lien sales through the county treasurer\'s office in Olathe. Kansas issues tax lien certificates with a statutory redemption period. Delinquent property lists are published in the Olathe News and on the county\'s tax sale website.',
+  probateInfo:
+    'Probate is handled by the Johnson County District Court, 10th Judicial District, at the Johnson County Courthouse in Olathe. Kansas allows simplified procedures for small estates and provides a transfer-on-death deed option.',
+  cities: [
+    {
+      name: 'Overland Park',
+      slug: 'overland-park',
+      state: 'ks',
+      county: 'Johnson County',
+      countySlug: 'johnson',
+      description:
+        'Overland Park is the second-largest city in Kansas and consistently ranked among the best places to live in the U.S. The city spans from the established neighborhoods near 75th and Metcalf to master-planned communities in the south. While median home values are high, older northern neighborhoods offer more accessible entry points.',
+      population: '197,238',
+      medianHomeValue: '$340,000',
+      neighborhoods: [
+        {
+          name: 'Downtown Overland Park',
+          slug: 'downtown-overland-park',
+          description:
+            'The original commercial core of Overland Park along Santa Fe Drive and 80th Street has been revitalized with local restaurants, shops, and the Overland Park Farmers Market.',
+          landmarks: ['Overland Park Farmers Market', 'Santa Fe Commons Park', 'Clock Tower Plaza'],
+          medianHomeValue: '$265,000',
+          distressFactors: [
+            '1950s-1960s ranch homes with original systems',
+            'Small lots with limited expansion potential',
+            'Mixed residential-commercial zoning on some blocks'
+          ],
+          localHook:
+            'Saturday mornings at the Overland Park Farmers Market are a neighborhood tradition. Local produce, live music, and the kind of community you can walk to.'
+        },
+        {
+          name: 'Metcalf South / Indian Creek',
+          slug: 'metcalf-south-indian-creek',
+          description:
+            'The Metcalf corridor between 95th and 119th streets is a major commercial artery, with surrounding residential neighborhoods offering mid-range homes near Indian Creek Trail.',
+          landmarks: ['Indian Creek Trail', 'Metcalf Avenue corridor', 'Overland Park Convention Center'],
+          medianHomeValue: '$285,000',
+          distressFactors: [
+            '1970s-1980s homes with dated interiors and layouts',
+            'Indian Creek flood zone affects properties near the trail',
+            'Commercial traffic noise along Metcalf-adjacent streets'
+          ],
+          localHook:
+            'Bike the Indian Creek Trail from your backyard. Miles of paved path connecting parks, shopping, and neighborhoods across the south metro.'
+        },
+        {
+          name: 'Blue Valley',
+          slug: 'blue-valley',
+          description:
+            'The Blue Valley area in south Overland Park is home to the top-rated Blue Valley School District and newer subdivisions with higher price points, though some early-build homes are now showing age.',
+          landmarks: ['Blue Valley North High School', 'Ironwoods Park', 'Deer Creek Golf Club'],
+          medianHomeValue: '$420,000',
+          distressFactors: [
+            'Early 1990s subdivisions have homes needing major updates',
+            'High HOA fees in some communities',
+            'Foundation issues from the heavy clay soil common in south JoCo'
+          ],
+          localHook:
+            'Blue Valley schools are among the best in Kansas, and the mature subdivisions around Ironwoods Park are where families put down roots.'
+        },
+        {
+          name: 'North Overland Park / Milburn',
+          slug: 'north-overland-park-milburn',
+          description:
+            'The oldest neighborhoods in Overland Park, north of 75th Street, feature affordable post-war homes near the Johnson County line with State Line Road and easy access to the Plaza area across the state border.',
+          landmarks: ['Milburn Golf & Country Club', 'Roe Avenue corridor', 'Tomahawk Creek Trail'],
+          medianHomeValue: '$230,000',
+          distressFactors: [
+            'Post-war homes with original plumbing and electrical throughout',
+            'Aging sewer laterals and galvanized water lines',
+            'Some blocks showing deferred maintenance and declining values'
+          ],
+          localHook:
+            'Just across State Line from the Country Club Plaza. North Overland Park gives you Kansas taxes with Missouri\'s best neighborhood next door.'
+        },
+        {
+          name: 'Oak Park / Antioch',
+          slug: 'oak-park-antioch',
+          description:
+            'The Oak Park area along Antioch Road in central Overland Park features 1970s-1980s homes with mature landscaping and access to the Deanna Rose Children\'s Farmstead area.',
+          landmarks: ['Deanna Rose Children\'s Farmstead', 'Antioch Road corridor', 'Oak Park Mall area'],
+          medianHomeValue: '$250,000',
+          distressFactors: [
+            '1970s construction with popcorn ceilings and dated finishes',
+            'Oak Park Mall\'s decline has impacted surrounding property values',
+            'Aging roof and HVAC systems on many homes'
+          ],
+          localHook:
+            'Deanna Rose Children\'s Farmstead is a JoCo family tradition, and Oak Park homes put you within walking distance of baby goats and fishing ponds.'
+        },
+        {
+          name: 'Stilwell / South OP',
+          slug: 'stilwell-south-op',
+          description:
+            'The unincorporated Stilwell area on Overland Park\'s southern fringe offers acreage, equestrian properties, and hobby farms with Blue Valley schools.',
+          landmarks: ['Stilwell Community Center', 'Indian Creek Greenway southern terminus', '199th Street corridor'],
+          medianHomeValue: '$380,000',
+          distressFactors: [
+            'Acreage properties on well and septic systems',
+            'Unpaved roads in some unincorporated areas',
+            'Long commute to northern JoCo employment centers'
+          ],
+          localHook:
+            'Horses in the pasture and a Blue Valley school bus at the end of the driveway. Stilwell is rural JoCo with top-tier schools.'
+        }
+      ]
+    },
+    {
+      name: 'Olathe',
+      slug: 'olathe',
+      state: 'ks',
+      county: 'Johnson County',
+      countySlug: 'johnson',
+      description:
+        'Olathe is the county seat of Johnson County and one of the fastest-growing cities in Kansas. The city ranges from a historic downtown core to sprawling new development along the I-35 corridor, offering a wider price range than much of Johnson County.',
+      population: '144,674',
+      medianHomeValue: '$310,000',
+      neighborhoods: [
+        {
+          name: 'Historic Downtown Olathe',
+          slug: 'historic-downtown-olathe',
+          description:
+            'The original town center around the Johnson County Courthouse features tree-lined streets, local restaurants, and older homes within walking distance of the square.',
+          landmarks: ['Johnson County Courthouse', 'Olathe Public Library', 'Cherry Street corridor'],
+          medianHomeValue: '$215,000',
+          distressFactors: [
+            'Turn-of-century homes with aging foundations and systems',
+            'Narrow lots and limited garage space',
+            'Some blocks have rental conversions reducing owner-occupancy'
+          ],
+          localHook:
+            'Walk to the courthouse square for lunch, catch a concert at the amphitheater, and live in a neighborhood that predates Kansas statehood.'
+        },
+        {
+          name: 'Cedar Creek / Prairie Center',
+          slug: 'cedar-creek-prairie-center',
+          description:
+            'South Olathe near Cedar Creek and Prairie Center offers newer master-planned communities with parks, trails, and proximity to the growing commercial corridor.',
+          landmarks: ['Cedar Creek shopping area', 'Prairie Center Park', 'Black Bob Park'],
+          medianHomeValue: '$340,000',
+          distressFactors: [
+            'Builder-grade 2000s construction showing cosmetic wear',
+            'HOA restrictions complicate renovation projects',
+            'Clay soil expansion causes drywall cracking and door frame shifting'
+          ],
+          localHook:
+            'Black Bob Park\'s trails and sports fields anchor the neighborhood. Cedar Creek puts suburban convenience and green space together.'
+        },
+        {
+          name: 'Great Plains / Old 56 Corridor',
+          slug: 'great-plains-old-56',
+          description:
+            'The Old 56 Highway corridor in north Olathe connects the city to the I-35 interchange, with a mix of established 1980s-1990s subdivisions and newer infill.',
+          landmarks: ['Great Plains Health clinic', 'Old 56 Highway shops', 'Olathe North High School'],
+          medianHomeValue: '$270,000',
+          distressFactors: [
+            '1980s homes with original roofing and HVAC at end of life',
+            'Traffic congestion on Old 56 during rush hours',
+            'Some subdivisions have aging community amenities'
+          ],
+          localHook:
+            'Olathe North High School anchors the neighborhood, and the Old 56 corridor gives you direct I-35 access for the commute.'
+        },
+        {
+          name: 'Ridgeview / Heritage',
+          slug: 'ridgeview-heritage',
+          description:
+            'Western Olathe near Ridgeview Road features some of the city\'s newest subdivisions, with homes built since 2010 on former farmland along the K-10 corridor.',
+          landmarks: ['Ridgeview Road corridor', 'Heritage Park', 'Olathe West High School'],
+          medianHomeValue: '$365,000',
+          distressFactors: [
+            'New construction on recently graded farmland with settling risk',
+            'Limited tree canopy on former agricultural plots',
+            'Distance from I-35 and established commercial areas'
+          ],
+          localHook:
+            'Olathe West High School opened to serve this boom. Ridgeview\'s growth shows no sign of slowing along the K-10 corridor.'
+        }
+      ]
+    },
+    {
+      name: 'Shawnee',
+      slug: 'shawnee',
+      state: 'ks',
+      county: 'Johnson County',
+      countySlug: 'johnson',
+      description:
+        'Shawnee is a mid-size city in northern Johnson County with a revitalized downtown, the Shawnee Mission Parkway commercial corridor, and neighborhoods ranging from affordable mid-century homes to newer western subdivisions.',
+      population: '67,311',
+      medianHomeValue: '$285,000',
+      neighborhoods: [
+        {
+          name: 'Downtown Shawnee',
+          slug: 'downtown-shawnee',
+          description:
+            'Old Shawnee along Johnson Drive features a walkable downtown with local restaurants, the Aztec Theater, and surrounding residential streets with character homes.',
+          landmarks: ['Wonderful World of Old Shawnee Days (festival)', 'Aztec Theater', 'Johnson Drive shops'],
+          medianHomeValue: '$225,000',
+          distressFactors: [
+            'Pre-1970s homes with dated layouts and systems',
+            'Railroad track proximity creates noise on some blocks',
+            'Mixed-vintage housing stock can affect appraisals'
+          ],
+          localHook:
+            'Old Shawnee Days every June brings carnival rides, live music, and a parade down Johnson Drive. Downtown Shawnee knows how to throw a block party.'
+        },
+        {
+          name: 'Western Shawnee / Monticello',
+          slug: 'western-shawnee-monticello',
+          description:
+            'Western Shawnee between K-7 and Woodland Road features newer master-planned communities like Monticello with top-rated De Soto schools and suburban amenities.',
+          landmarks: ['Shawnee Mission Park', 'Monticello community', 'K-7 corridor'],
+          medianHomeValue: '$345,000',
+          distressFactors: [
+            'Long commute times to eastern Johnson County and downtown KC',
+            'HOA governance issues in some large subdivisions',
+            'Early-build homes from late 1990s need cosmetic refreshing'
+          ],
+          localHook:
+            'Shawnee Mission Park — the county\'s largest — is right here with a lake, trails, disc golf, and an off-leash dog park.'
+        },
+        {
+          name: 'Shawnee Mission Parkway Corridor',
+          slug: 'shawnee-mission-parkway-corridor',
+          description:
+            'The neighborhoods along Shawnee Mission Parkway in east Shawnee feature established 1970s-1990s homes with mature landscaping and central Johnson County access.',
+          landmarks: ['Shawnee Mission Parkway shops', 'Stump Park', 'Clear Creek Trail'],
+          medianHomeValue: '$260,000',
+          distressFactors: [
+            '1970s-1980s bi-levels and split-levels with dated floor plans',
+            'Parkway traffic noise on adjacent lots',
+            'Aging subdivision infrastructure including streets and sidewalks'
+          ],
+          localHook:
+            'Central JoCo access from the Parkway corridor. Get to I-35, I-435, or Shawnee Mission Park in minutes from these established streets.'
+        },
+        {
+          name: 'Nieman Road / East Shawnee',
+          slug: 'nieman-road-east-shawnee',
+          description:
+            'East Shawnee along Nieman Road features the city\'s most affordable housing: compact mid-century homes near the Merriam and Mission borders with strong rental demand.',
+          landmarks: ['Nieman Road shops', 'Shawnee Town 1929 museum', 'Nieman Park'],
+          medianHomeValue: '$200,000',
+          distressFactors: [
+            '1950s-1960s homes with original kitchens, baths, and HVAC',
+            'Small square footage limits appeal for larger families',
+            'Some blocks show signs of deferred maintenance and rental wear'
+          ],
+          localHook:
+            'Visit Shawnee Town 1929 to step back in time, then come home to one of JoCo\'s most affordable neighborhoods on Nieman Road.'
+        }
+      ]
+    },
+    {
+      name: 'Lenexa',
+      slug: 'lenexa',
+      state: 'ks',
+      county: 'Johnson County',
+      countySlug: 'johnson',
+      description:
+        'Lenexa is a growing city in central Johnson County known for the annual Great Lenexa Barbecue Battle, the new Lenexa City Center development, and a strong mix of residential neighborhoods from affordable starter homes to upscale communities.',
+      population: '57,434',
+      medianHomeValue: '$305,000',
+      neighborhoods: [
+        {
+          name: 'Lenexa City Center',
+          slug: 'lenexa-city-center',
+          description:
+            'The new Lenexa City Center development around 87th Street Parkway features mixed-use buildings, the public market, civic campus, and surrounding residential areas.',
+          landmarks: ['Lenexa City Center', 'Lenexa Public Market', 'Ad Astra Pool'],
+          medianHomeValue: '$320,000',
+          distressFactors: [
+            'Newer construction carries premium pricing',
+            'Construction activity still ongoing in phases',
+            'Higher property taxes from the TIF district'
+          ],
+          localHook:
+            'Lenexa City Center and Public Market are the city\'s new downtown. Food hall vendors, a civic plaza, and the Ad Astra pool make this the metro\'s freshest neighborhood.'
+        },
+        {
+          name: 'Old Town Lenexa',
+          slug: 'old-town-lenexa',
+          description:
+            'The original town center along Santa Fe Trail Drive features older homes, the Great Lenexa BBQ Battle grounds, and a tight-knit community feel.',
+          landmarks: ['Sar-Ko-Par Trails Park (BBQ Battle site)', 'Santa Fe Trail Drive', 'Thompson Barn'],
+          medianHomeValue: '$235,000',
+          distressFactors: [
+            'Mid-century homes with original systems and finishes',
+            'Small lots with limited garage and storage space',
+            'Some blocks near industrial and commercial uses'
+          ],
+          localHook:
+            'The Great Lenexa BBQ Battle fills Sar-Ko-Par Trails Park every June. Old Town Lenexa smells like championship barbecue all weekend.'
+        },
+        {
+          name: 'Falcon Ridge / Woodland',
+          slug: 'falcon-ridge-woodland',
+          description:
+            'South Lenexa near K-10 features newer subdivisions like Falcon Ridge and Woodland with family homes, walking trails, and proximity to the K-10 business corridor.',
+          landmarks: ['K-10 highway corridor', 'Falcon Ridge community', 'Black Hoof Park'],
+          medianHomeValue: '$350,000',
+          distressFactors: [
+            'Builder-grade construction from 2005-2015 showing wear',
+            'K-10 expansion has increased traffic and noise for adjacent homes',
+            'Heavy clay soil causes persistent foundation movement in the area'
+          ],
+          localHook:
+            'Black Hoof Park\'s lake, trails, and fishing spots anchor the neighborhood. Falcon Ridge is where south Lenexa families gather outdoors.'
+        },
+        {
+          name: 'Lackman / Rose Hill',
+          slug: 'lackman-rose-hill',
+          description:
+            'The Lackman Road corridor in east Lenexa features established 1970s-1980s neighborhoods with mature trees, fenced yards, and walkable access to local parks and schools.',
+          landmarks: ['Lackman Road corridor', 'Rose Hill Elementary', 'Sar-Ko-Par community garden'],
+          medianHomeValue: '$245,000',
+          distressFactors: [
+            '1970s-1980s homes with original mechanicals nearing end of life',
+            'Older HOA communities with aging common areas',
+            'Flat roofs on some split-level designs prone to leaks'
+          ],
+          localHook:
+            'Community gardens, established schools, and the Sar-Ko-Par trail system. Lackman Road is Lenexa\'s original family corridor.'
+        }
+      ]
+    },
+    {
+      name: 'Merriam',
+      slug: 'merriam',
+      state: 'ks',
+      county: 'Johnson County',
+      countySlug: 'johnson',
+      description:
+        'Merriam is a compact, affordable city in northeast Johnson County along the I-35 corridor. Its central location, revitalized downtown along Merriam Drive, and access to the Turkey Creek shopping area make it an attractive option for first-time buyers in Johnson County.',
+      population: '11,234',
+      medianHomeValue: '$230,000',
+      neighborhoods: [
+        {
+          name: 'Downtown Merriam / Merriam Drive',
+          slug: 'downtown-merriam',
+          description:
+            'Merriam\'s revitalized downtown along Merriam Drive features updated streetscaping, local businesses, and surrounding neighborhoods with affordable mid-century homes.',
+          landmarks: ['Merriam Community Center', 'Antioch Park', 'Merriam Drive corridor'],
+          medianHomeValue: '$210,000',
+          distressFactors: [
+            '1950s-1960s ranch homes with original kitchens and baths',
+            'I-35 noise impacts properties near the highway',
+            'Older sewer infrastructure requires lateral replacement'
+          ],
+          localHook:
+            'Merriam\'s revitalized downtown strip is walkable, affordable, and puts you in the center of JoCo without the price tag of towns farther south.'
+        },
+        {
+          name: 'Turkey Creek Area',
+          slug: 'turkey-creek-area',
+          description:
+            'The Turkey Creek retail area along I-35 and Johnson Drive draws shoppers from across the metro, with surrounding residential streets offering affordable homes near major retail.',
+          landmarks: ['IKEA Merriam', 'Johnson Drive shops', 'Turkey Creek shopping district'],
+          medianHomeValue: '$240,000',
+          distressFactors: [
+            'Traffic congestion from retail district impacts nearby streets',
+            'Flood zone risk along Turkey Creek drainage',
+            'Commercial proximity reduces privacy on some lots'
+          ],
+          localHook:
+            'IKEA, Target, and the Turkey Creek shopping district are down the street. Merriam is Johnson County\'s most convenient affordable address.'
+        }
+      ]
+    }
+  ]
+};

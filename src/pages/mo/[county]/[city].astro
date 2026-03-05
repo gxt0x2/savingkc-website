@@ -1,0 +1,236 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { getCountiesByState, getCountyBySlug, getCityBySlug } from '@/data/counties';
+import { neighborhoodUrl, cityUrl } from '@/lib/urls';
+import { brand } from '@/data/brand';
+
+export function getStaticPaths() {
+  return getCountiesByState('mo').flatMap((county) =>
+    county.cities.map((city) => ({
+      params: { county: county.slug, city: city.slug },
+      props: { city, countySlug: county.slug },
+    }))
+  );
+}
+
+const { city, countySlug } = Astro.props;
+const county = getCountyBySlug('mo', countySlug);
+
+const title = `Sell Your House for Cash in ${city.name}, MO`;
+const description = `We buy houses in ${city.name}, Missouri. ${city.neighborhoods.length} neighborhoods served. Get a fair cash offer within 24 hours.`;
+
+const countyPills = county
+  ? county.cities
+      .filter((c) => c.slug !== city.slug)
+      .map((c) => ({ label: c.name, href: cityUrl('mo', countySlug, c.slug) }))
+  : [];
+
+const relatedLinks = [
+  { label: 'Tax-Delinquent Properties', href: '/tax-delinquent/' },
+  { label: 'Pre-Foreclosure Help', href: '/situations/pre-foreclosure/' },
+  { label: 'Inherited Property', href: '/situations/inherited-property/' },
+  { label: 'Behind on Payments', href: '/situations/behind-on-payments/' },
+];
+
+const situations = [
+  { title: 'Pre-Foreclosure', href: '/situations/pre-foreclosure/', desc: 'Sell before the bank forecloses' },
+  { title: 'Inherited Property', href: '/situations/inherited-property/', desc: 'Sell an inherited house fast' },
+  { title: 'Divorce', href: '/situations/divorce/', desc: 'Split assets quickly and fairly' },
+  { title: 'Behind on Payments', href: '/situations/behind-on-payments/', desc: 'Stop the debt from growing' },
+  { title: 'Vacant Property', href: '/situations/vacant-property/', desc: 'Stop paying to maintain an empty house' },
+  { title: 'Foundation Issues', href: '/situations/foundation-issues/', desc: 'Sell as-is without expensive repairs' },
+];
+
+const facts = [
+  { label: 'Population', value: city.population },
+  { label: 'Median Home Value', value: city.medianHomeValue },
+  { label: 'County', value: city.county },
+  { label: 'Neighborhoods', value: `${city.neighborhoods.length}` },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={`${brand.domain}/mo/${countySlug}/${city.slug}/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[
+        { label: 'Missouri', href: '/mo/' },
+        { label: `${city.county} County`, href: `/mo/${countySlug}/` },
+        { label: city.name },
+      ]} />
+
+      <header class="hero">
+        <h1>{title}</h1>
+        <p class="hero-sub">{city.description}</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> Yes, we buy houses in any condition in {city.name}, Missouri. Whether your home needs major repairs or you simply need to sell fast, we make fair cash offers based on the local {city.name} market.</p>
+      </div>
+
+      <div class="facts-bar">
+        {facts.map((f) => (
+          <div class="fact">
+            <span class="fact-label">{f.label}</span>
+            <span class="fact-value">{f.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <section class="content-section">
+        <h2>Neighborhoods in {city.name}</h2>
+        <div class="card-grid">
+          {city.neighborhoods.map((n) => (
+            <a href={neighborhoodUrl('mo', countySlug, city.slug, n.slug)} class="location-card">
+              <h3>{n.name}</h3>
+              <p class="card-meta">Median: {n.medianHomeValue}</p>
+              <p>{n.description.substring(0, 120)}...</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Common Situations in {city.name}</h2>
+        <div class="sit-grid">
+          {situations.map((sit) => (
+            <a href={sit.href} class="sit-card">
+              <h3>{sit.title}</h3>
+              <p>{sit.desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <CalloutBox type="info" text={`We buy houses in any condition in ${city.name}. Whether your home has foundation problems, fire damage, or just needs updates, we make a fair cash offer based on the local market.`} />
+
+      {countyPills.length > 0 && (
+        <nav class="pill-nav" aria-label="Other cities">
+          <span class="pill-label">Other cities in {county?.name} County:</span>
+          {countyPills.map((pill) => (
+            <a href={pill.href} class="pill">{pill.label}</a>
+          ))}
+        </nav>
+      )}
+
+      <section class="content-section">
+        <h2>Related Resources</h2>
+        <div class="related-links">
+          {relatedLinks.map((link) => (
+            <a href={link.href} class="related-link">{link.label}</a>
+          ))}
+        </div>
+      </section>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: var(--grey-50);
+    border-radius: var(--radius);
+  }
+  .fact { text-align: center; }
+  .fact-label { display: block; font-size: 0.8rem; color: var(--grey-500); margin-bottom: 4px; }
+  .fact-value { display: block; font-size: 1.1rem; font-weight: 700; color: var(--grey-900); }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .location-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .location-card:hover { border-color: var(--red); box-shadow: var(--shadow); text-decoration: none; }
+  .location-card h3 { font-size: 1.1rem; color: var(--grey-900); margin-bottom: 4px; }
+  .card-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .location-card p { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
+
+  .sit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sit-card {
+    display: block;
+    padding: 16px 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .sit-card:hover { border-color: var(--red); box-shadow: var(--shadow); text-decoration: none; }
+  .sit-card h3 { font-size: 1rem; font-weight: 700; color: var(--grey-900); margin-bottom: 4px; }
+  .sit-card:hover h3 { color: var(--red); }
+  .sit-card p { font-size: 0.85rem; color: var(--grey-500); margin: 0; }
+
+  .pill-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; align-items: center; }
+  .pill-label { font-size: 0.9rem; color: var(--grey-500); font-weight: 500; }
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pill:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .related-link {
+    padding: 8px 20px;
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .facts-bar { grid-template-columns: repeat(2, 1fr); }
+    .sit-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

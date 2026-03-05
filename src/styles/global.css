@@ -440,6 +440,206 @@ a:hover {
   text-decoration: none;
 }
 
+/* Short Answer Block */
+.short-answer {
+  background: var(--cream);
+  border-left: 4px solid var(--red);
+  padding: 20px 24px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 24px 0;
+  line-height: 1.7;
+  color: var(--grey-700);
+  font-size: 1.05rem;
+}
+
+/* Step Timeline */
+.step-timeline {
+  position: relative;
+  padding-left: 48px;
+  margin: 32px 0;
+}
+
+.step-timeline-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.step-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.step-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 36px;
+  bottom: 0;
+  width: 2px;
+  background: var(--grey-200);
+}
+
+.step-timeline-item:last-child::before {
+  display: none;
+}
+
+.step-timeline-number {
+  position: absolute;
+  left: -48px;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.step-timeline-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--grey-900);
+}
+
+.step-timeline-item p {
+  color: var(--grey-600);
+  line-height: 1.6;
+}
+
+/* CTA Banner */
+.cta-banner {
+  background: var(--grey-900);
+  color: var(--white);
+  padding: 48px 32px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  margin: 40px 0;
+}
+
+.cta-banner h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.cta-banner p {
+  color: var(--grey-400);
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Breadcrumb Nav */
+.breadcrumb-nav {
+  padding: 12px 0;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-nav ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.breadcrumb-nav a {
+  color: var(--grey-500);
+  transition: color 0.2s;
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.breadcrumb-nav .separator {
+  color: var(--grey-400);
+  margin: 0 4px;
+}
+
+.breadcrumb-nav .current {
+  color: var(--grey-900);
+  font-weight: 500;
+}
+
+/* Prose / Content Sections */
+.prose {
+  line-height: 1.8;
+  color: var(--grey-700);
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--grey-900);
+  margin: 32px 0 12px;
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--grey-900);
+  margin: 24px 0 8px;
+}
+
+.prose p {
+  margin-bottom: 16px;
+}
+
+.prose ul, .prose ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+.prose li {
+  margin-bottom: 8px;
+}
+
+.prose a {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: var(--red-dark);
+}
+
+/* FAQ Toggle */
+.faq-toggle {
+  font-size: 1.4rem;
+  color: var(--grey-400);
+  transition: transform 0.2s;
+  user-select: none;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: none;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Situation Icon */
+.situation-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }

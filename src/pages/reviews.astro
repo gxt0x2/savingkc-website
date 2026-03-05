@@ -1,0 +1,105 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import { brand } from '@/data/brand';
+
+const reviews = [
+  { name: 'Maria T.', location: 'Independence, MO', date: 'January 2026', text: "They gave me a fair offer on my late mother's house and closed in two weeks. I didn't have to clean out anything or make any repairs. Ernest was upfront about everything from day one." },
+  { name: 'James R.', location: 'Raytown, MO', date: 'November 2025', text: 'After my divorce, I needed to sell fast and move on. Ernest made the whole process simple. He walked me through the offer, explained how he got to the number, and let me pick the closing date.' },
+  { name: 'Patricia W.', location: 'Overland Park, KS', date: 'October 2025', text: "My rental property had code violations I couldn't afford to fix. They bought it as-is and I walked away with cash in hand. Wish I'd called them sooner." },
+  { name: 'Robert L.', location: 'Gladstone, MO', date: 'September 2025', text: 'I was behind on mortgage payments and facing foreclosure. Saving KC Homebuyers gave me a cash offer that covered my remaining mortgage and put money in my pocket. They saved my credit.' },
+  { name: 'Linda M.', location: "Lee's Summit, MO", date: 'August 2025', text: 'The house had serious foundation problems and no traditional buyer would touch it. Ernest came out the same day I called, made an offer the next morning, and we closed in 10 days.' },
+  { name: 'David K.', location: 'Kansas City, KS', date: 'July 2025', text: "I inherited a house in Wyandotte County that needed more work than I could afford. They handled everything. Cleared the title, dealt with the probate paperwork, and gave me a fair price." },
+  { name: 'Sandra J.', location: 'Blue Springs, MO', date: 'June 2025', text: 'My husband passed and I needed to downsize quickly. Ernest was patient, gave me time to sort through things, and never pressured me. Closed on my schedule.' },
+  { name: 'Michael B.', location: 'Shawnee, KS', date: 'May 2025', text: "Fire damaged my rental property and insurance didn't cover everything. They bought it as-is and saved me from months of contractor headaches." },
+];
+---
+
+<BrandPageTemplate
+  title={`Reviews - What Sellers Say About ${brand.name}`}
+  description={`Read real reviews from Kansas City homeowners who sold their houses for cash to ${brand.name}. See why we're KC's trusted home buyer.`}
+  canonical={`${brand.domain}/reviews/`}
+  breadcrumbs={[{ label: 'Reviews' }]}
+>
+  <h1 class="page-title">What Do Kansas City Homeowners Say About Us?</h1>
+  <p class="page-desc">
+    Real stories from real sellers across the KC metro area. Every review is from a homeowner who sold their property directly to us for cash.
+  </p>
+
+  <div class="reviews-list">
+    {reviews.map((review) => (
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">&ldquo;{review.text}&rdquo;</p>
+        <div class="review-footer">
+          <div>
+            <p class="review-name">{review.name}</p>
+            <p class="review-location">{review.location}</p>
+          </div>
+          <p class="review-date">{review.date}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <CalibratedQuestionCTA />
+</BrandPageTemplate>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+  }
+
+  .reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .review-card {
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  .review-text {
+    color: var(--grey-700);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .review-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .review-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .review-location {
+    color: var(--grey-500);
+    font-size: 0.875rem;
+  }
+
+  .review-date {
+    color: var(--grey-500);
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

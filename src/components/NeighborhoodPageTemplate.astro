@@ -1,0 +1,432 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageShell from '@/components/PageShell.astro';
+import ShortAnswerBlock from '@/components/ShortAnswerBlock.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import StepTimeline from '@/components/StepTimeline.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import FAQ from '@/components/FAQ.astro';
+import RelatedLinks from '@/components/RelatedLinks.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import QuickFactsSidebar from '@/components/QuickFactsSidebar.astro';
+import type { NeighborhoodData, CityData, CountyData } from '@/types/geo';
+import type { BreadcrumbItem } from '@/types/content';
+
+interface Props {
+  neighborhood: NeighborhoodData;
+  city: CityData;
+  county: CountyData;
+  breadcrumbs: BreadcrumbItem[];
+}
+
+const { neighborhood, city, county, breadcrumbs } = Astro.props;
+
+const facts = [
+  { label: 'Median Home Value', value: neighborhood.medianHomeValue },
+  { label: 'City', value: city.name },
+  { label: 'County', value: `${county.name} County` },
+  { label: 'State', value: county.stateName },
+];
+
+const situationLinks = [
+  { label: 'Foundation Issues', href: '/situations/foundation-issues/' },
+  { label: 'Pre-Foreclosure', href: '/situations/pre-foreclosure/' },
+  { label: 'Inherited Property', href: '/situations/inherited-property/' },
+  { label: 'Fire Damage', href: '/situations/fire-damage/' },
+];
+
+const neighborLinks = city.neighborhoods
+  .filter((n) => n.slug !== neighborhood.slug)
+  .slice(0, 4)
+  .map((n) => ({
+    label: `${n.name}, ${city.name}`,
+    href: `/${county.state}/${county.slug}/${city.slug}/${n.slug}/`,
+  }));
+
+const stateAbbr = county.state === 'mo' ? 'MO' : 'KS';
+
+const faqs = [
+  {
+    question: `How fast can I sell my house in ${neighborhood.name}?`,
+    answer: `Most homeowners in ${neighborhood.name} who sell to us close in 7 to 14 days. You pick the date. If you need more time to move, we can close in 30 to 60 days. The timeline is entirely up to you.`,
+  },
+  {
+    question: `Do I need to make repairs before selling my ${neighborhood.name} home?`,
+    answer: `No. We buy houses in ${neighborhood.name} in any condition. Foundation cracks, roof damage, outdated kitchens, overgrown yards, mold, fire damage. None of it matters. We handle all repairs after closing.`,
+  },
+  {
+    question: `How do you determine a cash offer for a ${neighborhood.name} property?`,
+    answer: `We look at recent comparable sales in ${neighborhood.name} and the surrounding ${city.name} area, estimate the repair costs, and factor in our holding and resale costs. We show you exactly how we got to our number so there are no surprises.`,
+  },
+  {
+    question: `Are there any fees when I sell my ${neighborhood.name} house to you?`,
+    answer: `Zero. No agent commissions, no closing costs, no fees of any kind. The cash offer we give you is the amount you walk away with at closing. We pay all title and closing costs ourselves.`,
+  },
+  {
+    question: `What if I still owe money on my mortgage?`,
+    answer: `That's fine. At closing, the title company pays off your remaining mortgage balance from the sale proceeds. If you owe more than the home is worth, we can discuss short sale options with your lender.`,
+  },
+  {
+    question: `Can I sell an inherited house in ${neighborhood.name}?`,
+    answer: `Yes. We buy inherited properties regularly in ${county.name} County. Whether the estate is in probate or you already have clear title, we can work with your situation. ${county.probateInfo}`,
+  },
+  {
+    question: `Do I need to clean out the house before selling?`,
+    answer: `No. Leave behind anything you don't want. Furniture, appliances, personal items, junk, construction debris. We handle all cleanout and disposal after closing at no cost to you.`,
+  },
+  {
+    question: `Will you buy my house if it has code violations?`,
+    answer: `Absolutely. Code violations are one of the most common reasons ${city.name} homeowners sell to us. Open permits, condemned status, occupancy issues. We deal with all of it after the sale.`,
+  },
+];
+
+const comparisonRows = [
+  { label: 'Repairs Before Selling', left: '$0. Sell as-is', right: '$5,000-$30,000+ out of pocket' },
+  { label: 'Agent Commissions', left: '0%. No agents involved', right: '5-6% of sale price' },
+  { label: 'Closing Costs', left: 'We cover all closing costs', right: 'Seller pays 1-3%' },
+  { label: 'Time to Close', left: '7-14 days from offer acceptance', right: '60-120 days after listing' },
+  { label: 'Showings & Open Houses', left: "One walkthrough, that's it", right: 'Weeks of strangers in your home' },
+  { label: 'Deal Falls Through', left: 'Cash. No financing contingencies', right: '15-20% of MLS deals collapse' },
+];
+
+const steps = [
+  {
+    title: 'Call Us or Fill Out the Form',
+    description: `Tell us about your ${neighborhood.name} property. We'll ask a few basic questions about the home's condition, your timeline, and your goals. Takes about 5 minutes. No obligation whatsoever.`,
+  },
+  {
+    title: 'We Visit and Make an Offer',
+    description: `We'll schedule a quick walkthrough of your property, usually within 24 to 48 hours. After seeing the home, we present a written cash offer based on the ${neighborhood.name} market and the property's condition.`,
+  },
+  {
+    title: 'You Pick the Closing Date',
+    description: `If the offer works for you, choose a closing date that fits your schedule. Need to close this week? We can do that. Need 60 days to find a new place? That works too. Your timeline, your call.`,
+  },
+  {
+    title: 'Get Your Cash at Closing',
+    description: `Sign the paperwork at a local ${county.name} County title company. Receive your funds via wire transfer or cashier's check the same day. No waiting, no holdbacks, no surprises.`,
+  },
+];
+
+const pageTitle = `Sell Your House Fast in ${neighborhood.name}, ${city.name} | Cash Home Buyer`;
+const pageDesc = `Get a fair cash offer for your ${neighborhood.name} home. No repairs, no agents, no fees. Close on your timeline.`;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(f => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://savingkchomebuyers.com/" },
+    ...breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 2,
+      name: b.label,
+      ...(b.href ? { item: `https://savingkchomebuyers.com${b.href}` } : {}),
+    })),
+  ],
+};
+
+const medianNum = parseInt(neighborhood.medianHomeValue.replace(/[$,]/g, ''));
+const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toLocaleString()}` : 'thousands';
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <PageShell breadcrumbs={breadcrumbs}>
+    <h1 class="page-title">
+      Sell Your House Fast in {neighborhood.name}, {city.name}
+    </h1>
+    <p class="page-desc">
+      Get a fair cash offer for your {neighborhood.name} home. No repairs, no agents, no fees. Close on your timeline.
+    </p>
+
+    <ShortAnswerBlock answer={neighborhood.description} />
+
+    <!-- About the Neighborhood -->
+    <section class="content-section">
+      <h2>What Makes {neighborhood.name} a Great Place to Live?</h2>
+      <div class="section-body">
+        <p>{neighborhood.localHook}</p>
+        <p>
+          {neighborhood.name} is part of {city.name} in {county.name} County, {county.stateName}.
+          The median home value in {neighborhood.name} is {neighborhood.medianHomeValue},
+          compared to {city.medianHomeValue} across {city.name} as a whole
+          and {county.medianHomeValue} for {county.name} County. These numbers matter
+          when you're deciding whether to repair and list or sell as-is for cash.
+        </p>
+      </div>
+      <div class="landmarks-box">
+        <h3>Local Landmarks</h3>
+        <ul class="landmarks-list">
+          {neighborhood.landmarks.map((landmark) => (
+            <li>
+              <span class="landmark-dot"></span>
+              {landmark}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Housing Challenges -->
+    <section class="content-section">
+      <h2>What Housing Challenges Do {neighborhood.name} Homeowners Face?</h2>
+      <div class="section-body">
+        <p>
+          Homeowners in {neighborhood.name} deal with specific property challenges
+          that can make selling through traditional channels difficult. These issues
+          scare off retail buyers who rely on mortgage financing with strict appraisal
+          and inspection requirements. A direct cash sale removes these barriers entirely,
+          because we buy homes knowing exactly what we're getting into.
+        </p>
+        <p>
+          Many of these problems cost thousands to fix, and some homeowners simply
+          don't have the budget or the time. If you're dealing with any of these issues,
+          you don't need to spend a dime before selling. We buy {neighborhood.name}
+          homes in any condition.
+        </p>
+      </div>
+      <ul class="distress-list">
+        {neighborhood.distressFactors.map((factor) => (
+          <li class="distress-item">
+            <span class="distress-icon">!</span>
+            <span>{factor}</span>
+          </li>
+        ))}
+      </ul>
+      <CalloutBox
+        type="info"
+        text={`The median home in ${neighborhood.name} is valued at ${neighborhood.medianHomeValue}. If repair costs eat up $15,000 to $30,000 of that, selling as-is to a cash buyer often puts more money in your pocket than fixing up and listing on the MLS.`}
+      />
+    </section>
+
+    <!-- Why Cash Sale Makes Sense -->
+    <section class="content-section">
+      <h2>Why Does a Cash Sale Make Sense in {neighborhood.name}?</h2>
+      <div class="section-body">
+        <p>
+          A cash sale makes sense when the cost and time of traditional selling
+          outweigh the benefit. In {neighborhood.name}, that's more common than
+          you'd think. The traditional path means hiring an agent (5-6% commission),
+          making repairs to pass inspection, staging the home, hosting showings
+          for weeks or months, and hoping a buyer's financing doesn't fall through
+          at the last minute. For a {neighborhood.medianHomeValue} home, agent
+          commissions alone eat up {commissionEstimate}.
+        </p>
+        <p>
+          When you sell to us, you skip all of that. No commissions, no repair
+          costs, no holding costs while you wait for a buyer. We close on your
+          schedule and pay all closing costs. For homeowners who need to sell
+          quickly, who can't afford repairs, or who simply don't want the stress
+          of a traditional listing, a cash sale is the faster, simpler path.
+        </p>
+      </div>
+    </section>
+
+    <ComparisonTable rows={comparisonRows} />
+
+    <!-- Types of Properties -->
+    <section class="content-section">
+      <h2>What Types of {neighborhood.name} Properties Do You Buy?</h2>
+      <div class="section-body">
+        <p>
+          We buy single-family homes, duplexes, triplexes, and small multi-family
+          properties in {neighborhood.name}. The condition doesn't matter. We've
+          purchased homes with major foundation problems, fire damage, severe water
+          damage, mold, hoarder conditions, and complete code violations. We also
+          buy homes that are simply outdated and would need $20,000 or more in
+          renovations to compete on the open market.
+        </p>
+        <p>
+          Common situations in {neighborhood.name} include inherited homes where the
+          family lives out of state, rental properties with problem tenants still
+          occupying the unit, homes where the owner is going through divorce,
+          properties facing tax liens through {county.name} County, and homes where
+          the owner is behind on mortgage payments. Whatever your situation, we've
+          seen it before and we can help.
+        </p>
+      </div>
+    </section>
+
+    <StepTimeline steps={steps} />
+
+    <!-- Local Tax Info -->
+    <section class="content-section">
+      <h2>What Should {neighborhood.name} Homeowners Know About {county.name} County Taxes?</h2>
+      <div class="section-body">
+        <p>{county.taxLienInfo}</p>
+        <p>
+          If you have back taxes, liens, or other title issues on your {neighborhood.name}
+          property, that doesn't stop us from buying. We work with the title company
+          to clear these issues at closing. Tax liens, mechanic's liens, HOA liens,
+          and judgment liens can all be resolved as part of the sale. You don't need
+          to pay them off upfront.
+        </p>
+      </div>
+    </section>
+
+    <!-- Probate Info -->
+    <section class="content-section">
+      <h2>How Do You Handle Inherited or Probate Properties in {neighborhood.name}?</h2>
+      <div class="section-body">
+        <p>{county.probateInfo}</p>
+        <p>
+          We buy inherited and probate properties in {neighborhood.name} at every
+          stage of the process. Whether you've already been appointed personal
+          representative, are still waiting for court approval, or have multiple
+          heirs who all need to sign off, we can work with your situation. Our team
+          has experience with {county.name} County probate and can close as soon
+          as the court allows.
+        </p>
+      </div>
+    </section>
+
+    <FAQ items={faqs} />
+
+    <RelatedLinks title="Common Situations We Handle" links={situationLinks} />
+
+    {neighborLinks.length > 0 && (
+      <RelatedLinks title={`Other Neighborhoods in ${city.name}`} links={neighborLinks} />
+    )}
+
+    <CalibratedQuestionCTA
+      heading={`What Is Your ${neighborhood.name} Home Worth in a Cash Sale?`}
+    />
+
+    <Fragment slot="sidebar">
+      <LeadForm />
+      <QuickFactsSidebar facts={facts} title={`${neighborhood.name} Facts`} />
+    </Fragment>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .landmarks-box {
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .landmarks-box h3 {
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .landmarks-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    list-style: none;
+  }
+
+  .landmarks-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--grey-700);
+  }
+
+  .landmark-dot {
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .landmark-dot::before {
+    content: '\2022';
+  }
+
+  .distress-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .distress-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--grey-50);
+    border-radius: var(--radius);
+    border: 1px solid var(--grey-100);
+  }
+
+  .distress-icon {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .distress-item span:last-child {
+    color: var(--grey-700);
+  }
+
+  @media (max-width: 640px) {
+    .landmarks-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

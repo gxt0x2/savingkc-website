@@ -18,14 +18,26 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
   {canonical && <link rel="canonical" href={canonical} />}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  {canonical && <meta property="og:url" content={canonical} />}
+  <meta property="og:site_name" content="Saving KC Homebuyers" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
   <!-- Schema: RealEstateAgent -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "name": "Saving KC Homebuyers",
-    "url": "https://savingkc.com",
+    "url": "https://savingkchomebuyers.com",
     "telephone": "+1-816-429-2900",
-    "email": "ari@savingkc.com",
+    "email": "info@savingkchomebuyers.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Kansas City",
@@ -39,19 +51,152 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
   <header class="nav">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">Saving KC Homebuyers</a>
-      <nav class="nav-links" id="navLinks">
+
+      <!-- Desktop nav -->
+      <nav class="nav-links-desktop">
+        <div class="mega-trigger" id="megaTrigger">
+          <button type="button" class="mega-btn" id="megaBtn" aria-expanded="false" aria-haspopup="true">
+            Service Areas
+            <svg class="mega-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown" id="megaDropdown">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <a href="/mo/" class="mega-state">Missouri</a>
+                <div class="mega-county">
+                  <a href="/mo/jackson/" class="mega-county-title">Jackson County</a>
+                  <a href="/mo/jackson/kansas-city/">Kansas City</a>
+                  <a href="/mo/jackson/independence/">Independence</a>
+                  <a href="/mo/jackson/blue-springs/">Blue Springs</a>
+                  <a href="/mo/jackson/lees-summit/">Lee's Summit</a>
+                  <a href="/mo/jackson/grandview/">Grandview</a>
+                  <a href="/mo/jackson/raytown/">Raytown</a>
+                </div>
+                <div class="mega-county">
+                  <a href="/mo/clay/" class="mega-county-title">Clay County</a>
+                  <a href="/mo/clay/liberty/">Liberty</a>
+                  <a href="/mo/clay/gladstone/">Gladstone</a>
+                  <a href="/mo/clay/kearney/">Kearney</a>
+                  <a href="/mo/clay/excelsior-springs/">Excelsior Springs</a>
+                  <a href="/mo/clay/north-kansas-city/">North KC</a>
+                </div>
+                <div class="mega-county">
+                  <a href="/mo/platte/" class="mega-county-title">Platte County</a>
+                  <a href="/mo/platte/platte-city/">Platte City</a>
+                  <a href="/mo/platte/parkville/">Parkville</a>
+                  <a href="/mo/platte/weatherby-lake/">Weatherby Lake</a>
+                  <a href="/mo/platte/riverside/">Riverside</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <a href="/ks/" class="mega-state">Kansas</a>
+                <div class="mega-county">
+                  <a href="/ks/wyandotte/" class="mega-county-title">Wyandotte County</a>
+                  <a href="/ks/wyandotte/kansas-city/">Kansas City KS</a>
+                  <a href="/ks/wyandotte/bonner-springs/">Bonner Springs</a>
+                  <a href="/ks/wyandotte/edwardsville/">Edwardsville</a>
+                </div>
+                <div class="mega-county">
+                  <a href="/ks/johnson/" class="mega-county-title">Johnson County</a>
+                  <a href="/ks/johnson/overland-park/">Overland Park</a>
+                  <a href="/ks/johnson/olathe/">Olathe</a>
+                  <a href="/ks/johnson/shawnee/">Shawnee</a>
+                  <a href="/ks/johnson/lenexa/">Lenexa</a>
+                  <a href="/ks/johnson/merriam/">Merriam</a>
+                  <a href="/ks/johnson/mission/">Mission</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="/#how-it-works">How It Works</a>
         <a href="/#about">About Ernest</a>
         <a href="/#reviews">Reviews</a>
         <a href="/#faq">FAQ</a>
       </nav>
-      <div class="nav-cta">
+
+      <div class="nav-cta-desktop">
         <a href="tel:8164292900" class="btn btn-secondary nav-phone">816-429-2900</a>
         <a href="/#offer-form" class="btn btn-primary">Get My Cash Offer</a>
       </div>
+
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
+    </div>
+
+    <!-- Mobile slide-down panel -->
+    <div class="mobile-panel" id="mobilePanel">
+      <nav class="mobile-nav">
+        <!-- Service Areas accordion -->
+        <div class="mobile-accordion">
+          <button type="button" class="mobile-nav-link mobile-accordion-trigger" id="mobileAreasTrigger">
+            Service Areas
+            <svg class="mobile-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mobile-accordion-body" id="mobileAreasBody">
+            <!-- Missouri -->
+            <div class="mobile-state">
+              <button type="button" class="mobile-state-btn" data-state="mo">
+                Missouri
+                <svg class="mobile-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="mobile-state-body" data-state-body="mo">
+                <a href="/mo/" class="mobile-all-link">All Missouri →</a>
+                <span class="mobile-county-label"><a href="/mo/jackson/">Jackson County</a></span>
+                <a href="/mo/jackson/kansas-city/">Kansas City</a>
+                <a href="/mo/jackson/independence/">Independence</a>
+                <a href="/mo/jackson/blue-springs/">Blue Springs</a>
+                <a href="/mo/jackson/lees-summit/">Lee's Summit</a>
+                <a href="/mo/jackson/grandview/">Grandview</a>
+                <a href="/mo/jackson/raytown/">Raytown</a>
+                <span class="mobile-county-label"><a href="/mo/clay/">Clay County</a></span>
+                <a href="/mo/clay/liberty/">Liberty</a>
+                <a href="/mo/clay/gladstone/">Gladstone</a>
+                <a href="/mo/clay/kearney/">Kearney</a>
+                <a href="/mo/clay/excelsior-springs/">Excelsior Springs</a>
+                <a href="/mo/clay/north-kansas-city/">North KC</a>
+                <span class="mobile-county-label"><a href="/mo/platte/">Platte County</a></span>
+                <a href="/mo/platte/platte-city/">Platte City</a>
+                <a href="/mo/platte/parkville/">Parkville</a>
+                <a href="/mo/platte/weatherby-lake/">Weatherby Lake</a>
+                <a href="/mo/platte/riverside/">Riverside</a>
+              </div>
+            </div>
+            <!-- Kansas -->
+            <div class="mobile-state">
+              <button type="button" class="mobile-state-btn" data-state="ks">
+                Kansas
+                <svg class="mobile-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="mobile-state-body" data-state-body="ks">
+                <a href="/ks/" class="mobile-all-link">All Kansas →</a>
+                <span class="mobile-county-label"><a href="/ks/wyandotte/">Wyandotte County</a></span>
+                <a href="/ks/wyandotte/kansas-city/">Kansas City KS</a>
+                <a href="/ks/wyandotte/bonner-springs/">Bonner Springs</a>
+                <a href="/ks/wyandotte/edwardsville/">Edwardsville</a>
+                <span class="mobile-county-label"><a href="/ks/johnson/">Johnson County</a></span>
+                <a href="/ks/johnson/overland-park/">Overland Park</a>
+                <a href="/ks/johnson/olathe/">Olathe</a>
+                <a href="/ks/johnson/shawnee/">Shawnee</a>
+                <a href="/ks/johnson/lenexa/">Lenexa</a>
+                <a href="/ks/johnson/merriam/">Merriam</a>
+                <a href="/ks/johnson/mission/">Mission</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="/#about" class="mobile-nav-link">About Ernest</a>
+        <a href="/#reviews" class="mobile-nav-link">Reviews</a>
+        <a href="/#faq" class="mobile-nav-link">FAQ</a>
+
+        <div class="mobile-cta">
+          <a href="tel:8164292900" class="btn btn-secondary" style="width:100%">816-429-2900</a>
+          <a href="/#offer-form" class="btn btn-primary" style="width:100%">Get My Cash Offer</a>
+        </div>
+      </nav>
     </div>
   </header>
 
@@ -64,38 +209,40 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       <div class="footer-grid">
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="/#how-it-works">How It Works</a>
-          <a href="/#about">About</a>
-          <a href="/#reviews">Reviews</a>
-          <a href="/#faq">FAQ</a>
-          <a href="/case-studies/">Case Studies</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/about-us/">About</a>
+          <a href="/reviews/">Reviews</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/contact/">Contact</a>
         </div>
         <div class="footer-col">
           <h4>Situations</h4>
-          <a href="#">Foreclosure</a>
-          <a href="#">Inherited Property</a>
-          <a href="#">Divorce</a>
-          <a href="#">Back Taxes</a>
-          <a href="#">Relocation</a>
+          <a href="/situations/pre-foreclosure/">Pre-Foreclosure</a>
+          <a href="/situations/inherited-property/">Inherited Property</a>
+          <a href="/situations/divorce/">Divorce</a>
+          <a href="/tax-delinquent/">Tax Delinquent</a>
+          <a href="/situations/vacant-property/">Vacant Property</a>
         </div>
         <div class="footer-col">
-          <h4>Tax Delinquent</h4>
+          <h4>Resources</h4>
+          <a href="/probate/">Probate Guide</a>
+          <a href="/tax-delinquent/">Tax Delinquent Guide</a>
           <a href="/tax-delinquent/redemption/jackson-county/">Jackson County Redemption</a>
           <a href="/tax-delinquent/payment-plans/jackson-county/">Jackson County Payment Plans</a>
           <a href="/tax-delinquent/payment-plans/johnson-county/">Johnson County Payment Plans</a>
         </div>
         <div class="footer-col">
           <h4>Service Areas</h4>
-          <a href="/sell-my-house-fast-liberty/">Liberty</a>
-          <a href="#">Independence</a>
-          <a href="#">Blue Springs</a>
-          <a href="#">Grandview</a>
-          <a href="#">Overland Park</a>
+          <a href="/mo/jackson/kansas-city/">Kansas City MO</a>
+          <a href="/mo/jackson/independence/">Independence</a>
+          <a href="/mo/jackson/blue-springs/">Blue Springs</a>
+          <a href="/ks/johnson/overland-park/">Overland Park</a>
+          <a href="/ks/wyandotte/kansas-city/">Kansas City KS</a>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
           <p><a href="tel:8164292900">816-429-2900</a></p>
-          <p><a href="mailto:ari@savingkc.com">ari@savingkc.com</a></p>
+          <p><a href="mailto:info@savingkchomebuyers.com">info@savingkchomebuyers.com</a></p>
           <div class="footer-social">
             <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
             <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
@@ -103,47 +250,50 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Saving KC Homebuyers. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Saving KC Homebuyers. All rights reserved. <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></p>
       </div>
     </div>
   </footer>
 
   <style>
-    /* Navigation */
+    /* ========== Navigation ========== */
     .nav {
       position: sticky;
       top: 0;
       z-index: 100;
       background: var(--white);
       border-bottom: 1px solid var(--grey-200);
-      height: var(--nav-height);
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 100%;
+      height: var(--nav-height);
     }
     .nav-logo {
       font-weight: 800;
       font-size: 1.2rem;
       color: var(--grey-900);
+      flex-shrink: 0;
     }
     .nav-logo:hover { text-decoration: none; }
-    .nav-links {
+
+    /* Desktop nav links */
+    .nav-links-desktop {
       display: flex;
+      align-items: center;
       gap: 28px;
     }
-    .nav-links a {
+    .nav-links-desktop > a {
       color: var(--grey-600);
       font-weight: 500;
       font-size: 0.95rem;
     }
-    .nav-links a:hover {
+    .nav-links-desktop > a:hover {
       color: var(--grey-900);
       text-decoration: none;
     }
-    .nav-cta {
+    .nav-cta-desktop {
       display: flex;
       gap: 12px;
       align-items: center;
@@ -151,6 +301,8 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
     .nav-phone {
       font-weight: 700;
     }
+
+    /* Hamburger */
     .nav-toggle {
       display: none;
       flex-direction: column;
@@ -168,34 +320,218 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       transition: 0.2s;
     }
 
+    /* Mobile panel — hidden on desktop */
+    .mobile-panel {
+      display: none;
+    }
+
+    /* ========== Desktop Mega Menu ========== */
+    .mega-trigger {
+      position: relative;
+    }
+    .mega-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--grey-600);
+      font-weight: 500;
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      padding: 0;
+    }
+    .mega-btn:hover { color: var(--grey-900); }
+    .mega-btn.active { color: var(--red); }
+    .mega-chevron { transition: transform 0.2s; }
+    .mega-btn.active .mega-chevron { transform: rotate(180deg); }
+
+    .mega-dropdown {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(700px, calc(100vw - 40px));
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .mega-dropdown.open {
+      display: block;
+      animation: fadeIn 0.15s ease;
+    }
+    .mega-inner {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--grey-200);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .mega-state {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--grey-900);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--red);
+    }
+    .mega-state:hover { color: var(--red); text-decoration: none; }
+    .mega-county { margin-bottom: 16px; }
+    .mega-county-title {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .mega-county-title:hover { color: var(--red-dark); text-decoration: none; }
+    .mega-county a:not(.mega-county-title) {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--grey-600);
+      padding: 3px 0;
+    }
+    .mega-county a:not(.mega-county-title):hover {
+      color: var(--grey-900);
+      text-decoration: none;
+    }
+
+    /* ========== Mobile (≤900px) ========== */
     @media (max-width: 900px) {
-      .nav-links, .nav-cta { display: none; }
+      .nav-links-desktop,
+      .nav-cta-desktop { display: none; }
       .nav-toggle { display: flex; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0;
-        right: 0;
+
+      .mobile-panel {
+        display: none;
+        border-top: 1px solid var(--grey-200);
         background: var(--white);
-        padding: 20px;
-        border-bottom: 1px solid var(--grey-200);
-        box-shadow: var(--shadow-lg);
+        max-height: calc(100vh - var(--nav-height));
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
-      .nav-cta.open {
+      .mobile-panel.open {
+        display: block;
+      }
+
+      .mobile-nav {
+        padding: 12px 20px 20px;
+      }
+
+      /* Nav links */
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--grey-700);
+        border-bottom: 1px solid var(--grey-100);
+      }
+      .mobile-nav-link:hover {
+        color: var(--red);
+        text-decoration: none;
+      }
+      a.mobile-nav-link { cursor: pointer; }
+      button.mobile-nav-link {
+        background: none;
+        border: none;
+        border-bottom: 1px solid var(--grey-100);
+        cursor: pointer;
+        font-family: var(--font-sans);
+        text-align: left;
+      }
+
+      /* Chevron rotation */
+      .mobile-chev { transition: transform 0.2s; }
+      .mobile-accordion-trigger.open .mobile-chev,
+      .mobile-state-btn.open .mobile-chev {
+        transform: rotate(180deg);
+      }
+
+      /* Service areas accordion body */
+      .mobile-accordion-body {
+        display: none;
+        padding: 4px 0 8px 8px;
+      }
+      .mobile-accordion-body.open { display: block; }
+
+      /* State buttons */
+      .mobile-state-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: var(--font-sans);
+        color: var(--grey-800);
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+      }
+      .mobile-state-btn:hover { color: var(--red); }
+
+      /* State body */
+      .mobile-state-body {
+        display: none;
+        padding: 0 0 8px 12px;
+      }
+      .mobile-state-body.open { display: block; }
+      .mobile-state-body a {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--grey-700);
+        padding: 5px 0;
+      }
+      .mobile-state-body a:hover {
+        color: var(--red);
+        text-decoration: none;
+      }
+      .mobile-all-link {
+        font-weight: 600;
+        color: var(--red) !important;
+        font-size: 0.85rem !important;
+      }
+      .mobile-county-label {
+        display: block;
+        margin-top: 10px;
+      }
+      .mobile-county-label a {
+        font-size: 0.75rem !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--grey-400) !important;
+        padding: 2px 0 !important;
+      }
+      .mobile-county-label a:hover {
+        color: var(--red) !important;
+      }
+
+      /* CTA buttons */
+      .mobile-cta {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: calc(var(--nav-height) + 180px);
-        left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 0 20px 20px;
+        gap: 10px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--grey-200);
       }
     }
 
-    /* Footer */
+    /* ========== Footer ========== */
     .footer {
       background: var(--grey-900);
       color: var(--grey-300);
@@ -253,13 +589,78 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
   </style>
 
   <script>
+    // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    if (toggle && links) {
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    if (toggle && mobilePanel) {
       toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
+        mobilePanel.classList.toggle('open');
       });
     }
+
+    // Desktop mega menu — hover with delay
+    const megaTrigger = document.getElementById('megaTrigger');
+    const megaBtn = document.getElementById('megaBtn');
+    const megaDropdown = document.getElementById('megaDropdown');
+    let megaTimer = null;
+
+    function openMega() {
+      if (megaTimer) clearTimeout(megaTimer);
+      megaTimer = setTimeout(() => {
+        megaDropdown?.classList.add('open');
+        megaBtn?.classList.add('active');
+      }, 150);
+    }
+
+    function closeMega() {
+      if (megaTimer) clearTimeout(megaTimer);
+      megaTimer = setTimeout(() => {
+        megaDropdown?.classList.remove('open');
+        megaBtn?.classList.remove('active');
+      }, 150);
+    }
+
+    if (megaTrigger) {
+      megaTrigger.addEventListener('mouseenter', openMega);
+      megaTrigger.addEventListener('mouseleave', closeMega);
+    }
+
+    if (megaBtn) {
+      megaBtn.addEventListener('click', () => {
+        const isOpen = megaDropdown?.classList.toggle('open');
+        megaBtn.classList.toggle('active', !!isOpen);
+      });
+    }
+
+    // Close mega on click outside
+    document.addEventListener('mousedown', (e) => {
+      if (megaTrigger && !megaTrigger.contains(e.target)) {
+        megaDropdown?.classList.remove('open');
+        megaBtn?.classList.remove('active');
+      }
+    });
+
+    // Mobile: Service Areas accordion
+    const mobileAreasTrigger = document.getElementById('mobileAreasTrigger');
+    const mobileAreasBody = document.getElementById('mobileAreasBody');
+
+    if (mobileAreasTrigger && mobileAreasBody) {
+      mobileAreasTrigger.addEventListener('click', () => {
+        mobileAreasTrigger.classList.toggle('open');
+        mobileAreasBody.classList.toggle('open');
+      });
+    }
+
+    // Mobile: State toggles
+    document.querySelectorAll('.mobile-state-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const state = btn.dataset.state;
+        const body = document.querySelector(`[data-state-body="${state}"]`);
+        btn.classList.toggle('open');
+        body?.classList.toggle('open');
+      });
+    });
   </script>
 </body>
 </html>

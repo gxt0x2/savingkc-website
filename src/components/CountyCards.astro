@@ -1,0 +1,99 @@
+---
+import type { CountyData } from '@/types/geo';
+
+interface Props {
+  counties: CountyData[];
+  title?: string;
+}
+
+const { counties, title = 'Service Areas' } = Astro.props;
+---
+
+<div class="county-cards-section">
+  {title && <h2>{title}</h2>}
+  <div class="grid-3">
+    {counties.map((county) => (
+      <a href={`/${county.state}/${county.slug}/`} class="card county-card">
+        <div class="county-header">
+          <h3>{county.name} County</h3>
+          <span class:list={["badge", county.state === 'mo' ? 'badge-blue' : 'badge-green']}>
+            {county.state.toUpperCase()}
+          </span>
+        </div>
+        <p class="county-desc">{county.description}</p>
+        <div class="county-footer">
+          <span>{county.cities.length} cities</span>
+          <span class="county-median">Median: {county.medianHomeValue}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .county-cards-section {
+    margin: 40px 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .county-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--grey-200);
+    transition: all 0.2s;
+  }
+
+  .county-card:hover {
+    border-color: var(--red);
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+  }
+
+  .county-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: color 0.2s;
+  }
+
+  .county-card:hover h3 {
+    color: var(--red);
+  }
+
+  .badge-blue {
+    background: var(--blue-light);
+    color: var(--blue);
+  }
+
+  .county-desc {
+    font-size: 0.875rem;
+    color: var(--grey-500);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .county-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    padding-top: 12px;
+    border-top: 1px solid var(--grey-100);
+    color: var(--grey-500);
+  }
+
+  .county-median {
+    font-weight: 500;
+  }
+</style>

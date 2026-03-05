@@ -1,0 +1,222 @@
+---
+import type { ComparisonRow } from '@/types/situation';
+
+interface Props {
+  rows: ComparisonRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="comparison-section">
+  <h2>How Does a Cash Offer Compare to a Traditional Sale?</h2>
+
+  <!-- Desktop table -->
+  <div class="table-wrapper">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>
+            <span class="th-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Traditional Sale
+            </span>
+          </th>
+          <th class="th-highlight">
+            <span class="th-label cash-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              Cash Offer
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, i) => (
+          <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+            <td class="factor-cell">{row.factor}</td>
+            <td class="traditional-cell">{row.traditional}</td>
+            <td class="cash-cell highlight">{row.cashOffer}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mobile cards -->
+  <div class="mobile-cards">
+    {rows.map((row) => (
+      <div class="mobile-card">
+        <p class="mobile-factor">{row.factor}</p>
+        <div class="mobile-grid">
+          <div class="mobile-traditional">
+            <p class="mobile-label">Traditional</p>
+            <p>{row.traditional}</p>
+          </div>
+          <div class="mobile-cash">
+            <p class="mobile-label cash-label">Cash Offer</p>
+            <p>{row.cashOffer}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .comparison-section {
+    margin: 40px 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-md);
+  }
+
+  .comparison-table {
+    margin: 0;
+  }
+
+  .comparison-table thead tr {
+    background: var(--grey-900);
+  }
+
+  .comparison-table thead th {
+    background: transparent;
+    color: var(--white);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .th-highlight {
+    background: var(--grey-800) !important;
+  }
+
+  .th-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .th-label svg {
+    color: var(--grey-300);
+  }
+
+  .cash-label {
+    color: var(--green);
+  }
+
+  .cash-label svg {
+    color: var(--green);
+  }
+
+  .row-even {
+    background: var(--white);
+  }
+
+  .row-odd {
+    background: var(--grey-50);
+  }
+
+  .comparison-table tbody tr:hover {
+    background: rgba(250, 246, 237, 0.5);
+  }
+
+  .factor-cell {
+    font-weight: 500;
+  }
+
+  .traditional-cell {
+    color: var(--grey-500);
+  }
+
+  .cash-cell {
+    font-weight: 500;
+    color: var(--green-dark);
+    background: rgba(240, 253, 244, 0.2);
+  }
+
+  /* Mobile cards */
+  .mobile-cards {
+    display: none;
+  }
+
+  .mobile-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-md);
+    padding: 16px;
+  }
+
+  .mobile-factor {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--grey-900);
+    margin-bottom: 12px;
+  }
+
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 0.875rem;
+  }
+
+  .mobile-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    color: var(--grey-400);
+  }
+
+  .mobile-traditional {
+    color: var(--grey-500);
+  }
+
+  .mobile-cash {
+    background: rgba(240, 253, 244, 0.3);
+    border-radius: var(--radius);
+    padding: 8px;
+    margin: -4px;
+  }
+
+  .mobile-cash .mobile-label {
+    color: var(--green);
+  }
+
+  .mobile-cash p:last-child {
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .table-wrapper {
+      display: none;
+    }
+
+    .mobile-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

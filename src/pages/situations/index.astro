@@ -1,0 +1,144 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { brand } from '@/data/brand';
+
+const title = 'We Buy Houses in Any Situation - Kansas City Cash Home Buyer';
+const description = 'Whether you have foundation issues, fire damage, pre-foreclosure, or an inherited property, we buy houses in any condition across Kansas City for cash.';
+
+const allSituations = [
+  { slug: 'foundation-issues', label: 'Foundation Issues', desc: 'Cracked foundations, settling, bowing walls. We buy houses with any structural problem.' },
+  { slug: 'fire-damage', label: 'Fire Damage', desc: 'Smoke damage, partial burns, or total loss. Sell your fire-damaged KC home for cash.' },
+  { slug: 'water-damage', label: 'Water Damage', desc: 'Flooding, burst pipes, roof leaks. We purchase water-damaged homes as-is.' },
+  { slug: 'mold', label: 'Mold Problems', desc: 'Mold remediation is expensive. Skip the cleanup and sell directly for cash.' },
+  { slug: 'hoarder-house', label: 'Hoarder House', desc: 'No need to clean out. We buy hoarder houses in the KC metro, contents and all.' },
+  { slug: 'inherited-property', label: 'Inherited Property', desc: "Inherited a house you can't maintain? Get a cash offer and avoid carrying costs." },
+  { slug: 'divorce', label: 'Divorce', desc: 'Split the equity fast. Sell the marital home for cash and move forward.' },
+  { slug: 'behind-on-payments', label: 'Behind on Payments', desc: 'Falling behind on your mortgage? A cash sale can stop the spiral before foreclosure.' },
+  { slug: 'pre-foreclosure', label: 'Pre-Foreclosure', desc: 'Stop foreclosure and protect your credit with a fast cash sale.' },
+  { slug: 'vacant-property', label: 'Vacant Property', desc: 'Empty houses drain your wallet. Sell your vacant KC property and stop the bleeding.' },
+  { slug: 'bad-tenants', label: 'Bad Tenants', desc: 'Problem tenants, eviction headaches, property damage. Sell your rental as-is.' },
+  { slug: 'code-violations', label: 'Code Violations', desc: 'Facing code enforcement? We buy properties with violations across the KC metro.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={`${brand.domain}/situations/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[{ label: 'Situations' }]} />
+
+      <header class="hero">
+        <h1>We Buy Houses in Any Situation</h1>
+        <p class="hero-sub">No matter what you are dealing with, we can help. Pick your situation below to see how a cash sale works for you.</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> Yes, we buy houses in any condition and any situation across the Kansas City metro. Whether your home has structural damage, you are facing foreclosure, or you inherited a property you can't maintain, we make fair cash offers and close on your timeline.</p>
+      </div>
+
+      <div class="sit-grid">
+        {allSituations.map((sit) => (
+          <a href={`/situations/${sit.slug}/`} class="sit-card">
+            <div>
+              <h2>{sit.label}</h2>
+              <p>{sit.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="cta-block">
+        <h2>Not Sure Which Situation Fits?</h2>
+        <p>Every property is different. Call us at <a href={`tel:${brand.phone}`}>{brand.phoneFormatted}</a> or fill out the form to tell us about your situation. We will let you know your options -- no pressure, no obligation.</p>
+        <a href="/#offer-form" class="btn btn-primary">Get My Cash Offer</a>
+      </div>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .sit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .sit-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .sit-card:hover {
+    border-color: var(--red);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+  .sit-card h2 {
+    font-size: 1.1rem;
+    color: var(--grey-900);
+    margin-bottom: 6px;
+    border: none;
+    padding: 0;
+  }
+  .sit-card:hover h2 { color: var(--red); }
+  .sit-card p { font-size: 0.9rem; color: var(--grey-500); margin: 0; line-height: 1.5; }
+
+  .cta-block {
+    text-align: center;
+    padding: 40px 32px;
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
+  }
+  .cta-block h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 12px;
+  }
+  .cta-block p {
+    color: var(--grey-600);
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .sit-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

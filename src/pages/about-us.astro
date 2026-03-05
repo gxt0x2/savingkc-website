@@ -1,0 +1,315 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import FAQ from '@/components/FAQ.astro';
+import { brand } from '@/data/brand';
+
+const faqs = [
+  {
+    question: 'Is Saving KC Homebuyers a real estate agent or broker?',
+    answer: `No. We are not real estate agents or brokers. We are a direct home buyer. We purchase properties with our own cash and don't represent you or anyone else in a transaction. This means there are no agent commissions and no listing agreements. You sell directly to us.`,
+  },
+  {
+    question: 'How long has Saving KC Homebuyers been in business?',
+    answer: `${brand.ownerName} founded ${brand.name} in ${brand.foundedYear}. We've been buying homes across the Kansas City metro area since day one, focused on the 5-county area of Jackson, Clay, Platte, Wyandotte, and Johnson counties.`,
+  },
+  {
+    question: 'Where is your office located?',
+    answer: `Our office is at ${brand.address.full}. We're in the heart of Kansas City, centrally located to serve homeowners throughout the entire metro area on both the Missouri and Kansas sides.`,
+  },
+  {
+    question: 'How are you different from other "we buy houses" companies?',
+    answer: `Three things set us apart. First, we're local. ${brand.ownerName} lives and works in Kansas City. You're not dealing with a call center or a national franchise. Second, we're transparent. Every offer comes with a full breakdown showing how we calculated the number. Third, we don't pressure you. Get our offer, compare it to your other options, and decide on your own timeline.`,
+  },
+  {
+    question: 'Do you work with real estate agents?',
+    answer: `We do. If you're an agent with a client who needs a fast cash sale, we're happy to work with you. We can also structure the deal to include your commission. Many KC agents refer clients to us when the property won't sell on the MLS due to condition issues or timeline constraints.`,
+  },
+  {
+    question: 'What happens to the houses you buy?',
+    answer: `We renovate them and sell them to owner-occupant families, or we renovate them and hold them as quality rental properties. Every house we buy gets improved, which raises property values in the neighborhood and brings new families into the community. We don't flip houses with cheap cosmetic fixes. We do real renovations with quality materials.`,
+  },
+];
+
+const differentiators = [
+  {
+    title: 'We Show Up in Person',
+    desc: "Every property gets a personal walk-through. We don't make offers from satellite photos. We walk the property with you, see the condition firsthand, and build the offer based on what we actually see.",
+  },
+  {
+    title: 'We Show Our Math',
+    desc: 'Every offer includes a full breakdown: the after-repair value, estimated repair costs, our holding costs, and our margin. You can see exactly how we got to the number and challenge any line item you disagree with.',
+  },
+  {
+    title: "We Don't Pressure You",
+    desc: "Our offers are good for 7 days with no pressure to decide immediately. Get a listing agent's opinion. Talk to your family. Compare the numbers. We want you to feel 100% confident in your decision.",
+  },
+  {
+    title: 'We Cover Everything',
+    desc: 'All closing costs, title fees, and transfer taxes are on us. No commissions, no fees, no surprise deductions at the closing table. The offer amount is what you walk away with (minus only your existing mortgage and any liens).',
+  },
+  {
+    title: 'We Close on Your Schedule',
+    desc: "Need to close in 7 days? We can do that. Need 60 days to find your next place and pack up? No problem. You pick the date. If something comes up and you need to change it, we'll adjust.",
+  },
+  {
+    title: 'We Invest in the Community',
+    desc: 'Every house we buy gets a real renovation with quality materials. We bring updated, safe, beautiful homes back to market for Kansas City families. That raises property values and strengthens neighborhoods.',
+  },
+];
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: brand.name,
+  telephone: `+1-${brand.phoneFormatted.replace(/[()\\s]/g, '-')}`,
+  email: brand.email,
+  url: brand.domain,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: brand.address.street,
+    addressLocality: brand.address.city,
+    addressRegion: brand.address.state,
+    postalCode: brand.address.zip,
+  },
+  founder: { "@type": "Person", name: brand.ownerName },
+  foundingDate: String(brand.foundedYear),
+  areaServed: "Kansas City Metropolitan Area",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(f => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+---
+
+<BrandPageTemplate
+  title={`About ${brand.ownerName} & ${brand.name}`}
+  description={`Learn about ${brand.ownerName} and why ${brand.name} has become Kansas City's trusted home buyer since ${brand.foundedYear}. Local, honest, and fair cash offers.`}
+  canonical={`${brand.domain}/about-us/`}
+  breadcrumbs={[{ label: 'About Us' }]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <h1 class="page-title">About {brand.name}</h1>
+  <p class="page-desc">
+    We buy houses in any condition across the Kansas City metro. No agents, no fees, no repairs. Here's who we are, why we do this, and how we treat the homeowners we work with.
+  </p>
+
+  <!-- Who is Ernest -->
+  <section class="content-section">
+    <h2>Who Is Behind {brand.name}?</h2>
+    <div class="section-body">
+      <p>
+        {brand.ownerName} founded {brand.name} in {brand.foundedYear} after seeing too many Kansas City homeowners stuck with properties they couldn't sell through traditional channels. Houses with foundation damage sitting on the MLS for months. Inherited homes filled with decades of belongings that families couldn't deal with from out of state. Properties heading toward foreclosure while the owners had no idea they had other options.
+      </p>
+      <p>
+        Ernest built {brand.name} to give those homeowners a real alternative. Not a lowball offer from someone who's never stepped foot in Kansas City. Not a corporate call center reading from a script. A local buyer who shows up in person to every property, explains exactly how the offer is calculated, and gives the homeowner full control over the timeline.
+      </p>
+      <p>
+        Based at {brand.address.full} in the heart of Kansas City, Ernest and his team serve homeowners across Jackson, Clay, and Platte counties in Missouri, plus Wyandotte and Johnson counties in Kansas. From the historic brick homes of Brookside to the ranch-style houses of Gladstone, from the Victorians on Strawberry Hill to the splits in Olathe, we know every neighborhood in this metro.
+      </p>
+    </div>
+  </section>
+
+  <!-- What makes us different -->
+  <section class="content-section">
+    <h2>What Makes Our Approach Different?</h2>
+    <div class="section-body">
+      <p>
+        We're not a franchise. We're not a tech company that spits out an algorithm-based offer. We're a local Kansas City company that buys one house at a time and gives every homeowner individual attention. Here's what that means in practice:
+      </p>
+    </div>
+    <div class="diff-grid">
+      {differentiators.map((item) => (
+        <div class="diff-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="content-section">
+    <h2>Why Do Kansas City Homeowners Trust Us?</h2>
+    <div class="section-body">
+      <p>
+        Trust is earned. We earn it by being upfront about who we are, how we make money, and what you can expect at every step. We're not going to tell you that our offer is the highest possible price for your home. It's not. We're buying below retail value because we're taking on all the risk, all the repair costs, and all the time to renovate and resell.
+      </p>
+      <p>
+        What we will tell you is that our offer is fair, it's certain, and it's fast. You won't get a call two weeks before closing saying the buyer's financing fell through. You won't get a surprise $15,000 repair demand after inspection. You won't wait months wondering if the house will sell. You'll get a number, a timeline, and a handshake. That's it.
+      </p>
+      <p>
+        We encourage every homeowner to explore all their options before making a decision. Talk to an agent. Get our cash offer. Compare the two side by side. If listing with an agent nets you more money and you have the time and budget for it, go that route. We'll still be here if it doesn't work out.
+      </p>
+    </div>
+    <CalloutBox type="fact" text={`You can reach ${brand.ownerName} directly at ${brand.phoneFormatted}. When you call, you're talking to our team in Kansas City, not a call center in another state.`} />
+  </section>
+
+  <!-- What happens to the houses -->
+  <section class="content-section">
+    <h2>What Happens to the Homes You Buy?</h2>
+    <div class="section-body">
+      <p>
+        Every home we purchase gets renovated. Not a coat of paint and cheap carpet. Real renovations with quality materials: new roofs, updated electrical and plumbing, modern kitchens and bathrooms, foundation repairs, energy-efficient windows, and fresh landscaping. We renovate to the standard we'd want if our own family were moving in.
+      </p>
+      <p>
+        Most of the homes we renovate go back on the market for owner-occupant families. First-time homebuyers, growing families, and downsizers looking for a move-in-ready home in a neighborhood they love. Some homes we keep as long-term rental properties, maintained to the same high standard.
+      </p>
+      <p>
+        This means that every house we buy is a house that gets brought back to life. A vacant, deteriorating property becomes a home again. That matters to us, and it matters to the neighborhood. Property values go up when blighted homes get renovated. Crime goes down when vacant properties get occupied. We're not just buying houses. We're investing in Kansas City.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="content-section">
+    <h2>Where Do You Buy Homes in Kansas City?</h2>
+    <div class="section-body">
+      <p>We buy homes across 5 counties and dozens of cities in the Kansas City metro area:</p>
+      <div class="area-grid">
+        <div class="area-card">
+          <h3>Missouri Side</h3>
+          <ul>
+            <li><strong>Jackson County:</strong> KC, Independence, Blue Springs, Lee's Summit, Raytown, Grandview</li>
+            <li><strong>Clay County:</strong> Liberty, Gladstone, Excelsior Springs, Kearney, Smithville</li>
+            <li><strong>Platte County:</strong> Parkville, Platte City, Weston, Riverside</li>
+          </ul>
+        </div>
+        <div class="area-card">
+          <h3>Kansas Side</h3>
+          <ul>
+            <li><strong>Wyandotte County:</strong> Kansas City KS, Bonner Springs, Edwardsville</li>
+            <li><strong>Johnson County:</strong> Overland Park, Olathe, Shawnee, Lenexa, Merriam</li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        If your property is in the KC metro area and we didn't mention your city, call us anyway. We likely cover it. We buy homes from as far north as Smithville to as far south as Grandview, and from Bonner Springs on the west to Blue Springs on the east.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} />
+
+  <CalibratedQuestionCTA />
+</BrandPageTemplate>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .diff-card {
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    border: 1px solid var(--grey-100);
+  }
+
+  .diff-card h3 {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .diff-card p {
+    font-size: 0.875rem;
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .area-card {
+    padding: 16px;
+    background: var(--grey-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-100);
+  }
+
+  .area-card h3 {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .area-card ul {
+    list-style: none;
+    font-size: 0.875rem;
+    color: var(--grey-700);
+  }
+
+  .area-card li {
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .diff-grid,
+    .area-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

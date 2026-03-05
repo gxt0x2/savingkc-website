@@ -1,0 +1,36 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '@/types/content';
+
+interface Props {
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { breadcrumbs } = Astro.props;
+const hasSidebar = Astro.slots.has('sidebar');
+---
+
+<div class="page-shell container">
+  {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+  {hasSidebar ? (
+    <div class="hybrid-layout">
+      <main>
+        <slot />
+      </main>
+      <aside class="sidebar">
+        <slot name="sidebar" />
+      </aside>
+    </div>
+  ) : (
+    <main>
+      <slot />
+    </main>
+  )}
+</div>
+
+<style>
+  .page-shell {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+</style>

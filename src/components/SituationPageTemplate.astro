@@ -1,0 +1,283 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageShell from '@/components/PageShell.astro';
+import ShortAnswerBlock from '@/components/ShortAnswerBlock.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import StepTimeline from '@/components/StepTimeline.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import FAQ from '@/components/FAQ.astro';
+import RelatedLinks from '@/components/RelatedLinks.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import KeyTermsSidebar from '@/components/KeyTermsSidebar.astro';
+import type { SituationData } from '@/types/situation';
+
+interface Props {
+  situation: SituationData;
+  allSituations: SituationData[];
+}
+
+const { situation, allSituations } = Astro.props;
+
+const breadcrumbs = [
+  { label: 'Situations', href: '/situations/' },
+  { label: situation.title },
+];
+
+const relatedLinks = situation.relatedSituations
+  .map((slug) => {
+    const related = allSituations.find((s) => s.slug === slug);
+    return related ? { label: related.title, href: `/situations/${related.slug}/` } : null;
+  })
+  .filter((link): link is { label: string; href: string } => link !== null);
+
+const comparisonRows = situation.comparison.map(r => ({
+  label: r.factor,
+  left: r.cashOffer,
+  right: r.traditional,
+}));
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: situation.faqs.map(f => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://savingkchomebuyers.com/" },
+    { "@type": "ListItem", position: 2, name: "Situations", item: "https://savingkchomebuyers.com/situations/" },
+    { "@type": "ListItem", position: 3, name: situation.title, item: `https://savingkchomebuyers.com/situations/${situation.slug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={situation.metaTitle}
+  description={situation.metaDescription}
+  canonical={`https://savingkchomebuyers.com/situations/${situation.slug}/`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <PageShell breadcrumbs={breadcrumbs}>
+    <!-- Hero -->
+    <h1 class="page-title">{situation.heroHeading}</h1>
+    <p class="page-desc">{situation.heroSubheading}</p>
+
+    <!-- Short Answer -->
+    <ShortAnswerBlock answer={situation.shortAnswer} />
+
+    <!-- Content Sections -->
+    {situation.sections.map((section) => (
+      <section class="content-section">
+        <h2>{section.heading}</h2>
+        <div class="section-body">
+          {section.content.split('\n\n').map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        {section.callout && (
+          <CalloutBox type={section.callout.type} text={section.callout.text} />
+        )}
+      </section>
+    ))}
+
+    <!-- Comparison Table -->
+    <ComparisonTable rows={comparisonRows} />
+
+    <!-- Savings Table -->
+    {situation.savingsTable && (
+      <div class="savings-section">
+        <h2>What Could You Save with a Cash Sale?</h2>
+        <div class="savings-table-wrapper">
+          <table class="savings-table">
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Traditional Cost</th>
+                <th>Cash Offer Cost</th>
+                <th class="savings-col">You Save</th>
+              </tr>
+            </thead>
+            <tbody>
+              {situation.savingsTable.map((row, i) => (
+                <tr class={i % 2 === 0 ? 'even' : 'odd'}>
+                  <td class="scenario-cell">{row.scenario}</td>
+                  <td class="trad-cell">{row.traditionalCost}</td>
+                  <td>{row.cashOfferCost}</td>
+                  <td class="savings-value">{row.savings}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )}
+
+    <!-- Steps -->
+    <StepTimeline steps={situation.steps} />
+
+    <!-- Local Hook -->
+    <div class="local-hook">
+      <h2>Why Kansas City Homeowners Choose Us</h2>
+      <p>{situation.localHook}</p>
+    </div>
+
+    <!-- FAQ -->
+    <FAQ items={situation.faqs} />
+
+    <!-- Related -->
+    {relatedLinks.length > 0 && (
+      <RelatedLinks title="Related Situations" links={relatedLinks} />
+    )}
+
+    <!-- CTA -->
+    <CalibratedQuestionCTA />
+
+    <Fragment slot="sidebar">
+      <LeadForm />
+      <KeyTermsSidebar terms={situation.keyTerms} />
+    </Fragment>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--grey-900);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .savings-section {
+    margin: 32px 0;
+  }
+
+  .savings-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .savings-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-md);
+  }
+
+  .savings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .savings-table th {
+    text-align: left;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    background: var(--grey-900);
+    color: var(--white);
+  }
+
+  .savings-col {
+    color: var(--green) !important;
+  }
+
+  .savings-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .even {
+    background: var(--white);
+  }
+
+  .odd {
+    background: var(--grey-50);
+  }
+
+  .savings-table tr:hover {
+    background: var(--cream);
+  }
+
+  .scenario-cell {
+    font-weight: 500;
+  }
+
+  .trad-cell {
+    color: var(--grey-500);
+  }
+
+  .savings-value {
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  .local-hook {
+    margin: 40px 0;
+    padding: 24px;
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--amber-light);
+    box-shadow: var(--shadow-md);
+  }
+
+  .local-hook h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .local-hook p {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

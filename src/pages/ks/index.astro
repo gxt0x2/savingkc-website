@@ -1,0 +1,255 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { getCountiesByState } from '@/data/counties';
+import { countyUrl } from '@/lib/urls';
+import { brand } from '@/data/brand';
+
+const title = 'Sell Your House for Cash in Kansas';
+const description = 'We buy houses for cash in Wyandotte and Johnson counties. If you owe back taxes or face foreclosure in Kansas, get a fair cash offer today.';
+
+const counties = getCountiesByState('ks');
+
+const countyPills = counties.map((c) => ({
+  label: `${c.name}, ${c.stateName}`,
+  href: countyUrl('ks', c.slug),
+}));
+
+const sections = [
+  {
+    heading: 'How Do Property Taxes Work in Kansas?',
+    content: 'Kansas property tax law is governed by K.S.A. 79-2801 et seq., which outlines the procedures for collecting delinquent property taxes. Unlike Missouri\'s tax lien certificate system, Kansas uses a judicial tax foreclosure process handled through the district courts.\n\nWhen you fall behind on property taxes in Kansas, the county treasurer adds interest at 12% for the first year of delinquency. The rate increases for subsequent years. The county does not act immediately. Instead, it waits until you are three or more years delinquent before the county counselor files a foreclosure action in district court.\n\nThis longer runway gives Kansas homeowners more time than their Missouri counterparts. But the trade-off is severe: once the foreclosure sale happens, there is no redemption period. The sale is final. In Missouri, you get a year to buy back your property after a tax lien sale. In Kansas, you get nothing after the gavel drops.',
+    callout: { type: 'info' as const, text: 'K.S.A. 79-2801 et seq. governs all delinquent property tax procedures in Kansas, including notice requirements, interest rates, and the judicial foreclosure process.' },
+  },
+  {
+    heading: 'What Happens at a Kansas Tax Foreclosure Sale?',
+    content: 'Kansas tax foreclosure is a judicial process, meaning it goes through the district court rather than being handled administratively by the county. The county counselor files a petition in district court naming all properties with taxes delinquent for three or more years.\n\nBefore the sale, the county must provide notice to the property owner by certified mail and by publication in a local newspaper, as required by K.S.A. 79-2803. The owner has until the sale date to pay the full amount owed, including back taxes, interest, and court costs.\n\nAt the auction, the property is sold to the highest bidder. The court confirms the sale and issues a deed to the buyer. The former owner receives any surplus above the tax debt and court costs, but properties at tax auction routinely sell for far below market value. Most of your equity disappears.\n\nThe critical point: Kansas has no redemption period after the judicial sale. Once the court confirms the sale, the property belongs to the new buyer. You cannot buy it back. This is fundamentally different from Missouri, where you have one year to redeem after a tax lien sale.',
+    callout: { type: 'warning' as const, text: 'Kansas has no redemption period after a judicial tax foreclosure sale. Once the property is sold at auction and the court confirms the sale, it is gone. You cannot reclaim it.' },
+  },
+  {
+    heading: 'Key Kansas Statutes You Should Know',
+    content: 'Three Kansas statutes are especially relevant if you own property with delinquent taxes. K.S.A. 79-2801 establishes the procedures for handling delinquent property taxes, including when the county can begin the foreclosure process and how interest is calculated on unpaid balances. This is the foundational statute for all tax delinquency matters in the state.\n\nK.S.A. 79-2803 covers the notice requirements the county must follow before selling your property. The county is required to notify you by certified mail and publish notice in a newspaper of general circulation. If you receive either of these notices, the foreclosure process is already underway and time is short.\n\nK.S.A. 79-2804 governs the judicial foreclosure sale itself, including how the court authorizes the sale, how the auction is conducted, and how the deed is transferred to the buyer. This statute also confirms that there is no post-sale redemption right in Kansas. Understanding these statutes matters because they define your rights and deadlines. If you are behind on taxes and want to sell before the county forecloses, you need to act before the court confirms the sale.',
+  },
+  {
+    heading: 'Wyandotte County: The Unified Government Difference',
+    content: 'Wyandotte County is unique in the Kansas City metro because it operates under a unified government with Kansas City, Kansas. The Unified Government of Wyandotte County/Kansas City, Kansas combines city and county functions into a single governing body. This means property tax collection, code enforcement, and foreclosure proceedings are all handled by one entity rather than separate city and county offices.\n\nWyandotte County has the highest property tax delinquency rate in Kansas. Lower property values, a higher percentage of fixed-income homeowners, and aging housing stock all contribute. The median home value in Wyandotte County is significantly lower than neighboring Johnson County, which makes it the most affordable entry point in the KC metro but also means homeowners have thinner equity cushions when taxes go unpaid.\n\nThe unified government structure can actually speed up the foreclosure process because there is less bureaucratic handoff between agencies. If you own property in Wyandotte County with delinquent taxes, selling for cash before the county files its annual foreclosure petition is the most direct way to protect your equity and walk away with money in hand.',
+  },
+  {
+    heading: 'How Selling for Cash Protects Your Equity',
+    content: 'At a Kansas tax foreclosure auction, properties routinely sell for a fraction of their market value. A home worth $100,000 might sell for $15,000 or $20,000 at auction, because buyers at these sales are looking for deep discounts. After the county takes its cut for back taxes, interest, and court costs, you might receive little or nothing from the surplus.\n\nA cash sale is different. When you sell directly to us, we pay fair market value minus the cost of needed repairs. The title company pays off your back taxes, any mortgage balance, and other liens from the sale proceeds. Whatever is left is yours. On a $100,000 property with $6,000 in back taxes and no mortgage, you could walk away with $70,000 to $80,000 instead of losing everything at auction.\n\nThe math is straightforward: selling for cash preserves the equity you have built. Waiting for the foreclosure auction destroys it. Every month you wait, the back taxes grow with 12% annual interest, and you move closer to the county filing its petition. The sooner you act, the more money you keep.',
+    callout: { type: 'fact' as const, text: 'Wyandotte County has the highest tax delinquency rate in Kansas. Many homeowners there have enough equity to sell for cash and walk away with money, but they wait too long and lose it all at the foreclosure auction.' },
+  },
+];
+
+const steps = [
+  { title: 'Contact Us', description: 'Call or fill out our form with your property details. We buy houses in any condition across Wyandotte and Johnson counties.' },
+  { title: 'Get Your Cash Offer', description: 'We evaluate your property and present a fair cash offer within 24 hours. No inspections, no waiting for bank approvals.' },
+  { title: 'Choose Your Closing Date', description: 'You pick the closing date that works for you. We can close in as fast as 7 days or on your schedule.' },
+  { title: 'Get Paid', description: 'Close at a local title company. Back taxes and liens are paid from proceeds. You receive the remaining cash the same day.' },
+];
+
+const comparison = [
+  { factor: 'Timeline', traditional: '3-6 months on average', cashOffer: 'Close in as few as 7 days' },
+  { factor: 'Repairs Needed', traditional: 'Must fix to attract buyers', cashOffer: 'We buy as-is, no repairs' },
+  { factor: 'Agent Commissions', traditional: '5-6% of sale price', cashOffer: 'No commissions or fees' },
+  { factor: 'Closing Costs', traditional: 'Seller typically pays 2-3%', cashOffer: 'We cover closing costs' },
+  { factor: 'Showings & Open Houses', traditional: 'Weeks of showings required', cashOffer: 'No showings needed' },
+  { factor: 'Certainty of Sale', traditional: 'Deals fall through regularly', cashOffer: 'Guaranteed cash close' },
+];
+
+const facts = [
+  { label: 'Redemption Period', value: 'None (post-sale)' },
+  { label: 'Governing Law', value: 'K.S.A. 79-2801' },
+  { label: 'Counties Served', value: '2' },
+  { label: 'Delinquency Threshold', value: '3+ Years' },
+];
+
+const faqs = [
+  { question: 'How fast can you close on a house in Kansas?', answer: 'We can close in as few as 7 days from the time you accept our offer. If you need more time to move or make arrangements, we work on your schedule. The timeline depends on title clearance and any existing liens, but cash sales are significantly faster than traditional sales because there is no bank financing involved.' },
+  { question: 'What does "no redemption period" mean in Kansas?', answer: 'In Kansas, once your property is sold at a judicial tax foreclosure auction and the court confirms the sale, you have no right to buy it back. This is different from Missouri, where you have a one-year redemption period after a tax lien sale. In Kansas, the sale is final. That is why selling before the auction is critical if you want to preserve your equity.' },
+  { question: 'Can I sell my Kansas house if I owe back taxes?', answer: 'Yes. You can sell your property at any point before the tax foreclosure sale is finalized. The back taxes, interest, and any court costs are paid from your sale proceeds at closing. The title company handles the payoff directly to the county. You do not need to pay the taxes out of pocket before selling.' },
+  { question: 'How does the Wyandotte County Unified Government affect selling my house?', answer: 'The Unified Government of Wyandotte County/Kansas City, Kansas combines city and county services under one governing body. For property sales, this means property tax records, code violations, and liens are all managed by a single entity. We are familiar with how the Unified Government handles these matters and can work through any issues during the closing process.' },
+  { question: 'Do you buy houses in Johnson County?', answer: 'Yes. We buy houses throughout Johnson County, including Olathe, Overland Park, Shawnee, Lenexa, and other cities. Johnson County properties tend to have higher values, which means more equity to protect if you are facing tax issues or need to sell quickly for any reason.' },
+  { question: 'What happens to liens on my Kansas property when I sell?', answer: 'All liens, including tax liens, mortgage balances, and judgment liens, are paid from the sale proceeds at closing. The title company orders a title search, identifies all liens, and pays them off before you receive your cash. If the liens exceed the sale price, we can discuss options like negotiating with lien holders.' },
+  { question: 'Are there any fees or commissions when I sell to you?', answer: 'No. We do not charge commissions, fees, or closing costs. The price we offer is the amount used to calculate your proceeds. The only deductions from your cash are existing debts on the property like back taxes, mortgage balances, and liens.' },
+  { question: 'How long does the Kansas tax foreclosure process take?', answer: 'Kansas counties typically wait until property taxes are delinquent for three or more years before filing a judicial foreclosure action. After filing, the court process can take several months, including the required notice period. However, once the auction happens, the sale is final with no redemption period. The entire process from first missed payment to auction can be three to four years.' },
+  { question: 'What if my house needs major repairs?', answer: 'We buy houses in any condition. Foundation issues, roof damage, fire damage, mold, outdated systems -- none of that affects our willingness to make an offer. We factor the repair costs into our offer price, so you do not need to spend money fixing anything before selling.' },
+  { question: 'Can I sell if I inherited a Kansas property with back taxes?', answer: 'Yes. Inherited properties with tax delinquency are common, especially in Wyandotte County. If the property went through probate, you can sell once you have legal authority. If probate has not been completed, we can help you understand your options. Either way, the back taxes are paid from the sale proceeds at closing.' },
+];
+
+const relatedLinks = [
+  { label: 'Tax-Delinquent Properties', href: '/tax-delinquent/' },
+  { label: 'Probate Properties', href: '/probate/' },
+  { label: 'Pre-Foreclosure', href: '/situations/pre-foreclosure/' },
+  { label: 'Inherited Property', href: '/situations/inherited-property/' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={`${brand.domain}/ks/`}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={[{ label: 'Kansas' }]} />
+
+      <header class="hero">
+        <h1>Sell Your House for Cash in Kansas</h1>
+        <p class="hero-sub">We buy houses in Wyandotte and Johnson counties for cash. Whether you owe back taxes, face foreclosure, or need to sell fast, we make a fair offer and close on your timeline.</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> Yes. If you own a home in Wyandotte or Johnson County, Kansas, you can sell it for cash regardless of condition, tax status, or timeline. We buy houses across both Kansas counties in the KC metro and can close in as few as 7 days.</p>
+      </div>
+
+      <nav class="pill-nav" aria-label="Kansas counties">
+        {countyPills.map((pill) => (
+          <a href={pill.href} class="pill">{pill.label}</a>
+        ))}
+      </nav>
+
+      <div class="facts-bar">
+        {facts.map((f) => (
+          <div class="fact">
+            <span class="fact-label">{f.label}</span>
+            <span class="fact-value">{f.value}</span>
+          </div>
+        ))}
+      </div>
+
+      {sections.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+      <section class="content-section">
+        <h2>Counties We Serve in Kansas</h2>
+        <div class="card-grid">
+          {counties.map((c) => (
+            <a href={countyUrl('ks', c.slug)} class="location-card">
+              <h3>{c.name} County</h3>
+              <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
+              <p>{c.description.substring(0, 120)}...</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <ProcessSteps steps={steps} />
+      <ComparisonTable rows={comparison} />
+      <FAQ items={faqs} />
+
+      <section class="content-section">
+        <h2>Related Resources</h2>
+        <div class="related-links">
+          {relatedLinks.map((link) => (
+            <a href={link.href} class="related-link">{link.label}</a>
+          ))}
+        </div>
+      </section>
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .pill-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pill:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: var(--grey-50);
+    border-radius: var(--radius);
+  }
+  .fact { text-align: center; }
+  .fact-label { display: block; font-size: 0.8rem; color: var(--grey-500); margin-bottom: 4px; }
+  .fact-value { display: block; font-size: 1.1rem; font-weight: 700; color: var(--grey-900); }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .location-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .location-card:hover { border-color: var(--red); box-shadow: var(--shadow); text-decoration: none; }
+  .location-card h3 { font-size: 1.1rem; color: var(--grey-900); margin-bottom: 4px; }
+  .card-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .location-card p { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .related-link {
+    padding: 8px 20px;
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .facts-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

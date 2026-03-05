@@ -1,0 +1,53 @@
+---
+import type { KeyTerm } from '@/types/situation';
+
+interface Props {
+  terms: KeyTerm[];
+}
+
+const { terms } = Astro.props;
+---
+
+<div class="key-terms">
+  <h3>Key Terms</h3>
+  <dl>
+    {terms.map((term) => (
+      <div class="term-entry">
+        <dt>{term.term}</dt>
+        <dd>{term.definition}</dd>
+      </div>
+    ))}
+  </dl>
+</div>
+
+<style>
+  .key-terms {
+    background: var(--blue-light);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+  }
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  dt {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--grey-900);
+  }
+
+  dd {
+    font-size: 0.875rem;
+    color: var(--grey-700);
+    margin-top: 4px;
+  }
+</style>

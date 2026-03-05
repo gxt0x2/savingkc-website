@@ -1,0 +1,73 @@
+---
+interface Props {
+  title?: string;
+  links: { label: string; href: string }[];
+}
+
+const { title = 'Related Resources', links } = Astro.props;
+---
+
+<div class="related-links">
+  <h2>{title}</h2>
+  <ul class="grid-2">
+    {links.map((link) => (
+      <li>
+        <a href={link.href} class="related-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+          <span>{link.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .related-links {
+    margin: 32px 0;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .related-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--grey-200);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .related-link:hover {
+    border-color: var(--red);
+    background: var(--red-light);
+    text-decoration: none;
+  }
+
+  .related-link svg {
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .related-link span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--grey-700);
+    transition: color 0.2s;
+  }
+
+  .related-link:hover span {
+    color: var(--red);
+  }
+</style>

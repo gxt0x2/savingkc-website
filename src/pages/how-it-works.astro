@@ -1,0 +1,282 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import StepTimeline from '@/components/StepTimeline.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import FAQ from '@/components/FAQ.astro';
+import { brand } from '@/data/brand';
+
+const steps = [
+  {
+    title: 'Contact Us About Your Property',
+    description: `Call us at ${brand.phoneFormatted} or fill out the form on this site. The conversation takes about 5 minutes. We'll ask about the property address, its general condition, and your timeline. You don't need to know exact repair costs or anything like that. Just tell us what you know and we'll take it from there. There's no obligation, no pressure, and no cost for this call.`,
+  },
+  {
+    title: 'We Visit and Make a Cash Offer',
+    description: `We schedule a walk-through at a time that works for you, usually within 24 to 48 hours of your first call. The visit takes 15 to 30 minutes. We're looking at the property's overall condition, the layout, the systems (roof, HVAC, plumbing, electrical), and any damage. Within 24 hours of the walk-through, we present a written cash offer with a full breakdown showing how we calculated the number. No surprises, no hidden deductions.`,
+  },
+  {
+    title: 'You Choose Your Closing Date',
+    description: `If the offer works for you, we open with a local Kansas City title company and you pick the closing date. Close in 7 days if you need to move fast. Take 30 to 60 days if you need time to find your next place, pack, or handle personal matters. The timeline is 100% your call. During this period, we handle all the title work, lien searches, and paperwork.`,
+  },
+  {
+    title: 'Get Paid at Closing',
+    description: `On closing day, you sign the paperwork at a local title company in the KC metro area. The title company records the deed and releases your funds the same day, typically via wire transfer directly to your bank account or by cashier's check. We cover all closing costs. The full offer amount, minus only your existing mortgage payoff and any liens on the title, is yours.`,
+  },
+];
+
+const comparisonRows = [
+  { label: 'Timeline to Close', left: 'As fast as 7 days', right: '3-6 months average in KC' },
+  { label: 'Repairs Before Listing', left: '$0. We buy in any condition', right: '$5,000-$30,000+ to make it "show ready"' },
+  { label: 'Agent Commissions', left: '$0. No agents involved', right: '5-6% of sale price ($8,000-$18,000 on a $150K-$300K home)' },
+  { label: 'Closing Costs', left: '$0. We cover all closing costs', right: 'Seller pays 1-3% ($1,500-$9,000)' },
+  { label: 'Showings & Disruption', left: 'One 15-30 minute walkthrough', right: 'Multiple strangers touring your home for weeks' },
+  { label: 'Certainty of Sale', left: 'Cash offer. No financing contingencies', right: '15-20% of MLS deals fall through at financing' },
+  { label: 'Appraisal Required', left: 'No appraisal needed', right: 'Yes. Low appraisal can kill the deal or reduce price' },
+  { label: 'Inspection Contingency', left: 'No inspection contingency', right: 'Buyer can renegotiate or walk away after inspection' },
+];
+
+const faqs = [
+  {
+    question: 'How do you calculate your cash offer?',
+    answer: `We estimate the After Repair Value (ARV) of the home based on recent comparable sales in your neighborhood. Then we subtract our estimated repair costs, holding costs (insurance, taxes, utilities while we renovate), selling costs when we resell, and our profit margin. We show you the full calculation so you can see exactly how we arrived at the number. Our goal is a fair deal for both sides, not the lowest possible price.`,
+  },
+  {
+    question: 'Will I get a lowball offer?',
+    answer: `Our offers are below full retail market value because we're buying as-is and taking on all the risk and repair costs. But they're fair. Consider what you save: 5-6% agent commission ($8,000-$18,000 on an average KC home), $5,000-$30,000+ in repairs, 1-3% in closing costs, and months of mortgage payments, insurance, and taxes while you wait for a traditional buyer. When you add all that up, many sellers net more with our cash offer than they would listing on the MLS.`,
+  },
+  {
+    question: 'What condition do you buy houses in?',
+    answer: `Any condition. Foundation problems, fire damage, water damage, mold, hoarder houses, code violations, outdated properties that haven't been updated since the 1970s, properties with bad tenants still living there, condemned properties. We've bought them all across the Kansas City metro. If the house has a roof and four walls, we'll make an offer. Even if it doesn't, we'll look at the land value.`,
+  },
+  {
+    question: 'Do I have to pay anything out of pocket?',
+    answer: `Nothing. Zero. We pay all closing costs, title company fees, and transfer taxes. There are no agent commissions because no agents are involved. If you have a mortgage, it's paid off from the sale proceeds at closing by the title company. You don't write a single check during this process.`,
+  },
+  {
+    question: 'What if my house has liens or title problems?',
+    answer: `We buy properties with liens, back taxes, mechanic's liens, HOA liens, and other title issues regularly. The title company identifies all liens during the title search and resolves them at closing from the sale proceeds. In some cases, we can even negotiate with lien holders to reduce the amount owed. You don't need to resolve these before selling.`,
+  },
+  {
+    question: "Can I sell if I'm behind on my mortgage?",
+    answer: `Yes. Many of the homeowners we work with are behind on payments. If you owe more on the mortgage than the home is worth, we can discuss short sale options with your lender. If you have equity, the mortgage is simply paid off from the sale proceeds. We can often close fast enough to stop active foreclosure proceedings.`,
+  },
+  {
+    question: 'What happens if I change my mind after accepting the offer?',
+    answer: `You can back out at any time before closing with no penalties or fees. There's no obligation until you sign the final closing documents at the title company. We want you to feel 100% confident in your decision.`,
+  },
+  {
+    question: 'Do you buy houses in Kansas and Missouri?',
+    answer: `Yes. We buy homes across 5 counties in the Kansas City metro: Jackson County, Clay County, and Platte County in Missouri, plus Wyandotte County and Johnson County in Kansas. From downtown KC to the suburbs, the Northland to south of I-435, we cover the full metro area.`,
+  },
+  {
+    question: 'How is this different from an iBuyer like Opendoor or Offerpad?',
+    answer: `iBuyers typically only buy homes in good condition within a narrow price range, and they charge a service fee of 5-13% on top of repair costs they deduct. We buy homes in any condition with zero fees. We're also local. You're dealing directly with our team, not an algorithm or a call center in another state. We visit every property in person and build each offer individually.`,
+  },
+  {
+    question: 'What areas of Kansas City do you buy in?',
+    answer: `Every part of the metro. We buy homes in Kansas City MO, Independence, Blue Springs, Lee's Summit, Raytown, Grandview, Gladstone, Liberty, Parkville, North Kansas City, Overland Park, Olathe, Shawnee, Lenexa, Kansas City KS, and dozens of smaller communities throughout the 5-county area.`,
+  },
+];
+
+const benefitScenarios = [
+  "Your home needs major repairs you can't afford (foundation, roof, HVAC, water damage)",
+  "You inherited a property and don't want to deal with renovating and listing it",
+  "You're going through a divorce and need to sell the marital home quickly",
+  "You're behind on mortgage payments or facing foreclosure",
+  'You have problem tenants and want out of being a landlord',
+  'The property has code violations, liens, or other title issues',
+  "You're relocating for work and can't wait months for a traditional sale",
+  "The house has been sitting vacant and you're tired of paying carrying costs",
+];
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Sell Your House for Cash in Kansas City",
+  step: steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.description,
+  })),
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(f => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+---
+
+<BrandPageTemplate
+  title="How It Works - Sell Your House for Cash in 4 Steps"
+  description="Learn how to sell your Kansas City house for cash in 4 simple steps. Get a fair offer in 24 hours, choose your closing date, and get paid at a local title company."
+  canonical={`${brand.domain}/how-it-works/`}
+  breadcrumbs={[{ label: 'How It Works' }]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <h1 class="page-title">How Does Selling Your House for Cash Work?</h1>
+  <p class="page-desc">
+    Selling your Kansas City home for cash is straightforward. You contact us, we make a fair offer based on the local market, and you choose when to close. No agent fees, no repairs, no uncertainty. Here's exactly what happens at each step.
+  </p>
+
+  <StepTimeline steps={steps} />
+
+  <!-- What Happens Between Offer and Closing -->
+  <section class="content-section">
+    <h2>What Happens Between the Offer and Closing Day?</h2>
+    <div class="section-body">
+      <p>
+        Once you accept our offer, we open escrow with a local KC title company. The title company runs a title search to identify any liens, encumbrances, or issues with ownership. This process takes about 3 to 5 business days. If title issues are found (tax liens, mechanic's liens, judgment liens), we work with the title company to resolve them. Most issues are cleared at closing from the sale proceeds.
+      </p>
+      <p>
+        During this time, you don't need to do anything except prepare to move. No cleaning, no repairs, no yard work. Leave behind anything you don't want. Furniture, appliances, junk in the garage, stuff in the attic. We handle all cleanout and disposal after closing.
+      </p>
+      <p>
+        A few days before closing, the title company prepares the settlement statement showing all numbers: your sale price, mortgage payoff amount (if applicable), any lien payoffs, and your net proceeds. You'll review this before closing day so there are no surprises at the table.
+      </p>
+    </div>
+    <CalloutBox type="fact" text="The average traditional home sale in Kansas City takes 78 days from listing to closing. Our average is 12 days from accepted offer to cash in hand." />
+  </section>
+
+  <!-- Comparison -->
+  <section class="content-section">
+    <h2>How Does a Cash Offer Compare to a Traditional Sale?</h2>
+    <div class="section-body">
+      <p>
+        The numbers tell the story. On a typical Kansas City home sale through a real estate agent, the seller pays 5-6% in agent commissions, 1-3% in closing costs, thousands in pre-listing repairs, and continues paying mortgage, insurance, and taxes for 3 to 6 months while the home sits on the market. If the buyer's financing falls through (which happens 15-20% of the time), you start all over again.
+      </p>
+      <p>
+        With our cash offer, you pay nothing. No commissions, no closing costs, no repair bills. And because we don't need bank approval, there's virtually zero risk of the deal falling apart.
+      </p>
+    </div>
+    <ComparisonTable rows={comparisonRows} />
+  </section>
+
+  <!-- Real Numbers Example -->
+  <section class="content-section">
+    <h2>What Do the Numbers Actually Look Like?</h2>
+    <div class="section-body">
+      <p>
+        Let's use a real example. Say you own a 3-bedroom home in Raytown worth $175,000 if it were in perfect condition. But it needs a new roof ($8,000), updated kitchen ($12,000), foundation repair ($6,000), and paint throughout ($3,000). That's $29,000 in repairs before you can list it at full price.
+      </p>
+      <p>
+        Going the traditional route: you spend $29,000 on repairs, list at $175,000, pay your agent 6% ($10,500), pay 2% closing costs ($3,500), and make 4 months of mortgage payments while waiting for a buyer ($6,000). Total costs: $49,000. Your net proceeds: $126,000.
+      </p>
+      <p>
+        Going the cash route: we offer you $128,000 as-is. You spend $0 on repairs, pay $0 in commissions, $0 in closing costs, and close in 10 days instead of 4 months. Your net proceeds: $128,000. And you got it 4 months faster with zero hassle.
+      </p>
+      <p>
+        That's the math. The cash offer isn't always the right call. If your home is in great shape and you have time to wait, listing with an agent might net you more. But for homes that need work, or for homeowners who need speed and certainty, the cash route often comes out ahead.
+      </p>
+    </div>
+    <CalloutBox type="info" text="We encourage every homeowner to explore all their options. Get an agent's opinion. Get our cash offer. Compare the numbers side by side. We're confident in our offers because we show the math." />
+  </section>
+
+  <!-- Who Should Sell for Cash -->
+  <section class="content-section">
+    <h2>Who Benefits Most from Selling for Cash?</h2>
+    <div class="section-body">
+      <p>
+        A cash sale works best when the traditional process is too slow, too expensive, or too risky for your situation. Based on the hundreds of homeowners we've worked with across Kansas City, these are the most common scenarios:
+      </p>
+      <ul class="benefit-list">
+        {benefitScenarios.map((item) => (
+          <li>
+            <span class="benefit-dot"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        If any of these sound like your situation, a cash offer is worth exploring. Even if you're not sure, give us a call. The conversation costs nothing and you'll walk away understanding your options better.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} />
+
+  <CalibratedQuestionCTA />
+</BrandPageTemplate>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .page-desc {
+    font-size: 1.125rem;
+    color: var(--grey-500);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    margin: 40px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .section-body {
+    color: var(--grey-700);
+    line-height: 1.6;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .benefit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .benefit-dot {
+    color: var(--red);
+    font-weight: 700;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .benefit-dot::before {
+    content: '\2022';
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

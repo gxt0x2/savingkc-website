@@ -1,0 +1,162 @@
+---
+---
+
+<div class="sidebar-form">
+  <h3>Get Your Free Cash Offer</h3>
+  <p class="sidebar-form-sub">No repairs. No agents. No fees. Close on your timeline.</p>
+
+  <form id="sidebar-lead-form" class="sidebar-form-fields">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="text" name="address" placeholder="Property Address" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <input type="email" name="email" placeholder="Email (optional)" />
+    <button type="submit" class="btn btn-primary btn-lg sidebar-submit">Get My Cash Offer</button>
+    <p class="sidebar-form-note">No obligation &middot; 100% free &middot; Response in 24 hrs</p>
+  </form>
+
+  <div id="sidebar-lead-success" class="sidebar-success" style="display: none;">
+    <div class="success-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <p class="success-title">Thank you!</p>
+    <p class="success-text">We will reach out within 24 hours with your cash offer.</p>
+  </div>
+
+  <div class="sidebar-form-footer">
+    <p>Prefer to talk?</p>
+    <a href="tel:+18162008585" class="sidebar-phone">(816) 200-8585</a>
+  </div>
+</div>
+
+<script>
+  function initSidebarForm() {
+    const form = document.getElementById('sidebar-lead-form') as HTMLFormElement | null;
+    const success = document.getElementById('sidebar-lead-success');
+
+    if (!form || !success) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.style.display = 'none';
+      success.style.display = 'block';
+    });
+  }
+
+  initSidebarForm();
+  document.addEventListener('astro:after-swap', initSidebarForm);
+</script>
+
+<style>
+  .sidebar-form {
+    background: var(--grey-900);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-form-sub {
+    color: var(--grey-300);
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar-form-fields input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: rgba(55, 65, 81, 0.8);
+    color: var(--white);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+
+  .sidebar-form-fields input::placeholder {
+    color: var(--grey-300);
+  }
+
+  .sidebar-form-fields input:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+  }
+
+  .sidebar-submit {
+    width: 100%;
+  }
+
+  .sidebar-form-note {
+    text-align: center;
+    color: var(--grey-300);
+    font-size: 0.75rem;
+    padding-top: 4px;
+  }
+
+  .sidebar-success {
+    text-align: center;
+    padding: 32px 0;
+  }
+
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(34, 197, 94, 0.2);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--green);
+  }
+
+  .success-title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 4px;
+  }
+
+  .success-text {
+    color: var(--grey-300);
+    font-size: 0.875rem;
+  }
+
+  .sidebar-form-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(55, 65, 81, 0.5);
+    text-align: center;
+  }
+
+  .sidebar-form-footer p {
+    color: var(--grey-300);
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-phone {
+    color: var(--white);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .sidebar-phone:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
+import { brand } from '@/data/brand';
+---
+
+<BrandPageTemplate
+  title="Privacy Policy"
+  description={`Privacy Policy for ${brand.name}. Learn how we collect, use, and protect your personal information.`}
+  canonical={`${brand.domain}/privacy/`}
+  breadcrumbs={[{ label: 'Privacy Policy' }]}
+  showSidebar={false}
+>
+  <h1 class="page-title">Privacy Policy</h1>
+  <div class="legal-content">
+    <p class="last-updated">Last updated: March 1, 2026</p>
+
+    <section>
+      <h2>What Information Do We Collect?</h2>
+      <p>
+        {brand.name} collects information you provide directly when you fill out our contact form, call us, or communicate with us. This includes your name, phone number, email address, and property address. We collect this information solely to evaluate your property and provide you with a cash offer.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Do We Use Your Information?</h2>
+      <p>
+        We use your information to contact you about your property, prepare a cash offer, and complete the sale if you accept. We do not sell, rent, or share your personal information with third parties for marketing purposes.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Do We Protect Your Information?</h2>
+      <p>
+        We implement reasonable security measures to protect your personal information from unauthorized access, alteration, or disclosure. All form submissions are transmitted over encrypted connections.
+      </p>
+    </section>
+
+    <section>
+      <h2>Do We Use Cookies?</h2>
+      <p>
+        Our website may use cookies and similar tracking technologies to improve your experience and analyze site traffic. You can disable cookies through your browser settings.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Can You Contact Us?</h2>
+      <p>
+        If you have questions about this privacy policy or your personal information, contact us at <a href={`mailto:${brand.email}`}>{brand.email}</a> or call <a href={`tel:${brand.phone}`}>{brand.phoneFormatted}</a>. Our address is {brand.address.full}.
+      </p>
+    </section>
+  </div>
+</BrandPageTemplate>
+
+<style>
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .last-updated {
+    color: var(--grey-500);
+    margin-bottom: 24px;
+  }
+
+  section {
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  p {
+    color: var(--grey-700);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
