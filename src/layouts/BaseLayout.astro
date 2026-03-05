@@ -120,7 +120,6 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       </nav>
 
       <div class="nav-cta-desktop">
-        <a href="tel:8164292900" class="btn btn-secondary nav-phone">816-429-2900</a>
         <a href="/#offer-form" class="btn btn-primary">Get My Cash Offer</a>
       </div>
 
@@ -301,11 +300,9 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
     }
     .nav-cta-desktop {
       display: flex;
-      gap: 12px;
       align-items: center;
-    }
-    .nav-phone {
-      font-weight: 700;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     /* Hamburger */
