@@ -10,6 +10,8 @@ import FAQ from '@/components/FAQ.astro';
 import RelatedLinks from '@/components/RelatedLinks.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import QuickFactsSidebar from '@/components/QuickFactsSidebar.astro';
+import ContactSidebar from '@/components/ContactSidebar.astro';
+import KeyTermsSidebar from '@/components/KeyTermsSidebar.astro';
 import type { NeighborhoodData, CityData, CountyData } from '@/types/geo';
 import type { BreadcrumbItem } from '@/types/content';
 
@@ -26,6 +28,7 @@ const facts = [
   { label: 'Median Home Value', value: neighborhood.medianHomeValue },
   { label: 'City', value: city.name },
   { label: 'County', value: county.name },
+  { label: 'ZIP Codes', value: city.zipCodes?.join(', ') || 'N/A' },
   { label: 'State', value: county.stateName },
 ];
 
@@ -307,7 +310,15 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
 
     <Fragment slot="sidebar">
       <LeadForm />
+      <ContactSidebar />
       <QuickFactsSidebar facts={facts} title={`${neighborhood.name} Facts`} />
+      <KeyTermsSidebar terms={[
+        { term: 'Cash Offer', definition: 'A purchase offer made without mortgage financing. No appraisal, no lender delays, no risk of deal falling through.' },
+        { term: 'As-Is Sale', definition: 'Selling your home in its current condition with no repairs, cleaning, or improvements required before closing.' },
+        { term: 'Comparable Sales', definition: 'Recent home sales in your neighborhood used to determine fair market value and calculate our offer.' },
+        { term: 'Closing Costs', definition: 'Fees charged at closing for title search, title insurance, recording, and transfer taxes. We pay all of these.' },
+        { term: 'Earnest Money', definition: 'A deposit showing the buyer is serious. We put up non-refundable earnest money with every offer.' },
+      ]} />
     </Fragment>
   </PageShell>
 </BaseLayout>

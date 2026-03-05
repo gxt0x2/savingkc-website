@@ -136,7 +136,7 @@ const relatedLinks = [
         <div class="card-grid">
           {counties.map((c) => (
             <a href={countyUrl('ks', c.slug)} class="location-card">
-              <h3>{c.name} County</h3>
+              <h3>{c.name}</h3>
               <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
               <p>{c.description.substring(0, 120)}...</p>
             </a>

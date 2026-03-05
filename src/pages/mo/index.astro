@@ -16,7 +16,7 @@ const description = 'We buy houses in Jackson, Clay, and Platte counties in Miss
 const counties = getCountiesByState('mo');
 
 const countyPills = counties.map((c) => ({
-  label: `${c.name} County`,
+  label: c.name,
   href: countyUrl('mo', c.slug),
 }));
 
@@ -136,7 +136,7 @@ const relatedLinks = [
         <div class="card-grid">
           {counties.map((c) => (
             <a href={countyUrl('mo', c.slug)} class="location-card">
-              <h3>{c.name} County</h3>
+              <h3>{c.name}</h3>
               <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
               <p>{c.description.substring(0, 120)}...</p>
             </a>

@@ -25,6 +25,7 @@ export const clay: CountyData = {
         'Liberty is the county seat of Clay County and home to William Jewell College. The historic downtown square is one of the best-preserved in the metro, and the city\'s mix of older neighborhoods and new subdivisions makes it a popular choice for families.',
       population: '32,927',
       medianHomeValue: '$250,000',
+      zipCodes: ['64068', '64069'],
       neighborhoods: [
         {
           name: 'Historic Downtown Liberty',
@@ -98,6 +99,7 @@ export const clay: CountyData = {
         'Gladstone is a well-established Northland suburb known as the "Land of Happy Living." The city offers affordable mid-century homes, a central location along I-35, and a growing dining and retail scene along North Oak Trafficway.',
       population: '27,560',
       medianHomeValue: '$195,000',
+      zipCodes: ['64118', '64119'],
       neighborhoods: [
         {
           name: 'Antioch / Vivion Road',
@@ -171,6 +173,7 @@ export const clay: CountyData = {
         'Kearney is a growing community in northern Clay County known as the burial site of Jesse James. The city has attracted young families with new schools, affordable housing, and a small-town atmosphere along the I-35 corridor.',
       population: '11,084',
       medianHomeValue: '$240,000',
+      zipCodes: ['64060'],
       neighborhoods: [
         {
           name: 'Downtown Kearney',
@@ -214,6 +217,7 @@ export const clay: CountyData = {
         'Excelsior Springs is a historic mineral springs resort town in northeast Clay County. Once a nationally known health destination, the city retains beautiful historic architecture and natural springs while offering some of the most affordable housing in the Northland.',
       population: '11,737',
       medianHomeValue: '$155,000',
+      zipCodes: ['64024'],
       neighborhoods: [
         {
           name: 'Historic Elms District',

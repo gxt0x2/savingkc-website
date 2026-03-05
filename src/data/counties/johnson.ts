@@ -25,6 +25,7 @@ export const johnson: CountyData = {
         'Overland Park is the second-largest city in Kansas and consistently ranked among the best places to live in the U.S. The city spans from the established neighborhoods near 75th and Metcalf to master-planned communities in the south. While median home values are high, older northern neighborhoods offer more accessible entry points.',
       population: '197,238',
       medianHomeValue: '$340,000',
+      zipCodes: ['66204', '66207', '66209', '66210', '66211', '66212', '66213', '66214', '66221'],
       neighborhoods: [
         {
           name: 'Downtown Overland Park',
@@ -128,6 +129,7 @@ export const johnson: CountyData = {
         'Olathe is the county seat of Johnson County and one of the fastest-growing cities in Kansas. The city ranges from a historic downtown core to sprawling new development along the I-35 corridor, offering a wider price range than much of Johnson County.',
       population: '144,674',
       medianHomeValue: '$310,000',
+      zipCodes: ['66061', '66062'],
       neighborhoods: [
         {
           name: 'Historic Downtown Olathe',
@@ -201,6 +203,7 @@ export const johnson: CountyData = {
         'Shawnee is a mid-size city in northern Johnson County with a revitalized downtown, the Shawnee Mission Parkway commercial corridor, and neighborhoods ranging from affordable mid-century homes to newer western subdivisions.',
       population: '67,311',
       medianHomeValue: '$285,000',
+      zipCodes: ['66203', '66216', '66217', '66218', '66226'],
       neighborhoods: [
         {
           name: 'Downtown Shawnee',
@@ -274,6 +277,7 @@ export const johnson: CountyData = {
         'Lenexa is a growing city in central Johnson County known for the annual Great Lenexa Barbecue Battle, the new Lenexa City Center development, and a strong mix of residential neighborhoods from affordable starter homes to upscale communities.',
       population: '57,434',
       medianHomeValue: '$305,000',
+      zipCodes: ['66215', '66219', '66220', '66227'],
       neighborhoods: [
         {
           name: 'Lenexa City Center',
@@ -347,6 +351,7 @@ export const johnson: CountyData = {
         'Merriam is a compact, affordable city in northeast Johnson County along the I-35 corridor. Its central location, revitalized downtown along Merriam Drive, and access to the Turkey Creek shopping area make it an attractive option for first-time buyers in Johnson County.',
       population: '11,234',
       medianHomeValue: '$230,000',
+      zipCodes: ['66202', '66203'],
       neighborhoods: [
         {
           name: 'Downtown Merriam / Merriam Drive',

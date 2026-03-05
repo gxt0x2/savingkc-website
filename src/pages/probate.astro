@@ -53,7 +53,7 @@ const situationLabels = situations.map((s) => ({ slug: s.slug, title: s.title })
         <h2>Counties We Serve</h2>
         <div class="pill-nav">
           {allCounties.map((c) => (
-            <a href={countyUrl(c.state, c.slug)} class="pill">{c.name} County, {c.stateName}</a>
+            <a href={countyUrl(c.state, c.slug)} class="pill">{c.name}, {c.stateName}</a>
           ))}
         </div>
       </section>

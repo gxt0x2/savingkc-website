@@ -8,6 +8,8 @@ import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
 import FAQ from '@/components/FAQ.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import QuickFactsSidebar from '@/components/QuickFactsSidebar.astro';
+import ContactSidebar from '@/components/ContactSidebar.astro';
+import KeyTermsSidebar from '@/components/KeyTermsSidebar.astro';
 import type { BreadcrumbItem } from '@/types/content';
 
 interface ChildEntity {
@@ -160,6 +162,7 @@ const faqs = [
 
     <Fragment slot="sidebar">
       <LeadForm />
+      <ContactSidebar />
       {countyPills && countyPills.length > 0 && (
         <div class="sidebar-box">
           <h3>Nearby Cities</h3>
@@ -171,6 +174,13 @@ const faqs = [
         </div>
       )}
       {facts && <QuickFactsSidebar facts={facts} />}
+      <KeyTermsSidebar terms={[
+        { term: 'Cash Offer', definition: 'A purchase offer made without mortgage financing. No appraisal, no lender delays, no risk of deal falling through.' },
+        { term: 'As-Is Sale', definition: 'Selling your home in its current condition with no repairs, cleaning, or improvements required before closing.' },
+        { term: 'Closing Costs', definition: 'Fees charged at closing for title search, title insurance, recording, and transfer taxes. We pay all of these.' },
+        { term: 'Fair Market Value', definition: 'What a home would sell for on the open market in good condition. Our offers factor in repair costs and selling expenses you avoid.' },
+        { term: 'Title Search', definition: 'A review of public records to confirm ownership and identify any liens, judgments, or encumbrances on the property.' },
+      ]} />
       {relatedLinks && relatedLinks.length > 0 && (
         <div class="sidebar-box">
           <h3>Related Resources</h3>

@@ -19,6 +19,7 @@ export interface CityData {
   description: string;
   population: string;
   medianHomeValue: string;
+  zipCodes?: string[];
   neighborhoods: NeighborhoodData[];
 }
 

@@ -25,6 +25,7 @@ export const wyandotte: CountyData = {
         'Kansas City, Kansas (KCK) is the seat of the unified Wyandotte County government. From the revitalized Village West entertainment district near the Kansas Speedway to the historic ethnic neighborhoods of Strawberry Hill and Argentine, KCK offers deeply affordable housing with urban character and a strong sense of community identity.',
       population: '156,607',
       medianHomeValue: '$130,000',
+      zipCodes: ['66101', '66102', '66103', '66104', '66105', '66106', '66109', '66111', '66112'],
       neighborhoods: [
         {
           name: 'Strawberry Hill',
@@ -173,6 +174,7 @@ export const wyandotte: CountyData = {
         'Bonner Springs is a small city on the western edge of Wyandotte County, historically known for agricultural fairs and the National Agricultural Center and Hall of Fame. The city offers affordable small-town living with Kansas River access.',
       population: '7,898',
       medianHomeValue: '$185,000',
+      zipCodes: ['66012'],
       neighborhoods: [
         {
           name: 'Downtown Bonner Springs',
@@ -216,6 +218,7 @@ export const wyandotte: CountyData = {
         'Edwardsville is a small city in western Wyandotte County experiencing growth from logistics and warehouse development along I-70 and I-435. The city maintains a residential core surrounded by expanding commercial areas.',
       population: '4,506',
       medianHomeValue: '$175,000',
+      zipCodes: ['66113'],
       neighborhoods: [
         {
           name: 'Edwardsville Residential',

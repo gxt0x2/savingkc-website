@@ -25,6 +25,7 @@ export const jackson: CountyData = {
         'Kansas City is the largest city in Missouri and the cultural heart of the metro. From the historic 18th & Vine jazz district to the modern Power & Light entertainment district, KC blends Midwestern roots with a growing urban energy. Many older neighborhoods have aging housing stock that presents opportunities for buyers willing to invest in renovation.',
       population: '508,090',
       medianHomeValue: '$195,000',
+      zipCodes: ['64101', '64102', '64105', '64106', '64108', '64109', '64110', '64111', '64112', '64113', '64114', '64123', '64124', '64125', '64126', '64127', '64128', '64129', '64130', '64131', '64132', '64133', '64134'],
       neighborhoods: [
         {
           name: 'Westport',
@@ -188,6 +189,7 @@ export const jackson: CountyData = {
         'Independence is the county seat of Jackson County and a city steeped in frontier history. It served as the starting point of the Oregon, California, and Santa Fe Trails. The historic square downtown anchors a mix of older neighborhoods with a wide range of price points.',
       population: '123,011',
       medianHomeValue: '$160,000',
+      zipCodes: ['64050', '64052', '64053', '64054', '64055', '64056', '64057', '64058'],
       neighborhoods: [
         {
           name: 'Historic Independence Square',
@@ -261,6 +263,7 @@ export const jackson: CountyData = {
         'Blue Springs is a family-oriented suburb east of Kansas City known for strong schools, parks, and affordable housing. The city has grown steadily along the I-70 corridor while maintaining a small-town atmosphere.',
       population: '57,836',
       medianHomeValue: '$230,000',
+      zipCodes: ['64014', '64015'],
       neighborhoods: [
         {
           name: 'Downtown Blue Springs',
@@ -319,6 +322,7 @@ export const jackson: CountyData = {
         "Lee's Summit is one of the fastest-growing cities in Missouri, known for its excellent school district, historic downtown, and family-friendly atmosphere. The city consistently ranks among the best places to live in the KC metro.",
       population: '101,168',
       medianHomeValue: '$285,000',
+      zipCodes: ['64063', '64064', '64081', '64082', '64086'],
       neighborhoods: [
         {
           name: "Historic Downtown Lee's Summit",
@@ -392,6 +396,7 @@ export const jackson: CountyData = {
         'Grandview is a south Kansas City suburb straddling the I-49 corridor. The city offers some of the most affordable housing in the metro with easy highway access to downtown KC and the Cass County line.',
       population: '33,294',
       medianHomeValue: '$145,000',
+      zipCodes: ['64030'],
       neighborhoods: [
         {
           name: 'North Grandview',
@@ -450,6 +455,7 @@ export const jackson: CountyData = {
         'Raytown is a mid-century suburb surrounded by Kansas City, known for its central location, affordable homes, and strong community identity. The city offers quick access to downtown KC, the sports complex, and eastern suburbs.',
       population: '29,211',
       medianHomeValue: '$155,000',
+      zipCodes: ['64133', '64138'],
       neighborhoods: [
         {
           name: 'Downtown Raytown',

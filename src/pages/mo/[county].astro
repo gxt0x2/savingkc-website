@@ -38,7 +38,7 @@ const facts = [
 // County pills (other counties in same state)
 const countyPills = getCountiesByState(stateSlug)
   .filter((c) => c.slug !== county.slug)
-  .map((c) => ({ label: `${c.name} County`, href: countyUrl(stateSlug, c.slug) }));
+  .map((c) => ({ label: c.name, href: countyUrl(stateSlug, c.slug) }));
 
 // Related links
 const relatedLinks = [
@@ -106,7 +106,7 @@ const shortAnswer = `Yes, we buy houses in any condition across ${county.name}, 
 
   <CalloutBox
     type="fact"
-    title={`${county.name.toUpperCase()} COUNTY TAX INFO`}
+    title={`${county.name.toUpperCase()} TAX INFO`}
     text={county.taxLienInfo}
   />
 
@@ -131,7 +131,7 @@ const shortAnswer = `Yes, we buy houses in any condition across ${county.name}, 
 
   <CalloutBox
     type="info"
-    title={`${county.name.toUpperCase()} COUNTY PROBATE`}
+    title={`${county.name.toUpperCase()} PROBATE`}
     text={county.probateInfo}
   />
 

@@ -34,6 +34,7 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
 const facts = [
   { label: 'City', value: city.name },
   { label: 'County', value: `${county.name}` },
+  { label: 'ZIP Codes', value: city.zipCodes?.join(', ') || 'N/A' },
   { label: 'Population', value: city.population },
   { label: 'Median Home Value', value: city.medianHomeValue, color: 'red' as const },
   { label: 'Neighborhoods', value: `${city.neighborhoods.length}` },
@@ -154,7 +155,7 @@ const situations = [
 
   <CalloutBox
     type="fact"
-    title={`${county.name.toUpperCase()} COUNTY TAX INFO`}
+    title={`${county.name.toUpperCase()} TAX INFO`}
     text={county.taxLienInfo}
   />
 

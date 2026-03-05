@@ -25,6 +25,7 @@ export const platte: CountyData = {
         'Platte City is the county seat and a small but growing city along I-29 north of KCI Airport. The historic downtown square and surrounding neighborhoods offer affordable homes with easy airport and highway access.',
       population: '5,024',
       medianHomeValue: '$230,000',
+      zipCodes: ['64079'],
       neighborhoods: [
         {
           name: 'Historic Platte City Square',
@@ -83,6 +84,7 @@ export const platte: CountyData = {
         'Parkville is a charming river bluff community known for Park University, a walkable downtown along the Missouri River, and some of the most scenic residential areas in the Northland. The city\'s English Landing Park hosts festivals year-round.',
       population: '7,238',
       medianHomeValue: '$315,000',
+      zipCodes: ['64152'],
       neighborhoods: [
         {
           name: 'Downtown Parkville',
@@ -141,6 +143,7 @@ export const platte: CountyData = {
         'Riverside is a small city along the Missouri River known for the Argosy Casino, Red X shopping district, and affordable residential neighborhoods. Its location between downtown KC and KCI Airport makes it a convenient commuter hub.',
       population: '3,407',
       medianHomeValue: '$220,000',
+      zipCodes: ['64150'],
       neighborhoods: [
         {
           name: 'Riverside Residential',
@@ -199,6 +202,7 @@ export const platte: CountyData = {
         'Weatherby Lake is a small lakeside community in southern Platte County built around a private 110-acre lake. The city offers a unique mix of modest cottages and large custom homes, all oriented around lake access.',
       population: '1,878',
       medianHomeValue: '$275,000',
+      zipCodes: ['64152'],
       neighborhoods: [
         {
           name: 'Weatherby Lake Community',
