@@ -126,12 +126,12 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://savingkchomebuyers.com/" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://savingkc.com/" },
     ...breadcrumbs.map((b, i) => ({
       "@type": "ListItem",
       position: i + 2,
       name: b.label,
-      ...(b.href ? { item: `https://savingkchomebuyers.com${b.href}` } : {}),
+      ...(b.href ? { item: `https://savingkc.com${b.href}` } : {}),
     })),
   ],
 };

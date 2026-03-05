@@ -5,7 +5,7 @@ export const brand: BrandInfo = {
   shortName: 'Saving KC',
   phone: '8164292900',
   phoneFormatted: '(816) 429-2900',
-  email: 'info@savingkchomebuyers.com',
+  email: 'info@savingkc.com',
   address: {
     street: '1712 Main St',
     city: 'Kansas City',
@@ -13,7 +13,7 @@ export const brand: BrandInfo = {
     zip: '64108',
     full: '1712 Main St, Kansas City, MO 64108',
   },
-  domain: 'https://savingkchomebuyers.com',
+  domain: 'https://savingkc.com',
   tagline: 'We Buy Houses in Kansas City for Cash',
   description: 'Saving KC Homebuyers purchases homes in any condition across the Kansas City metro area. Get a fair cash offer within 24 hours and close on your timeline.',
   foundedYear: 2020,
