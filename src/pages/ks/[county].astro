@@ -57,6 +57,23 @@ const breadcrumbs = [
 const title = `Sell Your House for Cash in ${county.name}, ${stateAbbr}`;
 const description = `We buy houses in ${county.name}, ${stateName}. ${county.cities.length} cities, dozens of neighborhoods. No repairs, no agents, no fees. Fair cash offer within 24 hours.`;
 const shortAnswer = `Yes, we buy houses in any condition across ${county.name}, ${stateName}. Whether your home has foundation problems, fire damage, code violations, or just needs updates, we make a fair cash offer based on the local ${county.name} market and close on your schedule — as fast as 7 days.`;
+
+const countyContacts: Record<string, { label: string; value: string; href?: string }[]> = {
+  wyandotte: [
+    { label: 'Office', value: `${county.name} Appraiser` },
+    { label: 'Phone', value: '(913) 573-2810', href: 'tel:9135732810' },
+    { label: 'Address', value: '710 N 7th St, Kansas City, KS 66101' },
+    { label: 'Website', value: 'wycokck.org', href: 'https://www.wycokck.org' },
+  ],
+  johnson: [
+    { label: 'Office', value: `${county.name} Appraiser` },
+    { label: 'Phone', value: '(913) 715-0725', href: 'tel:9137150725' },
+    { label: 'Address', value: '100 N Kansas Ave, Olathe, KS 66061' },
+    { label: 'Website', value: 'jocogov.org', href: 'https://www.jocogov.org' },
+  ],
+};
+
+const contactItems = countyContacts[county.slug] || [];
 ---
 
 <LocationHubTemplate
@@ -67,6 +84,7 @@ const shortAnswer = `Yes, we buy houses in any condition across ${county.name}, 
   children={children}
   facts={facts}
   locationName={`${county.name}`}
+  contactItems={contactItems}
   countyPills={countyPills}
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/`}

@@ -58,6 +58,29 @@ const relatedLinks = [
   { label: 'Foundation Issues', href: '/situations/foundation-issues/' },
 ];
 
+const countyContacts: Record<string, { label: string; value: string; href?: string }[]> = {
+  jackson: [
+    { label: 'Office', value: 'Jackson County Assessor' },
+    { label: 'Phone', value: '(816) 881-3530', href: 'tel:8168813530' },
+    { label: 'Address', value: '415 E 12th St, Kansas City, MO 64106' },
+    { label: 'Website', value: 'jacksongov.org', href: 'https://www.jacksongov.org' },
+  ],
+  clay: [
+    { label: 'Office', value: 'Clay County Assessor' },
+    { label: 'Phone', value: '(816) 407-3520', href: 'tel:8164073520' },
+    { label: 'Address', value: '11 S Water St, Liberty, MO 64068' },
+    { label: 'Website', value: 'claycountymo.gov', href: 'https://www.claycountymo.gov' },
+  ],
+  platte: [
+    { label: 'Office', value: 'Platte County Assessor' },
+    { label: 'Phone', value: '(816) 858-3356', href: 'tel:8168583356' },
+    { label: 'Address', value: '415 Third St, Platte City, MO 64079' },
+    { label: 'Website', value: 'co.platte.mo.us', href: 'https://www.co.platte.mo.us' },
+  ],
+};
+
+const contactItems = countyContacts[county.slug] || [];
+
 const breadcrumbs = [
   { label: stateName, href: `/${stateSlug}/` },
   { label: `${county.name}`, href: `/${stateSlug}/${county.slug}/` },
@@ -90,6 +113,7 @@ const situations = [
   children={children}
   facts={facts}
   locationName={city.name}
+  contactItems={contactItems}
   countyPills={countyPills}
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/${city.slug}/`}

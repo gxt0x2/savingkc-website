@@ -38,6 +38,7 @@ interface Props {
   comparison: ComparisonRow[];
   faqs: FAQItem[];
   facts: { label: string; value: string }[];
+  contactItems?: { label: string; value: string; href?: string }[];
   relatedLinks?: { label: string; href: string }[];
   countyPills?: { label: string; href: string }[];
   canonical?: string;
@@ -56,6 +57,7 @@ const {
   comparison,
   faqs,
   facts,
+  contactItems,
   relatedLinks,
   countyPills,
   canonical,
@@ -113,7 +115,7 @@ const comparisonRows = comparison.map(r => ({
 
     <Fragment slot="sidebar">
       <LeadForm />
-      <ContactSidebar />
+      {contactItems && contactItems.length > 0 && <ContactSidebar items={contactItems} />}
       {countyPills && countyPills.length > 0 && (
         <div class="sidebar-box">
           <h3>Counties We Serve</h3>

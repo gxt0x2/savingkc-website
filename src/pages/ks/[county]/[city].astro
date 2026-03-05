@@ -58,6 +58,23 @@ const relatedLinks = [
   { label: 'Foundation Issues', href: '/situations/foundation-issues/' },
 ];
 
+const countyContacts: Record<string, { label: string; value: string; href?: string }[]> = {
+  wyandotte: [
+    { label: 'Office', value: 'Wyandotte County Appraiser' },
+    { label: 'Phone', value: '(913) 573-2810', href: 'tel:9135732810' },
+    { label: 'Address', value: '710 N 7th St, Kansas City, KS 66101' },
+    { label: 'Website', value: 'wycokck.org', href: 'https://www.wycokck.org' },
+  ],
+  johnson: [
+    { label: 'Office', value: 'Johnson County Appraiser' },
+    { label: 'Phone', value: '(913) 715-0725', href: 'tel:9137150725' },
+    { label: 'Address', value: '100 N Kansas Ave, Olathe, KS 66061' },
+    { label: 'Website', value: 'jocogov.org', href: 'https://www.jocogov.org' },
+  ],
+};
+
+const contactItems = countyContacts[county.slug] || [];
+
 const breadcrumbs = [
   { label: stateName, href: `/${stateSlug}/` },
   { label: `${county.name}`, href: `/${stateSlug}/${county.slug}/` },
@@ -90,6 +107,7 @@ const situations = [
   children={children}
   facts={facts}
   locationName={city.name}
+  contactItems={contactItems}
   countyPills={countyPills}
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/${city.slug}/`}

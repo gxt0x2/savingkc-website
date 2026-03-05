@@ -32,6 +32,7 @@ interface Props {
   countyName?: string;
   stateName?: string;
   medianValue?: string;
+  contactItems?: { label: string; value: string; href?: string }[];
   countyPills?: { label: string; href: string }[];
   relatedLinks?: { label: string; href: string }[];
   canonical?: string;
@@ -47,6 +48,7 @@ const {
   children: childEntities,
   facts,
   locationName,
+  contactItems,
   countyPills,
   relatedLinks,
   canonical,
@@ -167,7 +169,7 @@ const faqs = [
 
     <Fragment slot="sidebar">
       <LeadForm />
-      <ContactSidebar />
+      {contactItems && contactItems.length > 0 && <ContactSidebar items={contactItems} />}
       {countyPills && countyPills.length > 0 && (
         <div class="sidebar-box">
           <h3>Nearby Cities</h3>
