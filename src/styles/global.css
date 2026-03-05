@@ -84,7 +84,7 @@ a:hover {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 100px;
+  padding: 0 75px;
 }
 
 .sr-only {
@@ -653,6 +653,10 @@ a:hover {
 
 /* Responsive */
 @media (max-width: 1000px) {
+  .container {
+    padding: 0 40px;
+  }
+
   .hybrid-layout {
     grid-template-columns: 1fr;
   }
@@ -667,6 +671,10 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .section {
     padding: 40px 0;
   }
