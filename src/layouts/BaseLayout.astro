@@ -54,7 +54,7 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a href="/" class="nav-logo">Saving KC Homebuyers</a>
+      <a href="/" class="nav-logo"><img src="/logo.png" alt="Saving KC Homebuyers" class="nav-logo-img" /></a>
 
       <!-- Desktop nav -->
       <nav class="nav-links-desktop">
@@ -274,9 +274,11 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       justify-content: space-between;
       height: var(--nav-height);
     }
+    .nav-logo-img {
+      height: 40px;
+      width: auto;
+    }
     .nav-logo {
-      font-weight: 800;
-      font-size: 1.2rem;
       color: var(--grey-900);
       flex-shrink: 0;
     }
