@@ -7,7 +7,7 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import ProcessSteps from '@/components/ProcessSteps.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { getCountiesByState } from '@/data/counties';
-import { countyUrl } from '@/lib/urls';
+import { countyUrl, cityUrl } from '@/lib/urls';
 import CashOfferCalculator from '@/components/CashOfferCalculator.astro';
 import { brand } from '@/data/brand';
 
@@ -160,6 +160,25 @@ const relatedLinks = [
         </div>
       </section>
 
+      <!-- Cities by County -->
+      {counties.map((county) => (
+        <section class="content-section">
+          <h2>Serving Every Neighborhood in {county.name}</h2>
+          <div class="answer-block">
+            <p>Saving KC buys homes in all {county.cities.length} cities across {county.name}, Missouri — every neighborhood, every condition, every situation. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
+          </div>
+          <div class="city-highlights">
+            {county.cities.map((c) => (
+              <div class="city-highlight">
+                <h3><a href={cityUrl('mo', county.slug, c.slug)}>{c.name}</a></h3>
+                <p class="city-meta">{c.neighborhoods.length} neighborhoods · Median: {c.medianHomeValue} · Pop: {c.population}</p>
+                <p class="city-desc">{c.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
       <ProcessSteps steps={steps} />
       <ComparisonTable rows={comparison} />
       <FAQ items={faqs} />
@@ -280,10 +299,44 @@ const relatedLinks = [
   }
   .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
 
+  .answer-block {
+    font-size: 15px;
+    font-weight: 500;
+    color: #450a0a;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #FEF2F1;
+    border-left: 4px solid #CC0000;
+    border-radius: 8px;
+  }
+  .answer-block p { margin: 0; color: #450a0a; }
+  .answer-block a { color: #CC0000; font-weight: 600; }
+
+  .city-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .city-highlight {
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+  }
+  .city-highlight:hover { border-color: var(--red); }
+  .city-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .city-highlight h3 a { color: var(--grey-900); text-decoration: none; }
+  .city-highlight h3 a:hover { color: var(--red); }
+  .city-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .city-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
+
   @media (max-width: 900px) {
     .page-grid { grid-template-columns: 1fr; gap: 32px; }
     .sidebar-col { position: static; }
     .facts-bar { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 1.8rem; }
+    .city-highlights { grid-template-columns: 1fr; }
   }
 </style>
