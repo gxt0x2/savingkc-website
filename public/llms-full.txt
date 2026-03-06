@@ -361,4 +361,5 @@ Each situation has a dedicated page with Kansas City-specific guidance:
 - XML Sitemap: https://savingkc.com/sitemap-index.xml
 - LLMs.txt: https://savingkc.com/llms.txt
 - LLMs-full.txt: https://savingkc.com/llms-full.txt
+- LLMs-xl.txt: https://savingkc.com/llms-xl.txt
 - Robots.txt: https://savingkc.com/robots.txt

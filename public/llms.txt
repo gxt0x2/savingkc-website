@@ -66,3 +66,4 @@ We pay all closing costs. No agent commissions. No fees. The offer amount is wha
 - Tax-Delinquent Guide: https://savingkc.com/tax-delinquent/
 - Sitemap: https://savingkc.com/sitemap/
 - Full LLM Context: https://savingkc.com/llms-full.txt
+- Extended LLM Context (XL): https://savingkc.com/llms-xl.txt
