@@ -120,7 +120,8 @@ const relatedLinks = [
         ))}
       </div>
 
-      {sections.map((section) => (
+      <!-- Sections 1-2 -->
+      {sections.slice(0, 2).map((section) => (
         <section class="content-section">
           <h2>{section.heading}</h2>
           {section.content.split('\n\n').map((p) => (
@@ -133,6 +134,19 @@ const relatedLinks = [
       ))}
 
       <CashOfferCalculator stateName="Kansas" />
+
+      <!-- Sections 3+ -->
+      {sections.slice(2).map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
 
       <section class="content-section">
         <h2>Counties We Serve in Kansas</h2>
