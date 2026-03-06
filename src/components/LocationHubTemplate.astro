@@ -47,6 +47,7 @@ interface Props {
   heroSubtitle?: string;
   heroHighlight?: string;
   heroGreenText?: string;
+  heroVariant?: 'dark' | 'cream';
 }
 
 const {
@@ -72,6 +73,7 @@ const {
   heroSubtitle: heroSubtitleProp,
   heroHighlight = 'For Cash',
   heroGreenText,
+  heroVariant = 'dark',
 } = Astro.props;
 
 const name = locationName || title.replace(/Sell Your House for Cash in /g, '').replace(/, (MO|KS)$/g, '');
@@ -185,17 +187,15 @@ const countyGraphSchema = courthouseName ? {
   <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
   {countyGraphSchema && <script type="application/ld+json" set:html={JSON.stringify(countyGraphSchema)} />}
 
-  {Astro.slots.has('hero')
-    ? <slot name="hero" />
-    : <HeroBanner
-        heading={title}
-        highlight={heroHighlight}
-        greenText={heroGreenText}
-        subtitle={description}
-        source={`${name.toLowerCase().replace(/\s+/g, '-')}-hero`}
-        stats={heroStats}
-      />
-  }
+  <HeroBanner
+    heading={title}
+    highlight={heroHighlight}
+    greenText={heroGreenText}
+    subtitle={description}
+    source={`${name.toLowerCase().replace(/\s+/g, '-')}-hero`}
+    stats={heroStats}
+    variant={heroVariant}
+  />
 
   <PageShell breadcrumbs={breadcrumbs}>
     {heroSubtitleProp && (

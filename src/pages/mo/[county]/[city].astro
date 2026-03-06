@@ -1,6 +1,5 @@
 ---
 import LocationHubTemplate from '@/components/LocationHubTemplate.astro';
-import CityHeroBanner from '@/components/CityHeroBanner.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
 import NeighborhoodAuthorityBlock from '@/components/NeighborhoodAuthorityBlock.astro';
 import NeighborhoodComparisonTable from '@/components/NeighborhoodComparisonTable.astro';
@@ -115,20 +114,9 @@ const situations = [
   countyPills={countyPills}
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/${city.slug}/`}
+  heroVariant="cream"
+  heroHighlight=""
 >
-  <CityHeroBanner
-    slot="hero"
-    cityName={city.name}
-    stateAbbr={stateAbbr}
-    countyName={county.name}
-    neighborhoodCount={city.neighborhoods.length}
-    medianHomeValue={city.medianHomeValue}
-    marketCondition={city.marketCondition}
-    daysOnMarket={city.daysOnMarket}
-    distanceFromOffice={city.distanceFromOffice}
-    population={city.population}
-  />
-
   <!-- NEIGHBORHOOD DIRECTORY -->
   <section class="content-section">
     <h2>Neighborhoods We Serve in {city.name}</h2>

@@ -15,6 +15,7 @@ interface Props {
   source?: string;
   stats?: HeroStat[];
   heroSubtitle?: string;
+  variant?: 'dark' | 'cream';
 }
 
 const defaultStats: HeroStat[] = [
@@ -35,7 +36,7 @@ const defaultStats: HeroStat[] = [
   },
 ];
 
-const { heading, highlight, greenText, subtitle, source = 'page-hero', stats, heroSubtitle } = Astro.props;
+const { heading, highlight, greenText, subtitle, source = 'page-hero', stats, heroSubtitle, variant = 'dark' } = Astro.props;
 const resolvedStats = stats || defaultStats;
 
 // Split heading around greenText for highlighting
@@ -50,7 +51,7 @@ if (greenText && heading.includes(greenText)) {
 }
 ---
 
-<section class="hero">
+<section class={`hero ${variant === 'cream' ? 'hero--cream' : ''}`}>
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
@@ -201,6 +202,55 @@ if (greenText && heading.includes(greenText)) {
     .hero-form {
       max-width: 440px;
     }
+  }
+
+  /* Cream variant */
+  .hero--cream {
+    background: linear-gradient(135deg, #FFFDF7 0%, #FFF3E0 100%);
+    color: var(--grey-900);
+  }
+
+  .hero--cream .hero-badge {
+    background: rgba(204, 0, 0, 0.08);
+    color: #991B1B;
+  }
+
+  .hero--cream .hero-badge .stars {
+    color: #D97706;
+  }
+
+  .hero--cream h1 {
+    color: var(--grey-900);
+  }
+
+  .hero--cream .highlight {
+    color: #CC0000;
+  }
+
+  .hero--cream .hero-sub {
+    color: var(--grey-600);
+  }
+
+  .hero--cream .hero-sub-detail {
+    color: var(--grey-500);
+  }
+
+  .hero--cream .stat-icon {
+    background: rgba(204, 0, 0, 0.08);
+    color: #CC0000;
+  }
+
+  .hero--cream .stat-text strong {
+    color: var(--grey-900);
+  }
+
+  .hero--cream .stat-text span {
+    color: var(--grey-500);
+  }
+
+  .hero--cream .hero-form :global(.lead-form) {
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   @media (max-width: 640px) {
