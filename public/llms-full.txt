@@ -47,7 +47,7 @@ Homeowners sell to us when the traditional listing process doesn't work for thei
 
 ## Service Area
 
-5 counties, 34 cities, 100+ neighborhoods across the Kansas City metro.
+5 counties, 35 cities, 100+ neighborhoods across the Kansas City metro.
 
 ### Missouri Counties
 
@@ -209,6 +209,10 @@ Cities:
 - Merriam (2 neighborhoods): https://savingkc.com/ks/johnson/merriam/
   - Downtown Merriam: https://savingkc.com/ks/johnson/merriam/downtown-merriam/
   - Turkey Creek Area: https://savingkc.com/ks/johnson/merriam/turkey-creek-area/
+- Mission (3 neighborhoods): https://savingkc.com/ks/johnson/mission/
+  - Johnson Drive Corridor: https://savingkc.com/ks/johnson/mission/johnson-drive-corridor/
+  - East Mission / Nall Hills: https://savingkc.com/ks/johnson/mission/east-mission-nall-hills/
+  - West Mission / Foxridge: https://savingkc.com/ks/johnson/mission/west-mission-foxridge/
 
 ---
 

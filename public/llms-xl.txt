@@ -40,7 +40,7 @@ Saving KC Homebuyers is a cash home buying company serving the Kansas City metro
 
 ## Service Area — Complete Directory
 
-5 counties, 38 cities, 111 neighborhoods across the Kansas City metro.
+5 counties, 35 cities, 114 neighborhoods across the Kansas City metro.
 
 ---
 
@@ -387,6 +387,14 @@ https://savingkc.com/ks/johnson/merriam/
 
 - Downtown Merriam ($210,000) — https://savingkc.com/ks/johnson/merriam/downtown-merriam/
 - Turkey Creek Area ($240,000) — https://savingkc.com/ks/johnson/merriam/turkey-creek-area/
+
+#### Mission, KS — 3 neighborhoods
+Population: 9,782 | Median: $245,000
+https://savingkc.com/ks/johnson/mission/
+
+- Johnson Drive Corridor ($225,000) — https://savingkc.com/ks/johnson/mission/johnson-drive-corridor/
+- East Mission / Nall Hills ($265,000) — https://savingkc.com/ks/johnson/mission/east-mission-nall-hills/
+- West Mission / Foxridge ($240,000) — https://savingkc.com/ks/johnson/mission/west-mission-foxridge/
 
 ---
 
