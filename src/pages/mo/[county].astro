@@ -95,6 +95,16 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     hook: n.localHook,
   }))
 );
+
+// Jump pill data for repeated navigation
+const jumpPills = [
+  { href: '#probate-help', label: 'Probate / Inherited', desc: 'Sell inherited property during or after probate', color: '#3B82F6' },
+  { href: '#tax-delinquent-solutions', label: 'Back Taxes', desc: 'Resolve delinquent property taxes before sale', color: '#CC0000' },
+  { href: '#tax-redemption-rights', label: 'Tax Redemption', desc: 'Understand your redemption rights and deadlines', color: '#D97706' },
+  { href: '#county-resources', label: 'Courthouse & Resources', desc: 'County offices, contacts, and directions', color: '#6366F1' },
+  { href: '#process', label: 'Get Your Offer', desc: '4-step process from call to cash in hand', color: '#16A34A' },
+  { href: '#how-we-help', label: 'How Saving KC Helps', desc: `Our process for ${county.name} property owners`, color: '#9333EA' },
+];
 ---
 
 <LocationHubTemplate
@@ -117,36 +127,21 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
   heroSubtitle={heroSubtitle}
   heroHighlight=""
 >
-  <!-- QUICK-JUMP ANCHOR MENU -->
+  <!-- QUICK-JUMP ANCHOR MENU (FULL) -->
   <nav class="anchor-menu" aria-label="Jump to section">
-    <h3 class="anchor-menu__title">What Do You Need Help With?</h3>
+    <h3 class="anchor-menu__title">Table of Contents</h3>
     <div class="anchor-pills">
-      <a href="#probate-help" class="anchor-pill">
-        <span class="anchor-pill__label">Probate / Inherited Property</span>
-        <span class="anchor-pill__desc">Sell inherited property during or after probate</span>
-      </a>
-      <a href="#tax-delinquent-solutions" class="anchor-pill">
-        <span class="anchor-pill__label">Back Taxes</span>
-        <span class="anchor-pill__desc">Resolve delinquent property taxes before sale</span>
-      </a>
-      <a href="#tax-redemption-rights" class="anchor-pill">
-        <span class="anchor-pill__label">Tax Redemption</span>
-        <span class="anchor-pill__desc">Understand your redemption rights and deadlines</span>
-      </a>
-      <a href="#county-resources" class="anchor-pill">
-        <span class="anchor-pill__label">Courthouse & Resources</span>
-        <span class="anchor-pill__desc">County offices, contacts, and directions</span>
-      </a>
-      <a href="#process" class="anchor-pill">
-        <span class="anchor-pill__label">Get Your Offer</span>
-        <span class="anchor-pill__desc">4-step process from call to cash in hand</span>
-      </a>
-      <a href="#how-we-help" class="anchor-pill">
-        <span class="anchor-pill__label">How Saving KC Helps</span>
-        <span class="anchor-pill__desc">Our process for {county.name} property owners</span>
-      </a>
+      {jumpPills.map((p) => (
+        <a href={p.href} class="anchor-pill" style={`--pill-accent: ${p.color}`}>
+          <span class="anchor-pill__label">{p.label}</span>
+          <span class="anchor-pill__desc">{p.desc}</span>
+        </a>
+      ))}
     </div>
   </nav>
+
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
 
   <!-- ENTITY PROXIMITY SECTION -->
   <section class="content-section" id="entity-connection">
@@ -163,6 +158,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
       </p>
     </div>
   </section>
+
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
 
   <!-- SECTION 1: PROBATE -->
   <section class="content-section" id="probate-help">
@@ -250,6 +248,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
       text={`Probate cases in ${county.name} are handled by the ${county.probateCourtName}, located at ${county.courthouse.address}. Our office is ${county.courthouse.distanceMiles} miles away — we work with this court regularly and can coordinate with your attorney to close as soon as the court allows.`}
     />
   </section>
+
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
 
   <!-- SECTION 2: TAX DELINQUENT -->
   <section class="content-section" id="tax-delinquent-solutions">
@@ -351,6 +352,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     />
   </section>
 
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
+
   <!-- SECTION 3: TAX REDEMPTION -->
   <section class="content-section" id="tax-redemption-rights">
     <h2>How Do I Redeem Tax-Delinquent Property in {county.name}?</h2>
@@ -389,6 +393,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
       </p>
     </div>
   </section>
+
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
 
   <!-- SECTION 4A: COURTHOUSE & COUNTY OFFICES -->
   <section class="content-section" id="county-resources">
@@ -432,6 +439,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     </div>
   </section>
 
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
+
   <!-- SECTION 4B: HOW WE HELP -->
   <section class="content-section" id="how-we-help">
     <h2>How Saving KC Helps {county.name} Property Owners</h2>
@@ -452,6 +462,9 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     </ul>
     <a href="/get-offer/" class="inline-cta">Get My Cash Offer →</a>
   </section>
+
+  <!-- JUMP BAR -->
+  <nav class="jump-bar">{jumpPills.map((p) => (<a href={p.href} class="jump-bar__link" style={`--jb-color: ${p.color}`}>{p.label}</a>))}</nav>
 
   <!-- STEP-BY-STEP PROCESS -->
   <section class="content-section" id="process">
@@ -514,53 +527,90 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
 </LocationHubTemplate>
 
 <style>
+  /* === Full Anchor Menu (top) === */
   .anchor-menu {
     margin: 32px 0;
-    padding: 24px;
-    background: var(--grey-50);
-    border-radius: var(--radius);
-    border: 1px solid var(--grey-200);
+    padding: 28px;
+    background: #0F172A;
+    border-radius: 12px;
   }
   .anchor-menu__title {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--grey-900);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+    color: #94A3B8;
+    text-align: center;
   }
   .anchor-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
   .anchor-pill {
     display: flex;
     flex-direction: column;
-    padding: 10px 16px;
-    background: var(--white);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
+    align-items: center;
+    text-align: center;
+    padding: 14px 12px;
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-top: 3px solid var(--pill-accent, #64748B);
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.2s;
-    max-width: 220px;
   }
   .anchor-pill:hover {
-    border-color: var(--red);
-    box-shadow: var(--shadow-sm);
+    background: #334155;
+    border-color: var(--pill-accent, #64748B);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     text-decoration: none;
+    transform: translateY(-2px);
   }
   .anchor-pill__label {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--grey-800);
-  }
-  .anchor-pill:hover .anchor-pill__label {
-    color: var(--red);
+    color: var(--pill-accent, #E2E8F0);
   }
   .anchor-pill__desc {
-    font-size: 0.75rem;
-    color: var(--grey-500);
-    margin-top: 2px;
+    font-size: 0.7rem;
+    color: #94A3B8;
+    margin-top: 4px;
     line-height: 1.4;
+  }
+
+  /* === Compact Jump Bar (repeated) === */
+  .jump-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 16px;
+    background: #F1F5F9;
+    border-radius: 8px;
+    margin: 36px 0 8px;
+    border: 1px solid #E2E8F0;
+  }
+  .jump-bar__link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--jb-color, #475569);
+    text-decoration: none;
+    padding: 5px 14px;
+    border: 1.5px solid var(--jb-color, #CBD5E1);
+    border-radius: 20px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .jump-bar__link:hover {
+    background: var(--jb-color, #475569);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    .anchor-pills { grid-template-columns: repeat(2, 1fr); }
   }
 
   .resource-links { margin-top: 24px; }
