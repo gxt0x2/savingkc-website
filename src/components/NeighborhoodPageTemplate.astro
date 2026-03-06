@@ -326,6 +326,12 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
     <Fragment slot="sidebar">
       <LeadForm />
       <QuickFactsSidebar facts={facts} title={`${neighborhood.name} Facts`} />
+      <ContactSidebar title="Get Your Cash Offer" items={[
+        { label: 'Company', value: 'Saving KC Homebuyers' },
+        { label: 'Phone', value: '(816) 429-2900', href: 'tel:8164292900' },
+        { label: 'Address', value: '1705 Baltimore Ave, Kansas City, MO 64108' },
+        { label: 'Website', value: 'SavingKC.com', href: 'https://savingkc.com' },
+      ]} />
       <KeyTermsSidebar terms={[
         { term: 'Cash Offer', definition: 'A purchase offer made without mortgage financing. No appraisal, no lender delays, no risk of deal falling through.' },
         { term: 'As-Is Sale', definition: 'Selling your home in its current condition with no repairs, cleaning, or improvements required before closing.' },

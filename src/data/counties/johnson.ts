@@ -171,6 +171,12 @@ export const johnson: CountyData = {
             'Horses in the pasture and a Blue Valley school bus at the end of the driveway. Stilwell is rural JoCo with top-tier schools.'
         }
       ],
+      cityContact: {
+        office: 'City of Overland Park',
+        phone: '(913) 895-6000',
+        address: '8500 Santa Fe Dr, Overland Park, KS 66212',
+        website: 'https://www.opkansas.org',
+      },
       authorityBlock: 'Overland Park is the second-largest city in Kansas and consistently ranked among the best places to live in the U.S. But that reputation means buyer expectations are sky-high — a home that needs $30,000 in repairs will sit on the MLS while buyers tour new construction in Blue Valley. North Overland Park\'s post-war homes near Milburn have original plumbing and electrical throughout. Downtown OP\'s 1950s ranches are showing their age. And even the upscale Blue Valley neighborhoods have early-1990s homes needing major updates. Probate is handled by the Johnson County District Court, 10th Judicial District, in Olathe — Kansas also offers transfer-on-death deeds that bypass probate entirely. The 2026 Johnson County tax sale is set for September 2026. We buy in Downtown OP, Metcalf South, Blue Valley, North OP, Oak Park, and Stilwell. For Overland Park property help, call SavingKC at (816) 429-2900 — we are located just 15 miles from Overland Park.',
       distanceFromOffice: '15 miles',
       marketCondition: 'Seller\'s Market',
@@ -250,6 +256,12 @@ export const johnson: CountyData = {
             'Olathe West High School opened to serve this boom. Ridgeview\'s growth shows no sign of slowing along the K-10 corridor.'
         }
       ],
+      cityContact: {
+        office: 'City of Olathe',
+        phone: '(913) 971-6900',
+        address: '100 E Santa Fe St, Olathe, KS 66061',
+        website: 'https://www.olatheks.org',
+      },
       authorityBlock: 'Olathe is the county seat of Johnson County and one of Kansas\'s fastest-growing cities, stretching from a historic downtown core to sprawling new development along I-35. Downtown Olathe\'s turn-of-century homes have aging foundations and narrow lots. Cedar Creek\'s builder-grade 2000s homes are showing cosmetic wear with HOA restrictions that complicate renovations. Western Olathe near Ridgeview was built on recently graded farmland with settling risk. Probate goes through the Johnson County District Court, 10th Judicial District, at the courthouse on Kansas Avenue — Kansas transfer-on-death deeds can skip probate entirely. The 2026 Johnson County tax sale is scheduled for September 2026. We serve Historic Downtown, Cedar Creek, Great Plains, and Ridgeview. For Olathe property help, call SavingKC at (816) 429-2900 — we are located just 28 miles from Olathe.',
       distanceFromOffice: '28 miles',
       marketCondition: 'Seller\'s Market',
@@ -329,6 +341,12 @@ export const johnson: CountyData = {
             'Visit Shawnee Town 1929 to step back in time, then come home to one of JoCo\'s most affordable neighborhoods on Nieman Road.'
         }
       ],
+      cityContact: {
+        office: 'City of Shawnee',
+        phone: '(913) 631-2500',
+        address: '11110 Johnson Dr, Shawnee, KS 66203',
+        website: 'https://www.cityofshawnee.org',
+      },
       authorityBlock: 'Shawnee bridges the gap between affordable northeast JoCo and the master-planned communities of western Johnson County. Old Shawnee along Johnson Drive has pre-1970s homes near the railroad tracks with dated layouts and systems. East Shawnee along Nieman Road offers the most affordable entry into Johnson County — 1950s-1960s ranches with original kitchens and small square footage. Western Shawnee\'s Monticello community has newer homes, but early builds from the late 1990s need refreshing and HOA governance issues frustrate sellers. Probate is handled by the Johnson County District Court, 10th Judicial District, in Olathe. The 2026 Johnson County tax sale is set for September 2026. We buy in Downtown Shawnee, Western Shawnee, the Parkway corridor, and Nieman Road. For Shawnee property help, call SavingKC at (816) 429-2900 — we are located just 15 miles from Shawnee.',
       distanceFromOffice: '15 miles',
       marketCondition: 'Balanced',
@@ -408,6 +426,12 @@ export const johnson: CountyData = {
             'Community gardens, established schools, and the Sar-Ko-Par trail system. Lackman Road is Lenexa\'s original family corridor.'
         }
       ],
+      cityContact: {
+        office: 'City of Lenexa',
+        phone: '(913) 477-7500',
+        address: '17101 W 87th St Pkwy, Lenexa, KS 66219',
+        website: 'https://www.lenexa.com',
+      },
       authorityBlock: 'Lenexa is known for the Great Lenexa BBQ Battle and the new City Center development, but the city\'s older neighborhoods tell a different story. Old Town Lenexa near the Santa Fe Trail has mid-century homes with original systems and small lots near industrial uses. The Lackman Road corridor\'s 1970s-1980s homes have mechanicals nearing end of life. Even Falcon Ridge\'s newer builds near K-10 are fighting heavy clay soil that causes persistent foundation movement. Probate is handled by the Johnson County District Court, 10th Judicial District, in Olathe — Kansas transfer-on-death deeds can bypass probate entirely. The 2026 Johnson County tax sale is scheduled for September 2026. We serve City Center, Old Town, Falcon Ridge, and Lackman. For Lenexa property help, call SavingKC at (816) 429-2900 — we are located just 20 miles from Lenexa.',
       distanceFromOffice: '20 miles',
       marketCondition: 'Seller\'s Market',
@@ -457,6 +481,12 @@ export const johnson: CountyData = {
             'IKEA, Target, and the Turkey Creek shopping district are down the street. Merriam is Johnson County\'s most convenient affordable address.'
         }
       ],
+      cityContact: {
+        office: 'City of Merriam',
+        phone: '(913) 322-5500',
+        address: '9001 W 62nd St, Merriam, KS 66202',
+        website: 'https://www.merriam.org',
+      },
       authorityBlock: 'Merriam is Johnson County\'s most affordable urban address — compact, central, and right on I-35. The revitalized Merriam Drive corridor has brought new energy, but the surrounding 1950s-1960s ranch homes still have original kitchens, baths, and sewer laterals that need replacement. I-35 noise impacts properties near the highway. Turkey Creek\'s flood zone creates additional complications for conventional buyers. For a home that needs $20,000 in work, listing on the MLS means competing with move-in-ready options a few miles south. Probate goes through the Johnson County District Court, 10th Judicial District, in Olathe. The 2026 Johnson County tax sale is set for September 2026. We buy in Downtown Merriam and the Turkey Creek area. For Merriam property help, call SavingKC at (816) 429-2900 — we are located just 12 miles from Merriam.',
       distanceFromOffice: '12 miles',
       marketCondition: 'Balanced',
@@ -521,6 +551,12 @@ export const johnson: CountyData = {
             'Larger lots and a neighborhood bowling alley. West Mission\'s Foxridge area has the space that eastern JoCo often lacks.'
         }
       ],
+      cityContact: {
+        office: 'City of Mission',
+        phone: '(913) 676-8350',
+        address: '6090 Woodson Rd, Mission, KS 66202',
+        website: 'https://www.missionks.org',
+      },
       authorityBlock: 'Mission is one of northeast Johnson County\'s most affordable and walkable cities — the revitalized Johnson Drive corridor has brought new restaurants, shops, and energy to a city built on 1950s-1960s ranch homes. But those mid-century homes have original plumbing, electrical, and HVAC systems that are past their service life. Small lots limit expansion, and foundation settling from clay soil is common throughout the city. East Mission near Nall Avenue has aging sewer laterals that need replacement. West Mission\'s 1970s split-levels have dated layouts that don\'t appeal to today\'s buyers without major renovation. Probate is handled by the Johnson County District Court, 10th Judicial District, in Olathe — Kansas transfer-on-death deeds can bypass probate entirely. The 2026 Johnson County tax sale is set for September 2026. We buy in Johnson Drive Corridor, East Mission, and West Mission. For Mission property help, call SavingKC at (816) 429-2900 — we are located just 10 miles from Mission.',
       distanceFromOffice: '10 miles',
       marketCondition: 'Balanced',

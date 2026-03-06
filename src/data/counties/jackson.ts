@@ -255,6 +255,12 @@ export const jackson: CountyData = {
             'Ride the free KC Streetcar from the River Market to Union Station and grab groceries at the City Market on your walk home.'
         }
       ],
+      cityContact: {
+        office: 'City of Kansas City',
+        phone: '(816) 513-1313',
+        address: '414 E 12th St, Kansas City, MO 64106',
+        website: 'https://www.kcmo.gov',
+      },
       authorityBlock: 'Kansas City is the beating heart of the metro — from the jazz legacy of 18th & Vine to the fountains of the Country Club Plaza. With over 500,000 residents spread across neighborhoods built from the 1890s to the 2020s, the housing stock is wildly diverse. Pre-war bungalows in Waldo need updated electrical panels. Century-old Midtown homes have knob-and-tube wiring and crumbling limestone foundations. East-side properties in Troost and Prospect sit vacant on blocks with lead paint and asbestos. Probate cases flow through Division 14 of the 16th Judicial Circuit at the Jackson County Courthouse — 1.1 miles from our office. The 2026 Jackson County tax lien sale is scheduled for August 2026 at the courthouse. We work in Westport, Brookside, Waldo, the River Market, and every neighborhood in between. For Kansas City property help, call SavingKC at (816) 429-2900 — we are located just 0 miles from Kansas City because we are in it.',
       distanceFromOffice: '0 miles (we are here)',
       marketCondition: 'Balanced',
@@ -334,6 +340,12 @@ export const jackson: CountyData = {
             'A true front-porch neighborhood where you can walk to the Square for First Friday art walks.'
         }
       ],
+      cityContact: {
+        office: 'City of Independence',
+        phone: '(816) 325-7000',
+        address: '111 E Maple Ave, Independence, MO 64050',
+        website: 'https://www.ci.independence.mo.us',
+      },
       authorityBlock: 'Independence is where the Oregon Trail began and Harry Truman called home. As Jackson County\'s seat, it anchors a mix of Victorian-era homes near the Square, post-war ranches in Fairmount, and newer subdivisions out east. Many homes near Historic Independence Square still have original knob-and-tube wiring and limestone foundations that shift on Missouri clay. Probate cases run through Division 14 at the Jackson County Courthouse in Kansas City, and the 2026 tax lien sale for Independence properties is set for August 2026 — historically the second Monday. We regularly buy in the Historic Square, Fairmount, Englewood, and East Independence. For Independence property help, call SavingKC at (816) 429-2900 — we are located just 12 miles from Independence.',
       distanceFromOffice: '12 miles',
       marketCondition: 'Balanced',
@@ -398,6 +410,12 @@ export const jackson: CountyData = {
             'Everything you need within a few minutes. Adams Dairy Landing puts shopping, schools, and parks at your doorstep.'
         }
       ],
+      cityContact: {
+        office: 'City of Blue Springs',
+        phone: '(816) 228-0110',
+        address: '903 W Main St, Blue Springs, MO 64015',
+        website: 'https://www.bluespringsgov.com',
+      },
       authorityBlock: 'Blue Springs is the family-focused suburb that keeps growing along the I-70 corridor. Strong schools and affordable housing draw young families, but the city\'s older homes near Downtown Blue Springs have original clay sewer tiles and pre-war systems that need replacing. Lake Tapawingo properties face flood zone complications that scare off FHA and VA buyers. Adams Dairy Landing\'s 2000s-era builds are showing builder-grade wear. Probate for Blue Springs estates goes through Jackson County\'s Division 14 at the courthouse in Kansas City. The 2026 Jackson County tax lien sale covers Blue Springs properties in August 2026. We buy regularly in Downtown Blue Springs, Lake Tapawingo, and Adams Dairy Landing. For Blue Springs property help, call SavingKC at (816) 429-2900 — we are located just 22 miles from Blue Springs.',
       distanceFromOffice: '22 miles',
       marketCondition: 'Seller\'s Market',
@@ -477,6 +495,12 @@ export const jackson: CountyData = {
             "Fish at Longview Lake in the morning and catch a class at the community college in the afternoon. All from your neighborhood."
         }
       ],
+      cityContact: {
+        office: "City of Lee's Summit",
+        phone: '(816) 969-1000',
+        address: "220 SE Green St, Lee's Summit, MO 64063",
+        website: 'https://www.cityofls.net',
+      },
       authorityBlock: 'Lee\'s Summit consistently ranks among Missouri\'s best places to live, thanks to its top-rated school district and historic downtown along Third Street. But beneath the polished reputation, older homes in the historic core need significant updating, and Lakewood properties near Raintree Lake face erosion and polybutylene plumbing failures. Southern neighborhoods near Greenwood were built fast during the 2000s boom, and some builders cut corners on grading. Probate estates in Lee\'s Summit are handled by Jackson County\'s Division 14 in Kansas City. The 2026 tax lien sale for Lee\'s Summit properties is scheduled for August 2026. We work in Historic Downtown, Lakewood, Chapel Ridge, and Longview. For Lee\'s Summit property help, call SavingKC at (816) 429-2900 — we are located just 25 miles from Lee\'s Summit.',
       distanceFromOffice: '25 miles',
       marketCondition: 'Seller\'s Market',
@@ -541,6 +565,12 @@ export const jackson: CountyData = {
             'Affordable home ownership with Meadowmere Park around the corner and a public golf course down the road.'
         }
       ],
+      cityContact: {
+        office: 'City of Grandview',
+        phone: '(816) 316-4800',
+        address: '1200 Main St, Grandview, MO 64030',
+        website: 'https://www.grandview.org',
+      },
       authorityBlock: 'Grandview straddles the I-49 corridor south of KC, offering some of the most affordable housing in Jackson County. Post-war ranch homes in North Grandview have original roofing and slab foundations cracking from clay soil expansion. South Grandview\'s strip mall vacancies drag down residential values nearby. Meadowmere and Park Hills have aging water lines and unpermitted basement finishes that complicate traditional sales. Probate for Grandview estates runs through Jackson County Division 14 in Kansas City. The 2026 Jackson County tax lien sale includes Grandview properties, scheduled for August 2026. We buy actively in North Grandview, South Grandview, and Meadowmere. For Grandview property help, call SavingKC at (816) 429-2900 — we are located just 15 miles from Grandview.',
       distanceFromOffice: '15 miles',
       marketCondition: 'Buyer\'s Market',
@@ -605,6 +635,12 @@ export const jackson: CountyData = {
             'Gregory Heights gives you quick highway access on the Trafficway while keeping the tree-lined neighborhood feel.'
         }
       ],
+      cityContact: {
+        office: 'City of Raytown',
+        phone: '(816) 737-6000',
+        address: '10000 E 59th St, Raytown, MO 64133',
+        website: 'https://www.raytown.mo.us',
+      },
       authorityBlock: 'Raytown sits squarely in the middle of the metro, surrounded by Kansas City on all sides. The city\'s 1950s ranch homes along 63rd Street and Gregory Boulevard define its character — and its challenges. Galvanized plumbing is approaching end of life in most homes. Flat roofs on split-level designs leak. Clay soil heaves driveways and cracks foundations. Raytown is the kind of place where every home inspector finds something, and traditional buyers walk away. Probate for Raytown estates goes through Jackson County Division 14 at the courthouse in Kansas City. The 2026 tax lien sale covers Raytown in August 2026. We buy in Downtown Raytown, Norfleet, and Gregory Heights. For Raytown property help, call SavingKC at (816) 429-2900 — we are located just 10 miles from Raytown.',
       distanceFromOffice: '10 miles',
       marketCondition: 'Balanced',
@@ -653,6 +689,12 @@ export const jackson: CountyData = {
             'Golf course views and walking trails along Sni-A-Bar Creek. Eagles Landing is Grain Valley\'s premier neighborhood.'
         }
       ],
+      cityContact: {
+        office: 'City of Grain Valley',
+        phone: '(816) 847-6200',
+        address: '711 Main St, Grain Valley, MO 64029',
+        website: 'https://www.cityofgrainvalley.org',
+      },
       authorityBlock: 'Grain Valley was once a quiet farming community on the eastern edge of Jackson County — now it\'s one of the metro\'s fastest-growing small cities along I-70. Old Town homes have deferred maintenance and well/septic systems, while Eagles Landing\'s 2005-2015 builds need cosmetic updates and have HOA restrictions that complicate renovations. The growth has strained stormwater infrastructure, causing basement moisture problems in newer subdivisions. Probate for Grain Valley estates goes through Jackson County Division 14 in Kansas City. The 2026 Jackson County tax lien sale includes Grain Valley properties, scheduled for August 2026. We buy in Old Town Grain Valley and Eagles Landing. For Grain Valley property help, call SavingKC at (816) 429-2900 — we are located just 30 miles from Grain Valley.',
       distanceFromOffice: '30 miles',
       marketCondition: 'Seller\'s Market',
@@ -701,6 +743,12 @@ export const jackson: CountyData = {
             'A few acres, a pond, and a short drive to the city. South Oak Grove delivers the rural dream at metro prices.'
         }
       ],
+      cityContact: {
+        office: 'City of Oak Grove',
+        phone: '(816) 690-3773',
+        address: '1300 S Broadway, Oak Grove, MO 64075',
+        website: 'https://www.cityofoakgrove.com',
+      },
       authorityBlock: 'Oak Grove sits where the KC metro meets open countryside along I-70 — the last city before the farms take over. Downtown Oak Grove\'s older homes need full system replacements, and many properties south of town still run on well water and septic. Limited local employment means long commutes, and the distance keeps traditional buyer demand lower than the rest of Jackson County. But for homeowners who need to sell, that distance doesn\'t matter to us. Probate for Oak Grove estates goes through Jackson County Division 14 in Kansas City. The 2026 tax lien sale includes Oak Grove properties, scheduled for August 2026. We serve Downtown Oak Grove and South Oak Grove. For Oak Grove property help, call SavingKC at (816) 429-2900 — we are located just 35 miles from Oak Grove.',
       distanceFromOffice: '35 miles',
       marketCondition: 'Balanced',
@@ -749,6 +797,12 @@ export const jackson: CountyData = {
             'River bluff views and rock-bottom prices. North Sugar Creek is one of the KC metro\'s best-kept secrets.'
         }
       ],
+      cityContact: {
+        office: 'City of Sugar Creek',
+        phone: '(816) 252-4400',
+        address: '103 S Sterling Ave, Sugar Creek, MO 64054',
+        website: 'https://www.sugarcreekmo.org',
+      },
       authorityBlock: 'Sugar Creek is a small city northeast of Independence, historically shaped by the Amoco refinery that once dominated the local economy. The housing stock is modest mid-century construction with limited recent investment. Former refinery proximity means some properties require environmental assessments that scare away conventional buyers. The city\'s small services budget limits infrastructure updates, making maintenance a homeowner burden. Probate for Sugar Creek estates runs through Jackson County Division 14 in Kansas City. The 2026 Jackson County tax lien sale covers Sugar Creek properties in August 2026. We buy in Central Sugar Creek and North Sugar Creek. For Sugar Creek property help, call SavingKC at (816) 429-2900 — we are located just 10 miles from Sugar Creek.',
       distanceFromOffice: '10 miles',
       marketCondition: 'Buyer\'s Market',
