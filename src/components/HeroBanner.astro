@@ -15,7 +15,7 @@ interface Props {
   source?: string;
   stats?: HeroStat[];
   heroSubtitle?: string;
-  variant?: 'dark' | 'cream';
+  variant?: 'dark' | 'cream' | 'sage';
 }
 
 const defaultStats: HeroStat[] = [
@@ -51,7 +51,7 @@ if (greenText && heading.includes(greenText)) {
 }
 ---
 
-<section class={`hero ${variant === 'cream' ? 'hero--cream' : ''}`}>
+<section class={`hero ${variant !== 'dark' ? `hero--${variant}` : ''}`}>
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
@@ -251,6 +251,55 @@ if (greenText && heading.includes(greenText)) {
   .hero--cream .hero-form :global(.lead-form) {
     border: 1px solid #E5E7EB;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Sage variant — neighborhoods */
+  .hero--sage {
+    background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 50%, #F0FDFA 100%);
+    color: var(--grey-900);
+  }
+
+  .hero--sage .hero-badge {
+    background: rgba(5, 122, 85, 0.08);
+    color: #065F46;
+  }
+
+  .hero--sage .hero-badge .stars {
+    color: #D97706;
+  }
+
+  .hero--sage h1 {
+    color: var(--grey-900);
+  }
+
+  .hero--sage .highlight {
+    color: #065F46;
+  }
+
+  .hero--sage .hero-sub {
+    color: var(--grey-600);
+  }
+
+  .hero--sage .hero-sub-detail {
+    color: var(--grey-500);
+  }
+
+  .hero--sage .stat-icon {
+    background: rgba(5, 122, 85, 0.08);
+    color: #065F46;
+  }
+
+  .hero--sage .stat-text strong {
+    color: var(--grey-900);
+  }
+
+  .hero--sage .stat-text span {
+    color: var(--grey-500);
+  }
+
+  .hero--sage .hero-form :global(.lead-form) {
+    border: 1px solid #D1FAE5;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   }
 
   @media (max-width: 640px) {

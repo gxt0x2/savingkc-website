@@ -196,9 +196,15 @@ const relatedLinks = [
   .content-col { min-width: 0; }
   .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
 
-  .hero { margin-bottom: 24px; }
-  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
-  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+  .hero {
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+    color: #fff;
+    padding: 36px 32px;
+    border-radius: var(--radius);
+  }
+  .hero h1 { font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: #CBD5E1; line-height: 1.6; }
 
   .short-answer {
     background: var(--cream);
