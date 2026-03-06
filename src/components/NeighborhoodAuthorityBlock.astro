@@ -51,6 +51,12 @@ const serviceSchema = {
     <div class="authority-block__prose">
       <p>{authorityBlock}</p>
     </div>
+    {directionsUrl && (
+      <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="authority-block__distance-badge">
+        <span class="authority-block__distance-icon">&#9679;</span>
+        <span>Just {distanceFromOffice} from our office at 1705 Baltimore Ave, Kansas City — <strong>Get Directions</strong></span>
+      </a>
+    )}
     {hasMap && staticMapUrl && directionsUrl && (
       <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="authority-block__map-link">
         <img
@@ -60,15 +66,10 @@ const serviceSchema = {
           height="300"
           loading="lazy"
           class="authority-block__map"
+          onerror="this.closest('.authority-block__map-link').style.display='none'"
         />
         <span class="authority-block__map-caption">Get directions — {distanceFromOffice} from our office</span>
       </a>
-    )}
-    {!hasMap && directionsUrl && (
-      <div class="authority-block__distance-badge">
-        <span class="authority-block__distance-icon">&#9679;</span>
-        <span>Just {distanceFromOffice} from our office at 1705 Baltimore Ave, Kansas City</span>
-      </div>
     )}
   </div>
 </section>
