@@ -34,35 +34,35 @@ export const johnson: CountyData = {
   countyFaqs: [
     {
       question: 'How does Kansas transfer-on-death deed work for Johnson County properties?',
-      answer: 'Kansas allows property owners to file a transfer-on-death (TOD) deed, which passes real estate directly to a named beneficiary without going through probate. If a Johnson County property was held with a TOD deed, the beneficiary can sell as soon as they file the death certificate and an affidavit with the Register of Deeds. This can cut months off the timeline compared to full probate. If you inherited a Johnson County home through a TOD deed and want to sell quickly, we can close in as few as 7 days once the deed transfer is recorded.',
+      answer: 'Kansas allows property owners to file a transfer-on-death (TOD) deed, which passes real estate directly to a named beneficiary without going through probate. If a Johnson County property was held with a TOD deed, the beneficiary can sell as soon as they file the death certificate and an affidavit with the Register of Deeds. This can cut months off the timeline compared to full probate. If you inherited a Johnson County home through a TOD deed and want to sell quickly, Saving KC can close in as few as 7 days once the deed transfer is recorded. Call (816) 429-2900.',
     },
     {
       question: 'When are Johnson County property taxes due?',
-      answer: 'Johnson County property taxes are due December 20 each year — 11 days earlier than Missouri counties across the state line. Kansas reassesses property values annually, so your tax bill can increase every year even if you have made no improvements. If rising assessments have pushed your tax burden beyond what you can manage, selling the property eliminates that obligation entirely. We pay all closing costs and can close on your schedule.',
+      answer: 'Johnson County property taxes are due December 20 each year — 11 days earlier than Missouri counties across the state line. Kansas reassesses property values annually, so your tax bill can increase every year even if you have made no improvements. If rising assessments have pushed your tax burden beyond what you can manage, selling the property eliminates that obligation entirely. Saving KC pays all closing costs and can close on your schedule. Call (816) 429-2900 for a no-obligation offer.',
     },
     {
       question: 'What are the simplified estate procedures in Kansas?',
-      answer: 'Kansas offers a simplified probate process for smaller estates. If the total estate value is under $40,000 (excluding jointly held property and TOD accounts), heirs can use a small-estate affidavit to claim assets without full court proceedings. For larger estates, Kansas probate through the 10th Judicial District Court in Olathe is generally faster than Missouri — but it still requires court oversight for real property sales. We work with Johnson County executors and heirs at every stage and can often purchase the property before the estate is fully settled.',
+      answer: 'Kansas offers a simplified probate process for smaller estates. If the total estate value is under $40,000 (excluding jointly held property and TOD accounts), heirs can use a small-estate affidavit to claim assets without full court proceedings. For larger estates, Kansas probate through the 10th Judicial District Court in Olathe is generally faster than Missouri — but it still requires court oversight for real property sales. Saving KC works with Johnson County executors and heirs at every stage and can often purchase the property before the estate is fully settled. Call (816) 429-2900.',
     },
     {
       question: 'Can HOA issues prevent me from selling my Johnson County home?',
-      answer: 'Many Johnson County subdivisions — especially in Overland Park, Lenexa, and Olathe — have homeowners associations with strict covenants. If you have fallen behind on HOA dues, accumulated violation fines, or have unresolved maintenance orders, a traditional sale can stall when the title company discovers outstanding HOA liens. We buy properties with HOA issues regularly. The liens are resolved at closing from the sale proceeds, and you do not need to bring the property into compliance before selling.',
+      answer: 'Many Johnson County subdivisions — especially in Overland Park, Lenexa, and Olathe — have homeowners associations with strict covenants. If you have fallen behind on HOA dues, accumulated violation fines, or have unresolved maintenance orders, a traditional sale can stall when the title company discovers outstanding HOA liens. Saving KC buys properties with HOA issues regularly. The liens are resolved at closing from the sale proceeds, and you do not need to bring the property into compliance before selling. Call (816) 429-2900.',
     },
     {
       question: 'Why is selling a distressed home harder in Johnson County than other KC metro counties?',
-      answer: 'Johnson County buyers expect move-in-ready condition. The median home value here is significantly higher than Jackson or Wyandotte County, which means buyer expectations are higher too. A home that needs $30,000 in repairs will sit on the MLS while buyers tour the new construction down the street. If your Johnson County home needs work you cannot afford, a cash sale lets you skip the renovation, skip the listing, and get fair value based on the property\'s current condition — not what it could be worth after a full rehab.',
+      answer: 'Johnson County buyers expect move-in-ready condition. The median home value here is significantly higher than Jackson or Wyandotte County, which means buyer expectations are higher too. A home that needs $30,000 in repairs will sit on the MLS while buyers tour the new construction down the street. If your Johnson County home needs work you cannot afford, a cash sale lets you skip the renovation, skip the listing, and get fair value based on the property\'s current condition — not what it could be worth after a full rehab. Contact Saving KC at (816) 429-2900 for a fair cash offer based on your home\'s current condition.',
     },
     {
       question: 'How does Kansas annual reassessment affect my Johnson County property taxes?',
-      answer: 'Kansas reassesses property values every year — unlike Missouri\'s odd-year cycle. This means your Johnson County tax bill can increase annually even without improvements. If rising assessments have made your tax burden unmanageable, selling eliminates the obligation entirely. We can close in as few as 7 days.',
+      answer: 'Kansas reassesses property values every year — unlike Missouri\'s odd-year cycle. This means your Johnson County tax bill can increase annually even without improvements. If rising assessments have made your tax burden unmanageable, selling eliminates the obligation entirely. Saving KC can close in as few as 7 days. Call (816) 429-2900.',
     },
     {
       question: 'What is a transfer-on-death deed in Johnson County?',
-      answer: 'A Kansas transfer-on-death (TOD) deed lets property pass to a named beneficiary without going through probate. If the deceased owner filed a TOD deed in Johnson County, the beneficiary can sell the property as soon as the deed transfer is recorded — no court approval needed. We buy TOD-transferred properties and can close quickly.',
+      answer: 'A Kansas transfer-on-death (TOD) deed lets property pass to a named beneficiary without going through probate. If the deceased owner filed a TOD deed in Johnson County, the beneficiary can sell the property as soon as the deed transfer is recorded — no court approval needed. Saving KC buys TOD-transferred properties and can close quickly. Call (816) 429-2900.',
     },
     {
       question: 'Can I sell a house with a tax lien in Johnson County?',
-      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. We buy Johnson County properties with liens regularly and can close in as few as 7 days.',
+      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. Saving KC buys Johnson County properties with liens regularly and can close in as few as 7 days. For a free lien analysis, call (816) 429-2900.',
     },
   ],
   cities: [

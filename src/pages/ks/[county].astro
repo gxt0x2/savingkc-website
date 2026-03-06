@@ -137,6 +137,10 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
         <span class="anchor-pill__label">Courthouse & Resources</span>
         <span class="anchor-pill__desc">County offices, contacts, and directions</span>
       </a>
+      <a href="#process" class="anchor-pill">
+        <span class="anchor-pill__label">Get Your Offer</span>
+        <span class="anchor-pill__desc">4-step process from call to cash in hand</span>
+      </a>
       <a href="#how-we-help" class="anchor-pill">
         <span class="anchor-pill__label">How Saving KC Helps</span>
         <span class="anchor-pill__desc">Our process for {county.name} property owners</span>
@@ -144,11 +148,27 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     </div>
   </nav>
 
+  <!-- ENTITY PROXIMITY SECTION -->
+  <section class="content-section" id="entity-connection">
+    <h2>Local Expertise Near the {county.name} Courthouse</h2>
+    <p class="answer-block">
+      Saving KC Homebuyers operates from 1712 Main St in Kansas City — {county.courthouse.distanceMiles} miles from the {county.courthouse.name} at {county.courthouse.address}. We file documents, attend hearings, and close transactions through local title companies in {county.seatCity} multiple times a week. Call <a href="tel:8164292900">(816) 429-2900</a>.
+    </p>
+    <div class="section-body">
+      <p>
+        {county.narrativeHook}
+      </p>
+      <p>
+        This proximity ensures faster document filing for probate cases and quicker title searches for tax-delinquent properties. When a sheriff's sale deadline is measured in days — not weeks — having boots on the ground at the {county.courthouse.name} matters. We know the recording timelines, the staff at the register of deeds, and the title companies that specialize in distressed closings in {county.seatCity}.
+      </p>
+    </div>
+  </section>
+
   <!-- SECTION 1: PROBATE -->
   <section class="content-section" id="probate-help">
     <h2>How Do I Sell Inherited Property in {county.name}?</h2>
     <p class="answer-block">
-      You can sell inherited property in Kansas without waiting for probate to close. If a transfer-on-death deed was filed, you can sell immediately after recording the transfer. Otherwise, the {county.probateCourtName} oversees proceedings that typically take 6 to 12 months — but selling during probate is allowed with court approval.
+      Yes, you can sell inherited property in Kansas without waiting for probate to close. If a transfer-on-death deed was filed, you can sell immediately after recording the transfer. Otherwise, the {county.probateCourtName} oversees proceedings that typically take 6 to 12 months — but selling during probate is allowed with court approval. To bypass repairs and long listing times, contact Saving KC at <a href="tel:8164292900">(816) 429-2900</a> for a direct cash offer while the estate is still open.
     </p>
     <a href="/get-offer/" class="inline-cta">Get My Cash Offer →</a>
     <div class="section-body">
@@ -172,6 +192,7 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
       <p>
         {county.probateInfo}
       </p>
+      <h3>Kansas Transfer-on-Death (TOD) Deeds</h3>
       <CalloutBox
         variant="yellow"
         title="TRANSFER-ON-DEATH DEED"
@@ -234,7 +255,7 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
   <section class="content-section" id="tax-delinquent-solutions">
     <h2>What Happens When You Owe Back Taxes in {county.name}?</h2>
     <p class="answer-block">
-      Your property faces judicial tax foreclosure if taxes remain unpaid past December 20. Under K.S.A. 79-2801, Kansas counties file suit in district court — not a lien sale. In {county.name}, the sheriff's sale typically occurs in {county.taxSaleMonth}. Your right to redeem ends the day before the sheriff's sale. Once the sheriff's deed is issued, ownership transfers permanently with no post-sale redemption.
+      Your property faces judicial tax foreclosure if taxes remain unpaid past December 20. Under K.S.A. 79-2801, Kansas counties file suit in district court — not a lien sale. In {county.name}, the sheriff's sale typically occurs in {county.taxSaleMonth}. Your right to redeem ends the day before the sheriff's sale. Once the sheriff's deed is issued, ownership transfers permanently with no post-sale redemption. If you are behind on taxes, Saving KC (<a href="tel:8164292900">816-429-2900</a>) can clear your debt at closing, allowing you to walk away with your remaining equity.
     </p>
     <div class="section-body">
       <p>
@@ -258,6 +279,7 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
         You don't need to pay off back taxes before selling. At closing, the title company uses the sale proceeds to clear all delinquent taxes, mechanic's liens, and judgment liens. If your equity exceeds what you owe, you walk away with the remaining balance — and a clean break from the property. Even if the taxes are significant, selling before the sheriff's sale is almost always better than losing the property entirely through foreclosure.
       </p>
     </div>
+    <h3>2026 Tax Foreclosure Critical Dates</h3>
     <table class="data-table">
       <thead>
         <tr>
@@ -325,12 +347,22 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
   <section class="content-section" id="tax-redemption-rights">
     <h2>What Are My Rights Before a {county.name} Sheriff's Sale?</h2>
     <p class="answer-block">
-      Under Kansas judicial tax foreclosure (K.S.A. 79-2801), you have the right to pay all delinquent taxes, interest, and court costs to stop the foreclosure — but only before the sheriff's sale. Once the sheriff's sale occurs and a sheriff's deed is issued, your ownership is extinguished permanently. There is no post-sale redemption in Kansas.
+      Under Kansas judicial tax foreclosure (K.S.A. 79-2801), you have the right to pay all delinquent taxes, interest, and court costs to stop the foreclosure — but only before the sheriff's sale. Once the sheriff's sale occurs and a sheriff's deed is issued, your ownership is extinguished permanently. There is no post-sale redemption in Kansas. If your deadline is approaching, contact Saving KC at <a href="tel:8164292900">(816) 429-2900</a> immediately to see if a same-day buyout is possible.
     </p>
     <div class="section-body">
       <p>
         Kansas judicial tax foreclosure under K.S.A. 79-2801 works differently from Missouri's system. In Kansas, the county attorney files a court action, the district court enters a foreclosure judgment, and a sheriff's sale is ordered. Before that sale occurs, you can stop the foreclosure by paying all delinquent taxes, accrued interest, penalties, and court costs. Your right to pay and stop the sale expires the day before the sheriff's sale. Once the sale takes place and a sheriff's deed is recorded, ownership transfers permanently. There is no grace period, no post-sale redemption window, and no court process to reclaim the property after the deed issues.
       </p>
+    </div>
+
+    <h3>The Foreclosure Math</h3>
+    <CalloutBox
+      variant="yellow"
+      title="WHAT YOU OWE TO STOP THE SALE"
+      text={`To stop a Kansas judicial tax foreclosure on your ${county.name} property, you must pay <strong>all of the following</strong> before the day of the sheriff's sale:<br/><br/><strong>1. All delinquent taxes</strong> — every dollar owed across all delinquent years.<br/><strong>2. Accrued interest and penalties</strong> — compounding from the original December 20 due date.<br/><strong>3. All court costs</strong> — filing fees, service of process, and county attorney fees.<br/><br/>Unlike Missouri, Kansas has <strong>no post-sale redemption</strong>. Once the sheriff's deed records, ownership is gone permanently. On a ${county.medianHomeValue} home with 2–3 years of back taxes, the total payoff can exceed $10,000. If you can't cover that lump sum, selling to Saving KC clears the debt at closing and preserves your remaining equity. <a href="tel:8164292900">Call (816) 429-2900</a>.`}
+    />
+
+    <div class="section-body">
       <p>
         Here's a complication most homeowners miss: if there's a pending probate on the property, the judicial foreclosure proceeds concurrently with estate administration. The probate court will not pause the sheriff's sale while the estate is being settled. Neither the estate nor the heir may be able to act fast enough when both processes run simultaneously. In these situations, selling before the sheriff's sale is often the only path to preserving any equity in the property.
       </p>
@@ -354,9 +386,6 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
       The {county.courthouse.name} is {county.courthouse.distanceMiles} miles from our office at 1712 Main St in Kansas City. We work with this courthouse regularly — filing documents, coordinating with attorneys, and closing transactions through local title companies in {county.seatCity}.
     </p>
     <div class="section-body">
-      <p>
-        {county.narrativeHook}
-      </p>
       <p>
         {county.courthouseLandmarks}
       </p>
@@ -413,6 +442,21 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
     <a href="/get-offer/" class="inline-cta">Get My Cash Offer →</a>
   </section>
 
+  <!-- STEP-BY-STEP PROCESS -->
+  <section class="content-section" id="process">
+    <h2>How to Get Your Fair Cash Offer in {county.name}</h2>
+    <p class="answer-block">
+      Selling a distressed property in {county.name} to Saving KC takes four steps — no agents, no repairs, no fees. Most sellers go from first call to cash in hand within 15 days. Call <a href="tel:8164292900">(816) 429-2900</a> to start.
+    </p>
+    <ol class="num-list">
+      <li><strong>Contact Us</strong> — Tell us about the probate status, tax situation, or condition of your {county.name} home. Call <a href="tel:8164292900">(816) 429-2900</a> or use our online form.</li>
+      <li><strong>Get Your Offer</strong> — We assess the property and provide a written, no-obligation cash offer within 24 hours. We show you exactly how we arrived at our number.</li>
+      <li><strong>Choose Your Date</strong> — Close in as little as 7 days or up to 60 days. You pick the timeline that works for your situation.</li>
+      <li><strong>Get Paid</strong> — Sign at a local {county.seatCity} title company. Funds are wired or handed to you the same day. All liens, back taxes, and closing costs are cleared from the proceeds.</li>
+    </ol>
+    <a href="/get-offer/" class="inline-cta">Get My Cash Offer →</a>
+  </section>
+
   <!-- DISTRESS PATTERNS -->
   <section class="content-section">
     <h2>What We See in {county.name} Properties</h2>
@@ -441,18 +485,15 @@ const distressCards = county.cities.slice(0, 3).flatMap((c) =>
 
   <!-- CITIES SERVED -->
   <section class="content-section">
-    <h2>{county.name} Cities & Neighborhoods</h2>
-    <div class="section-body">
-      <p>
-        Your property in any of {county.cities.length} cities across {county.name}, {stateName} qualifies
-        for a cash offer. Every neighborhood. Every condition.
-      </p>
-    </div>
+    <h2>Serving Every Neighborhood in {county.name}</h2>
+    <p class="answer-block">
+      Saving KC buys homes in all {county.cities.length} cities across {county.name}, {stateName} — every neighborhood, every condition, every situation. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.
+    </p>
     <div class="city-highlights">
       {county.cities.map((c) => (
         <div class="city-highlight">
           <h3><a href={cityUrl(stateSlug, county.slug, c.slug)}>{c.name}</a></h3>
-          <p class="city-meta">{c.neighborhoods.length} neighborhoods · Median: {c.medianHomeValue}</p>
+          <p class="city-meta">{c.neighborhoods.length} neighborhoods · Median: {c.medianHomeValue} · Pop: {c.population}</p>
           <p class="city-desc">{c.description}</p>
         </div>
       ))}

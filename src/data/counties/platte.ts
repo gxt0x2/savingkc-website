@@ -34,35 +34,35 @@ export const platte: CountyData = {
   countyFaqs: [
     {
       question: 'How does KCI Airport affect property values in Platte County?',
-      answer: 'Properties in the KCI Airport flight path — particularly in the Platte City and Tiffany Springs areas — carry noise easements that can reduce appraised values by 10-20%. Traditional buyers with FHA or VA loans may face lender restrictions on these properties. Because we pay cash with no appraisal requirement, airport-adjacent properties are straightforward for us. We buy homes in the flight path at fair market value based on comparable cash sales in the area.',
+      answer: 'Properties in the KCI Airport flight path — particularly in the Platte City and Tiffany Springs areas — carry noise easements that can reduce appraised values by 10-20%. Traditional buyers with FHA or VA loans may face lender restrictions on these properties. Because Saving KC pays cash with no appraisal requirement, airport-adjacent properties are straightforward for us. Saving KC buys homes in the flight path at fair market value based on comparable cash sales in the area. Call (816) 429-2900 for a no-obligation offer.',
     },
     {
       question: 'Where is probate handled in Platte County?',
-      answer: 'Probate in Platte County is handled by the 6th Judicial Circuit Court at 415 Third Street in Platte City. The court is smaller than Jackson or Clay County, which can mean shorter wait times for hearings but also fewer available court dates. Missouri\'s small-estate affidavit is available for estates under $40,000, bypassing the full probate process. If you have inherited a property in Platte County and need to sell, we can work with your attorney to close as soon as the court approves the sale.',
+      answer: 'Probate in Platte County is handled by the 6th Judicial Circuit Court at 415 Third Street in Platte City. The court is smaller than Jackson or Clay County, which can mean shorter wait times for hearings but also fewer available court dates. Missouri\'s small-estate affidavit is available for estates under $40,000, bypassing the full probate process. If you have inherited a property in Platte County and need to sell, Saving KC can work with your attorney to close as soon as the court approves the sale. Call (816) 429-2900 to discuss your inherited property.',
     },
     {
       question: 'What happens if my Platte County property is on well and septic?',
-      answer: 'Much of western Platte County is rural — homes on private wells and septic systems rather than city water and sewer. When these systems fail, repair or replacement costs can run $15,000-$40,000. Most traditional buyers will not touch a property with a failed septic inspection, and FHA loans require a passing inspection before closing. We buy Platte County homes with well and septic issues as-is. The condition of your systems is our problem to solve after closing.',
+      answer: 'Much of western Platte County is rural — homes on private wells and septic systems rather than city water and sewer. When these systems fail, repair or replacement costs can run $15,000-$40,000. Most traditional buyers will not touch a property with a failed septic inspection, and FHA loans require a passing inspection before closing. Saving KC buys Platte County homes with well and septic issues as-is. The condition of your systems is our problem to solve after closing. Call (816) 429-2900.',
     },
     {
       question: 'When does Platte County publish its delinquent tax list?',
-      answer: 'Platte County publishes its delinquent property tax list in the Platte County Citizen newspaper before the annual lien sale, typically held in August. Properties with unpaid taxes from the prior year are eligible. Once a lien is sold, you have one year to redeem the property at the full amount plus interest. If your Platte County home is on the delinquent list, selling before the auction lets you use the sale proceeds to pay off the tax debt and keep whatever equity remains.',
+      answer: 'Platte County publishes its delinquent property tax list in the Platte County Citizen newspaper before the annual lien sale, typically held in August. Properties with unpaid taxes from the prior year are eligible. Once a lien is sold, you have one year to redeem the property at the full amount plus interest. If your Platte County home is on the delinquent list, selling before the auction lets you use the sale proceeds to pay off the tax debt and keep whatever equity remains. Call Saving KC at (816) 429-2900 to discuss your options.',
     },
     {
       question: 'Can I sell an inherited house in Platte County before probate is finished?',
-      answer: "Yes. In Missouri, you can sell inherited real estate during the probate process with court approval. The Platte County Circuit Court, 6th Judicial Circuit in Platte City routinely grants permission for estate sales when the proceeds benefit the estate. If probate has not been filed yet, we can help you understand whether a small-estate affidavit applies or whether full probate is required. Either way, we buy inherited homes in any condition — you do not need to clean out, repair, or visit the property.",
+      answer: "Yes. In Missouri, you can sell inherited real estate during the probate process with court approval. The Platte County Circuit Court, 6th Judicial Circuit in Platte City routinely grants permission for estate sales when the proceeds benefit the estate. If probate has not been filed yet, Saving KC can help you understand whether a small-estate affidavit applies or whether full probate is required. Either way, Saving KC buys inherited homes in any condition — you do not need to clean out, repair, or visit the property. Call (816) 429-2900 to discuss your situation.",
     },
     {
       question: "How does Missouri's 2025 Electronic Wills Act affect probate in Platte County?",
-      answer: "Missouri now recognizes electronic wills signed after August 28, 2025. If your loved one created an electronic will, it may be accepted by the Platte County Circuit Court, 6th Judicial Circuit — potentially speeding up the probate filing process. Whether the will is paper or electronic, we can purchase the inherited property at any stage of probate.",
+      answer: "Missouri now recognizes electronic wills signed after August 28, 2025. If your loved one created an electronic will, it may be accepted by the Platte County Circuit Court, 6th Judicial Circuit — potentially speeding up the probate filing process. Whether the will is paper or electronic, Saving KC can purchase the inherited property at any stage of probate. Saving KC (SavingKC.com) works with estate attorneys familiar with these new digital standards. Call (816) 429-2900.",
     },
     {
       question: 'What are the penalties for late property taxes in Platte County?',
-      answer: 'If you miss the December 31 deadline in Platte County, penalties begin accruing at 1% per month on the unpaid balance. By August, your property becomes eligible for tax lien sale. The longer you wait, the more you owe. Selling the property clears all tax debt at closing — we can close in as few as 7 days.',
+      answer: 'If you miss the December 31 deadline in Platte County, penalties begin accruing at 1% per month on the unpaid balance. By August, your property becomes eligible for tax lien sale. The longer you wait, the more you owe. Selling to Saving KC clears all tax debt at closing — we can close in as few as 7 days. Call (816) 429-2900.',
     },
     {
       question: 'Can I sell a house with a tax lien in Platte County?',
-      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. We buy Platte County properties with liens regularly and can close in as few as 7 days.',
+      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. Saving KC buys Platte County properties with liens regularly and can close in as few as 7 days. For a free lien analysis, call (816) 429-2900.',
     },
   ],
   cities: [

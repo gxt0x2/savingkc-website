@@ -34,35 +34,35 @@ export const wyandotte: CountyData = {
   countyFaqs: [
     {
       question: 'How is Wyandotte County property reassessment different from Missouri counties?',
-      answer: 'Unlike Missouri, which reassesses every two years, Kansas reassesses property values annually. That means your Wyandotte County property tax bill can change every single year based on the county appraiser\'s new valuation. If your home\'s assessed value has climbed while its actual condition has declined, you may be paying taxes on a number that does not reflect reality. We base our cash offer on the property\'s current condition, not the county\'s assessed value.',
+      answer: 'Unlike Missouri, which reassesses every two years, Kansas reassesses property values annually. That means your Wyandotte County property tax bill can change every single year based on the county appraiser\'s new valuation. If your home\'s assessed value has climbed while its actual condition has declined, you may be paying taxes on a number that does not reflect reality. Saving KC bases our cash offer on the property\'s current condition, not the county\'s assessed value. Call (816) 429-2900 for a no-obligation offer.',
     },
     {
       question: 'When are Wyandotte County property taxes due?',
-      answer: 'Wyandotte County property taxes are due December 20 — not December 31 like Missouri counties across the state line. Miss that date and penalties begin accruing immediately. Kansas law allows the county to hold a tax foreclosure sale for properties with three or more years of delinquent taxes. If you are behind on payments, selling before the county initiates foreclosure proceedings protects your credit and lets you keep your remaining equity.',
+      answer: 'Wyandotte County property taxes are due December 20 — not December 31 like Missouri counties across the state line. Miss that date and penalties begin accruing immediately. Kansas law allows the county to hold a tax foreclosure sale for properties with three or more years of delinquent taxes. If you are behind on payments, selling before the county initiates foreclosure proceedings protects your credit and lets you keep your remaining equity. Call Saving KC at (816) 429-2900 to discuss your options.',
     },
     {
       question: 'What is the unified government in Wyandotte County and how does it affect property owners?',
-      answer: 'Wyandotte County and Kansas City, Kansas operate as a single unified government — the only such arrangement in the state. This means code enforcement, property tax collection, and zoning decisions all flow through one entity. The practical impact for distressed property owners is that code violations, tax delinquency, and lien enforcement can move faster because there is no coordination delay between city and county offices. If you have received notices from the unified government, the timeline to act may be shorter than you think.',
+      answer: 'Wyandotte County and Kansas City, Kansas operate as a single unified government — the only such arrangement in the state. This means code enforcement, property tax collection, and zoning decisions all flow through one entity. The practical impact for distressed property owners is that code violations, tax delinquency, and lien enforcement can move faster because there is no coordination delay between city and county offices. If you have received notices from the unified government, the timeline to act may be shorter than you think. If you have received notices, contact Saving KC at (816) 429-2900 — we can often move faster than the government timeline.',
     },
     {
       question: 'How long is the redemption period in Kansas after a tax sale?',
-      answer: 'In Kansas, the redemption period after a tax sale is shorter than Missouri\'s. Once a tax lien certificate is sold, the original owner typically has until the tax sale is confirmed by the court — which can be as soon as the following year. Kansas also allows the lien holder to petition for a tax deed, which transfers ownership entirely. If your Wyandotte County property is approaching a tax sale, selling before the auction is the most reliable way to protect your equity and avoid losing the property outright.',
+      answer: 'In Kansas, the redemption period after a tax sale is shorter than Missouri\'s. Once a tax lien certificate is sold, the original owner typically has until the tax sale is confirmed by the court — which can be as soon as the following year. Kansas also allows the lien holder to petition for a tax deed, which transfers ownership entirely. If your Wyandotte County property is approaching a tax sale, selling before the auction is the most reliable way to protect your equity and avoid losing the property outright. Call Saving KC at (816) 429-2900 for a free equity analysis.',
     },
     {
       question: 'Are there specific neighborhoods in Wyandotte County with high distress rates?',
-      answer: 'Argentine, Rosedale, and parts of downtown Kansas City KS have some of the highest concentrations of distressed properties in the KC metro. Aging housing stock, deferred maintenance, and code violations are common in these neighborhoods. Traditional buyers and their lenders often pass on properties that need significant work, which leaves homeowners stuck. We buy homes in every Wyandotte County neighborhood regardless of condition — foundation issues, fire damage, code violations, or vacancy.',
+      answer: 'Argentine, Rosedale, and parts of downtown Kansas City KS have some of the highest concentrations of distressed properties in the KC metro. Aging housing stock, deferred maintenance, and code violations are common in these neighborhoods. Traditional buyers and their lenders often pass on properties that need significant work, which leaves homeowners stuck. Saving KC buys homes in every Wyandotte County neighborhood regardless of condition — foundation issues, fire damage, code violations, or vacancy. Call (816) 429-2900.',
     },
     {
       question: 'How does Kansas annual reassessment affect my Wyandotte County property taxes?',
-      answer: 'Kansas reassesses property values every year — unlike Missouri\'s odd-year cycle. This means your Wyandotte County tax bill can increase annually even without improvements. If rising assessments have made your tax burden unmanageable, selling eliminates the obligation entirely. We can close in as few as 7 days.',
+      answer: 'Kansas reassesses property values every year — unlike Missouri\'s odd-year cycle. This means your Wyandotte County tax bill can increase annually even without improvements. If rising assessments have made your tax burden unmanageable, selling eliminates the obligation entirely. Saving KC can close in as few as 7 days. Call (816) 429-2900.',
     },
     {
       question: 'What is a transfer-on-death deed in Wyandotte County?',
-      answer: 'A Kansas transfer-on-death (TOD) deed lets property pass to a named beneficiary without going through probate. If the deceased owner filed a TOD deed in Wyandotte County, the beneficiary can sell the property as soon as the deed transfer is recorded — no court approval needed. We buy TOD-transferred properties and can close quickly.',
+      answer: 'A Kansas transfer-on-death (TOD) deed lets property pass to a named beneficiary without going through probate. If the deceased owner filed a TOD deed in Wyandotte County, the beneficiary can sell the property as soon as the deed transfer is recorded — no court approval needed. Saving KC buys TOD-transferred properties and can close quickly. Call (816) 429-2900.',
     },
     {
       question: 'Can I sell a house with a tax lien in Wyandotte County?',
-      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. We buy Wyandotte County properties with liens regularly and can close in as few as 7 days.',
+      answer: 'Yes. You do not need to pay off tax liens before selling. At closing, the title company uses sale proceeds to clear all liens — including tax liens, mechanic\'s liens, and judgment liens. You receive whatever equity remains. Saving KC buys Wyandotte County properties with liens regularly and can close in as few as 7 days. For a free lien analysis, call (816) 429-2900.',
     },
   ],
   cities: [
