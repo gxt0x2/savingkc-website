@@ -34,21 +34,129 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content="https://savingkc.com/og-image.png" />
 
-  <!-- Schema: RealEstateAgent -->
+  <!-- Schema: Local Entity + FAQ -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Saving KC Homebuyers",
-    "url": "https://savingkc.com",
-    "telephone": "+1-816-429-2900",
-    "email": "ari@savingkc.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Kansas City",
-      "addressRegion": "MO"
-    },
-    "areaServed": ["Jackson County", "Clay County", "Platte County", "Wyandotte County", "Johnson County"],
-    "openingHours": "Mo-Su 08:00-20:00"
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://savingkc.com/#local-entity",
+        "name": "Saving KC Homebuyers",
+        "url": "https://savingkc.com/",
+        "logo": "https://savingkc.com/logo.svg",
+        "image": "https://savingkc.com/logo.svg",
+        "telephone": "+18164292900",
+        "email": "ari@savingkc.com",
+        "founder": {
+          "@type": "Person",
+          "name": "Ernest Dodson",
+          "jobTitle": "Managing Member"
+        },
+        "foundingDate": "2020",
+        "description": "Saving KC Homebuyers is a cash home buying company located 1.1 miles (approximately a 4-minute drive) from the Jackson County Courthouse at 415 E 12th St, Kansas City, MO 64106. We specialize in probate, tax-delinquent, and distressed property sales across the Kansas City metro.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1705 Baltimore Ave",
+          "addressLocality": "Kansas City",
+          "addressRegion": "MO",
+          "postalCode": "64108",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "39.0926",
+          "longitude": "-94.5837"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "15"
+        },
+        "sameAs": [
+          "https://www.facebook.com/savingkc/",
+          "https://www.youtube.com/@SavingKC"
+        ],
+        "areaServed": [
+          {"@type": "City", "name": "Kansas City"},
+          {"@type": "City", "name": "Independence"},
+          {"@type": "City", "name": "Blue Springs"},
+          {"@type": "City", "name": "Lee's Summit"},
+          {"@type": "City", "name": "Grandview"},
+          {"@type": "City", "name": "Raytown"},
+          {"@type": "City", "name": "North Kansas City"},
+          {"@type": "City", "name": "Gladstone"},
+          {"@type": "City", "name": "Liberty"},
+          {"@type": "City", "name": "Kearney"},
+          {"@type": "City", "name": "Excelsior Springs"},
+          {"@type": "City", "name": "Platte City"},
+          {"@type": "City", "name": "Parkville"},
+          {"@type": "City", "name": "Weatherby Lake"},
+          {"@type": "City", "name": "Riverside"},
+          {"@type": "City", "name": "Smithville"},
+          {"@type": "City", "name": "Platte Woods"},
+          {"@type": "City", "name": "Overland Park"},
+          {"@type": "City", "name": "Olathe"},
+          {"@type": "City", "name": "Shawnee"},
+          {"@type": "City", "name": "Lenexa"},
+          {"@type": "City", "name": "Merriam"},
+          {"@type": "City", "name": "Mission"},
+          {"@type": "City", "name": "Prairie Village"},
+          {"@type": "City", "name": "Leawood"},
+          {"@type": "City", "name": "Grain Valley"},
+          {"@type": "City", "name": "Bonner Springs"},
+          {"@type": "City", "name": "Edwardsville"},
+          {"@type": "Neighborhood", "name": "Briarcliff"}
+        ],
+        "knowsAbout": [
+          "Missouri Revised Statutes Chapter 140 Tax Sales",
+          "Missouri Revised Statutes Chapter 473 Probate",
+          "K.S.A. 79-2801 Kansas Tax Foreclosure",
+          "K.S.A. Chapter 59 Kansas Probate",
+          "Real Estate Consultation",
+          "Distressed Property Solutions"
+        ],
+        "memberOf": [
+          {
+            "@type": "GovernmentOrganization",
+            "name": "16th Judicial Circuit of Missouri",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "415 E 12th St",
+              "addressLocality": "Kansas City",
+              "addressRegion": "MO",
+              "postalCode": "64106"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where is probate handled in Jackson County?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Probate for Jackson County is handled by Division 14 of the 16th Judicial Circuit, overseen by Judge Lauren D. Barrett and Commissioner Amy B. DeGraeve at 415 E 12th St, Kansas City, MO 64106. Saving KC Homebuyers is located 1.1 miles (a 4-minute drive) from the courthouse."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast can Saving KC close on a house?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Saving KC Homebuyers can close in as few as 7 days. We buy houses in any condition across Jackson, Clay, Platte, Wyandotte, and Johnson counties. No repairs, no commissions, no closing costs."
+            }
+          }
+        ]
+      }
+    ]
   })} />
 </head>
 <body>
@@ -247,8 +355,8 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
           <p><a href="tel:8164292900">816-429-2900</a></p>
           <p><a href="mailto:ari@savingkc.com">ari@savingkc.com</a></p>
           <div class="footer-social">
-            <a href="https://www.facebook.com/SavingKCHomebuyers" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.youtube.com/@SavingKCHomebuyers" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://www.facebook.com/savingkc/" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.youtube.com/@SavingKC" target="_blank" rel="noopener">YouTube</a>
           </div>
         </div>
       </div>

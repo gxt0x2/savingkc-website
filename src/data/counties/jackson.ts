@@ -13,13 +13,13 @@ export const jackson: CountyData = {
   taxLienInfo:
     'Jackson County holds annual tax lien sales in August. Properties with three or more years of delinquent taxes are eligible for sale. The county collector publishes the list 30 days before the auction at the Jackson County Courthouse.',
   probateInfo:
-    'Probate cases are handled through the Jackson County Circuit Court, 16th Judicial Circuit. Missouri allows a simplified probate process for estates under $40,000. The probate division is located in the downtown Kansas City courthouse at 415 E 12th Street.',
+    'Probate cases in Jackson County are handled by Division 14 of the 16th Judicial Circuit, overseen by Judge Lauren D. Barrett and Commissioner Amy B. DeGraeve. The probate division is located at 415 E 12th St, Kansas City, MO 64106 — just 1.1 miles from our office at 1705 Baltimore Ave. Missouri allows a simplified probate process for estates under $40,000.',
   courthouse: {
     name: 'Jackson County Courthouse',
     address: '415 E 12th St, Kansas City, MO 64106',
     phone: '(816) 881-3000',
     website: 'https://www.jacksongov.org',
-    distanceMiles: 12,
+    distanceMiles: 1.1,
     mapsCid: '11834306925000000001',
   },
   taxDeadline: 'December 31',
@@ -32,7 +32,7 @@ export const jackson: CountyData = {
   probateCourtName: 'Jackson County Circuit Court, 16th Judicial Circuit',
   reassessmentCycle: 'odd-numbered years',
   narrativeHook: 'Jackson County is the urban core of the KC metro — the highest transaction volume, the most complex title histories, and the most aggressive lien sale schedule in the region. We have closed more deals here than in any other county we serve.',
-  courthouseLandmarks: 'Our office at 1705 Baltimore Ave sits less than a mile from the Jackson County Courthouse at 415 E 12th Street — in the heart of downtown Kansas City. We\'re steps from City Hall at 12th and Oak, around the corner from the Kansas City Public Library on 14th and Baltimore, and just blocks from the T-Mobile Center and the Power & Light District. When we file documents at the courthouse, we walk. When we close at local title companies near Union Station, we\'re there in minutes. This isn\'t a service area we drive to — it\'s the neighborhood we work in every day. We know the recording office staff, the probate clerks, and the tax collection procedures because we\'re physically present in this building multiple times a week. That proximity means faster document filing, quicker title searches, and smoother closings for every Jackson County property owner we work with.',
+  courthouseLandmarks: 'Our office at 1705 Baltimore Ave is exactly 1.1 miles — approximately a 4-minute drive — from the Jackson County Courthouse at 415 E 12th Street in downtown Kansas City. We\'re steps from City Hall at 12th and Oak, around the corner from the Kansas City Public Library on 14th and Baltimore, and just blocks from the T-Mobile Center and the Power & Light District. When we file documents at the courthouse, we walk. When we close at local title companies near Union Station, we\'re there in minutes. This isn\'t a service area we drive to — it\'s the neighborhood we work in every day. We know the Division 14 probate staff, Judge Lauren D. Barrett\'s courtroom procedures, and the tax collection processes because we\'re physically present in this building multiple times a week. That 1.1-mile proximity means faster document filing, quicker title searches, and smoother closings for every Jackson County property owner we work with.',
   countyFaqs: [
     {
       question: 'How fast can you close on a house in Jackson County?',
@@ -64,7 +64,7 @@ export const jackson: CountyData = {
     },
     {
       question: 'Where is probate handled in Jackson County?',
-      answer: 'Probate cases are handled by the 16th Judicial Circuit, located at the Jackson County Courthouse at 415 E 12th St, Kansas City, MO 64106. Our office is just one mile from this location.',
+      answer: 'Probate for Jackson County is handled by Division 14 of the 16th Judicial Circuit, overseen by Judge Lauren D. Barrett and Commissioner Amy B. DeGraeve at 415 E 12th St, Kansas City, MO 64106. Saving KC Homebuyers is located 1.1 miles (a 4-minute drive) from the courthouse.',
     },
     {
       question: 'How does Jackson County reassessment affect my property taxes?',

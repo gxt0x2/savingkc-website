@@ -18,7 +18,14 @@ export const brand: BrandInfo = {
   description: 'Saving KC Homebuyers purchases homes in any condition across the Kansas City metro area. Get a fair cash offer within 24 hours and close on your timeline.',
   foundedYear: 2020,
   ownerName: 'Ernest Dodson',
+  ownerTitle: 'Managing Member',
   serviceArea: 'Kansas City Metro (Jackson, Clay, Platte, Wyandotte, Johnson Counties)',
+  rating: '5',
+  reviewCount: '15',
+  socialLinks: {
+    facebook: 'https://www.facebook.com/savingkc/',
+    youtube: 'https://www.youtube.com/@SavingKC',
+  },
 };
 
 export const BANNED_WORDS = [
