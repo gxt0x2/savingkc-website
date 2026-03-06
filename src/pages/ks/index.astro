@@ -7,7 +7,7 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import ProcessSteps from '@/components/ProcessSteps.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { getCountiesByState } from '@/data/counties';
-import { countyUrl, cityUrl } from '@/lib/urls';
+import { countyUrl } from '@/lib/urls';
 import CashOfferCalculator from '@/components/CashOfferCalculator.astro';
 import { brand } from '@/data/brand';
 
@@ -148,37 +148,22 @@ const relatedLinks = [
         </section>
       ))}
 
+      <!-- Counties We Serve -->
       <section class="content-section">
         <h2>Counties We Serve in Kansas</h2>
-        <div class="card-grid">
+        <div class="answer-block">
+          <p>Saving KC buys homes across both Kansas counties in the KC metro — every city, every neighborhood, every condition. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
+        </div>
+        <div class="county-highlights">
           {counties.map((c) => (
-            <a href={countyUrl('ks', c.slug)} class="location-card">
-              <h3>{c.name}</h3>
-              <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
-              <p>{c.description.substring(0, 120)}...</p>
-            </a>
+            <div class="county-highlight">
+              <h3><a href={countyUrl('ks', c.slug)}>{c.name}</a></h3>
+              <p class="county-meta">{c.cities.length} cities · Median: {c.medianHomeValue} · Pop: {c.population}</p>
+              <p class="county-desc">{c.description}</p>
+            </div>
           ))}
         </div>
       </section>
-
-      <!-- Cities by County -->
-      {counties.map((county) => (
-        <section class="content-section">
-          <h2>Serving Every Neighborhood in {county.name}</h2>
-          <div class="answer-block">
-            <p>Saving KC buys homes in all {county.cities.length} cities across {county.name}, Kansas — every neighborhood, every condition, every situation. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
-          </div>
-          <div class="city-highlights">
-            {county.cities.map((c) => (
-              <div class="city-highlight">
-                <h3><a href={cityUrl('ks', county.slug, c.slug)}>{c.name}</a></h3>
-                <p class="city-meta">{c.neighborhoods.length} neighborhoods · Median: {c.medianHomeValue} · Pop: {c.population}</p>
-                <p class="city-desc">{c.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
 
       <ProcessSteps steps={steps} />
       <ComparisonTable rows={comparison} />
@@ -296,30 +281,29 @@ const relatedLinks = [
   .answer-block p { margin: 0; color: #450a0a; }
   .answer-block a { color: #CC0000; font-weight: 600; }
 
-  .city-highlights {
+  .county-highlights {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 20px;
   }
-  .city-highlight {
+  .county-highlight {
     padding: 20px;
     border: 1px solid var(--grey-200);
     border-radius: var(--radius);
     transition: border-color 0.2s;
   }
-  .city-highlight:hover { border-color: var(--red); }
-  .city-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
-  .city-highlight h3 a { color: var(--grey-900); text-decoration: none; }
-  .city-highlight h3 a:hover { color: var(--red); }
-  .city-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
-  .city-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
+  .county-highlight:hover { border-color: var(--red); }
+  .county-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .county-highlight h3 a { color: var(--grey-900); text-decoration: none; }
+  .county-highlight h3 a:hover { color: var(--red); }
+  .county-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .county-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
 
   @media (max-width: 900px) {
     .page-grid { grid-template-columns: 1fr; gap: 32px; }
     .sidebar-col { position: static; }
     .facts-bar { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 1.8rem; }
-    .city-highlights { grid-template-columns: 1fr; }
   }
 </style>

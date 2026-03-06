@@ -115,7 +115,22 @@ const situations = [
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/${city.slug}/`}
 >
-  <!-- DEEP SLOT CONTENT -->
+  <!-- NEIGHBORHOOD DIRECTORY -->
+  <section class="content-section">
+    <h2>Neighborhoods We Serve in {city.name}</h2>
+    <div class="answer-block">
+      <p>Saving KC buys homes in all {city.neighborhoods.length} neighborhoods across {city.name}, {stateName} — every condition, every situation. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
+    </div>
+    <div class="neighborhood-highlights">
+      {city.neighborhoods.map((n) => (
+        <div class="neighborhood-highlight">
+          <h3><a href={neighborhoodUrl(stateSlug, county.slug, city.slug, n.slug)}>{n.name}</a></h3>
+          <p class="neighborhood-meta">Median: {n.medianHomeValue}</p>
+          <p class="neighborhood-desc">{n.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 
   <NeighborhoodAuthorityBlock
     cityName={city.name}
@@ -310,8 +325,42 @@ const situations = [
   }
   .road-back-cta a:hover { text-decoration: underline; }
 
+  .answer-block {
+    font-size: 15px;
+    font-weight: 500;
+    color: #450a0a;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #FEF2F1;
+    border-left: 4px solid #CC0000;
+    border-radius: 8px;
+  }
+  .answer-block p { margin: 0; color: #450a0a; }
+  .answer-block a { color: #CC0000; font-weight: 600; }
+
+  .neighborhood-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .neighborhood-highlight {
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+  }
+  .neighborhood-highlight:hover { border-color: var(--red); }
+  .neighborhood-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .neighborhood-highlight h3 a { color: var(--grey-900); text-decoration: none; }
+  .neighborhood-highlight h3 a:hover { color: var(--red); }
+  .neighborhood-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .neighborhood-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
+
   @media (max-width: 640px) {
     .issue-list { grid-template-columns: 1fr; }
     .sit-grid { grid-template-columns: 1fr; }
+    .neighborhood-highlights { grid-template-columns: 1fr; }
   }
 </style>
