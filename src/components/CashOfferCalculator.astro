@@ -1,0 +1,354 @@
+---
+interface Props {
+  stateName?: string;
+}
+
+const { stateName = 'your area' } = Astro.props;
+---
+
+<section class="calc-section">
+  <div class="calc-container">
+    <div class="calc-header">
+      <h2>Estimate Your Cash Offer</h2>
+      <p class="calc-sub">See what you could walk away with — no obligation, no pressure. Adjust the sliders to match your property.</p>
+    </div>
+
+    <div class="calc-body">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label for="homeValue">Estimated Home Value</label>
+          <div class="calc-input-row">
+            <input type="range" id="homeValue" min="50000" max="500000" step="5000" value="180000" class="calc-slider" />
+            <output id="homeValueDisplay" class="calc-output">$180,000</output>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label for="repairCost">Estimated Repair Costs</label>
+          <div class="calc-input-row">
+            <input type="range" id="repairCost" min="0" max="100000" step="1000" value="15000" class="calc-slider" />
+            <output id="repairCostDisplay" class="calc-output">$15,000</output>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label for="amountOwed">Amount Owed (Mortgage + Liens + Taxes)</label>
+          <div class="calc-input-row">
+            <input type="range" id="amountOwed" min="0" max="400000" step="1000" value="60000" class="calc-slider" />
+            <output id="amountOwedDisplay" class="calc-output">$60,000</output>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <span class="calc-result-label">Traditional Sale</span>
+          <div class="calc-breakdown">
+            <div class="calc-line"><span>Home Value</span><span id="tradValue">$180,000</span></div>
+            <div class="calc-line calc-line--neg"><span>Agent Commission (6%)</span><span id="tradComm">-$10,800</span></div>
+            <div class="calc-line calc-line--neg"><span>Closing Costs (3%)</span><span id="tradClose">-$5,400</span></div>
+            <div class="calc-line calc-line--neg"><span>Repairs</span><span id="tradRepair">-$15,000</span></div>
+            <div class="calc-line calc-line--neg"><span>Amount Owed</span><span id="tradOwed">-$60,000</span></div>
+          </div>
+          <div class="calc-total calc-total--trad">
+            <span>You Keep</span>
+            <strong id="tradTotal">$88,800</strong>
+          </div>
+          <span class="calc-timeline">3-6 months to close</span>
+        </div>
+
+        <div class="calc-result-card calc-result-card--cash">
+          <span class="calc-result-label calc-result-label--cash">Cash Offer from Saving KC</span>
+          <div class="calc-breakdown">
+            <div class="calc-line"><span>Home Value</span><span id="cashValue">$180,000</span></div>
+            <div class="calc-line calc-line--neg"><span>Our Discount (~20%)</span><span id="cashDiscount">-$36,000</span></div>
+            <div class="calc-line calc-line--pos"><span>Agent Commission</span><span>$0</span></div>
+            <div class="calc-line calc-line--pos"><span>Closing Costs</span><span>$0 (we pay)</span></div>
+            <div class="calc-line calc-line--pos"><span>Repairs</span><span>$0 (as-is)</span></div>
+            <div class="calc-line calc-line--neg"><span>Amount Owed</span><span id="cashOwed">-$60,000</span></div>
+          </div>
+          <div class="calc-total calc-total--cash">
+            <span>You Keep</span>
+            <strong id="cashTotal">$84,000</strong>
+          </div>
+          <span class="calc-timeline calc-timeline--cash">Close in 7-14 days</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="calc-disclaimer">This calculator provides estimates only. Your actual cash offer is based on a property visit and current market conditions. <a href="/get-offer/">Get your real offer</a> or call <a href="tel:8164292900">(816) 429-2900</a>.</p>
+  </div>
+</section>
+
+<script>
+  function initCalculator() {
+    const homeValue = document.getElementById('homeValue') as HTMLInputElement;
+    const repairCost = document.getElementById('repairCost') as HTMLInputElement;
+    const amountOwed = document.getElementById('amountOwed') as HTMLInputElement;
+
+    if (!homeValue || !repairCost || !amountOwed) return;
+
+    function fmt(n: number): string {
+      return n < 0 ? '-$' + Math.abs(n).toLocaleString() : '$' + n.toLocaleString();
+    }
+
+    function update() {
+      const hv = parseInt(homeValue.value);
+      const rc = parseInt(repairCost.value);
+      const ao = parseInt(amountOwed.value);
+
+      // Display inputs
+      (document.getElementById('homeValueDisplay') as HTMLOutputElement).textContent = fmt(hv);
+      (document.getElementById('repairCostDisplay') as HTMLOutputElement).textContent = fmt(rc);
+      (document.getElementById('amountOwedDisplay') as HTMLOutputElement).textContent = fmt(ao);
+
+      // Traditional
+      const comm = Math.round(hv * 0.06);
+      const closeCost = Math.round(hv * 0.03);
+      const tradNet = hv - comm - closeCost - rc - ao;
+
+      (document.getElementById('tradValue') as HTMLElement).textContent = fmt(hv);
+      (document.getElementById('tradComm') as HTMLElement).textContent = fmt(-comm);
+      (document.getElementById('tradClose') as HTMLElement).textContent = fmt(-closeCost);
+      (document.getElementById('tradRepair') as HTMLElement).textContent = fmt(-rc);
+      (document.getElementById('tradOwed') as HTMLElement).textContent = fmt(-ao);
+      (document.getElementById('tradTotal') as HTMLElement).textContent = fmt(Math.max(tradNet, 0));
+
+      // Cash offer
+      const discount = Math.round(hv * 0.20);
+      const cashOffer = hv - discount;
+      const cashNet = cashOffer - ao;
+
+      (document.getElementById('cashValue') as HTMLElement).textContent = fmt(hv);
+      (document.getElementById('cashDiscount') as HTMLElement).textContent = fmt(-discount);
+      (document.getElementById('cashOwed') as HTMLElement).textContent = fmt(-ao);
+      (document.getElementById('cashTotal') as HTMLElement).textContent = fmt(Math.max(cashNet, 0));
+    }
+
+    homeValue.addEventListener('input', update);
+    repairCost.addEventListener('input', update);
+    amountOwed.addEventListener('input', update);
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initCalculator);
+  document.addEventListener('astro:page-load', initCalculator);
+</script>
+
+<style>
+  .calc-section {
+    margin: 48px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .calc-container {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .calc-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .calc-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--grey-900, #111);
+    margin-bottom: 8px;
+    border: none;
+    padding: 0;
+  }
+
+  .calc-sub {
+    font-size: 0.95rem;
+    color: var(--grey-500, #666);
+    max-width: 50ch;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .calc-inputs {
+    margin-bottom: 28px;
+  }
+
+  .calc-field {
+    margin-bottom: 20px;
+  }
+
+  .calc-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grey-700, #444);
+    margin-bottom: 8px;
+  }
+
+  .calc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .calc-slider {
+    flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #CBD5E1;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #CC0000;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .calc-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #CC0000;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .calc-output {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--grey-900, #111);
+    min-width: 90px;
+    text-align: right;
+  }
+
+  .calc-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .calc-result-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .calc-result-card--cash {
+    border-color: #CC0000;
+    border-width: 2px;
+    background: #FEF2F1;
+  }
+
+  .calc-result-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+    margin-bottom: 12px;
+  }
+
+  .calc-result-label--cash {
+    color: #CC0000;
+  }
+
+  .calc-breakdown {
+    margin-bottom: 12px;
+  }
+
+  .calc-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 4px 0;
+    color: var(--grey-700, #444);
+    border-bottom: 1px solid #F1F5F9;
+  }
+
+  .calc-line--neg span:last-child {
+    color: #B91C1C;
+  }
+
+  .calc-line--pos span:last-child {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  .calc-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 4px;
+    border-top: 2px solid #E2E8F0;
+  }
+
+  .calc-total span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grey-500, #666);
+  }
+
+  .calc-total strong {
+    font-size: 1.4rem;
+    font-weight: 900;
+  }
+
+  .calc-total--trad strong {
+    color: var(--grey-700, #444);
+  }
+
+  .calc-total--cash strong {
+    color: #CC0000;
+  }
+
+  .calc-timeline {
+    display: block;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  .calc-timeline--cash {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  .calc-disclaimer {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  .calc-disclaimer a {
+    color: #CC0000;
+  }
+
+  @media (max-width: 640px) {
+    .calc-container {
+      padding: 20px 16px;
+    }
+
+    .calc-results {
+      grid-template-columns: 1fr;
+    }
+
+    .calc-total strong {
+      font-size: 1.2rem;
+    }
+  }
+</style>

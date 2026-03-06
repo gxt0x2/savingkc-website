@@ -8,6 +8,7 @@ import ProcessSteps from '@/components/ProcessSteps.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { getCountiesByState } from '@/data/counties';
 import { countyUrl } from '@/lib/urls';
+import CashOfferCalculator from '@/components/CashOfferCalculator.astro';
 import { brand } from '@/data/brand';
 
 const title = 'Sell Your House for Cash in Kansas';
@@ -130,6 +131,8 @@ const relatedLinks = [
           )}
         </section>
       ))}
+
+      <CashOfferCalculator stateName="Kansas" />
 
       <section class="content-section">
         <h2>Counties We Serve in Kansas</h2>

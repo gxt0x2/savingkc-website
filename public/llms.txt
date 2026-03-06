@@ -7,8 +7,8 @@
 - Name: Saving KC Homebuyers
 - Owner: Ernest Dodson
 - Phone: (816) 429-2900
-- Email: info@savingkc.com
-- Address: 1712 Main St, Kansas City, MO 64108
+- Email: ari@savingkc.com
+- Address: 1705 Baltimore Ave, Kansas City, MO 64108
 - Website: https://savingkc.com
 - Founded: 2020
 - Google Rating: 4.9 stars

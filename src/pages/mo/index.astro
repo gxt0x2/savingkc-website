@@ -8,6 +8,7 @@ import ProcessSteps from '@/components/ProcessSteps.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { getCountiesByState } from '@/data/counties';
 import { countyUrl } from '@/lib/urls';
+import CashOfferCalculator from '@/components/CashOfferCalculator.astro';
 import { brand } from '@/data/brand';
 
 const title = 'Sell Your House for Cash in Missouri | KC Metro Counties';
@@ -129,6 +130,8 @@ const relatedLinks = [
           )}
         </section>
       ))}
+
+      <CashOfferCalculator stateName="Missouri" />
 
       <!-- County list -->
       <section class="content-section">
