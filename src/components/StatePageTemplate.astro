@@ -5,7 +5,7 @@ import CalloutBox from '@/components/CalloutBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import ProcessSteps from '@/components/ProcessSteps.astro';
-import SellerNetCalculator from '@/components/SellerNetCalculator.astro';
+import CashOfferCard from '@/components/CashOfferCard.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { countyUrl } from '@/lib/urls';
 import type { CountyData } from '@/types/geo';
@@ -101,7 +101,7 @@ const stateMedian = counties[0]?.medianHomeValue || '$185,000';
       ))}
 
       <!-- SELLER NET CALCULATOR -->
-      <SellerNetCalculator medianHomeValue={stateMedian} stateName={stateName} />
+      <CashOfferCard medianHomeValue={stateMedian} cityName={stateName} />
 
       {afterCalc.map((section) => (
         <section class="content-section">

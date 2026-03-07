@@ -1,7 +1,7 @@
 ---
 import LocationHubTemplate from '@/components/LocationHubTemplate.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
-import SellerNetCalculator from '@/components/SellerNetCalculator.astro';
+import CashOfferCard from '@/components/CashOfferCard.astro';
 import { getCountiesByState } from '@/data/counties';
 import { neighborhoodUrl, cityUrl } from '@/lib/urls';
 import { brand } from '@/data/brand';
@@ -193,7 +193,7 @@ const situations = [
   })()}
 
   <!-- SELLER NET CALCULATOR -->
-  <SellerNetCalculator medianHomeValue={city.medianHomeValue} stateName={`${city.name}, ${county.name}`} />
+  <CashOfferCard medianHomeValue={city.medianHomeValue} cityName={`${city.name}, ${county.name}`} />
 
   <section class="content-section">
     <h2>Common Situations in {city.name}</h2>
