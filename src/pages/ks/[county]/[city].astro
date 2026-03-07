@@ -1,8 +1,6 @@
 ---
 import LocationHubTemplate from '@/components/LocationHubTemplate.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
-import NeighborhoodAuthorityBlock from '@/components/NeighborhoodAuthorityBlock.astro';
-import NeighborhoodComparisonTable from '@/components/NeighborhoodComparisonTable.astro';
 import { getCountiesByState } from '@/data/counties';
 import { neighborhoodUrl, cityUrl } from '@/lib/urls';
 import { brand } from '@/data/brand';
@@ -39,9 +37,6 @@ const facts = [
   { label: 'ZIP Codes', value: city.zipCodes?.join(', ') || 'N/A' },
   { label: 'Population', value: city.population },
   { label: 'Median Home Value', value: city.medianHomeValue, color: 'red' as const },
-  { label: 'Market Condition', value: city.marketCondition },
-  { label: 'Avg. Days on Market', value: city.daysOnMarket },
-  { label: 'Distance from Office', value: city.distanceFromOffice },
   { label: 'Neighborhoods', value: `${city.neighborhoods.length}` },
   { label: 'Agent Commissions', value: commissionEstimate, color: 'red' as const },
   { label: 'Our Offer', value: 'Within 24 hours', color: 'green' as const },
@@ -63,19 +58,22 @@ const relatedLinks = [
   { label: 'Foundation Issues', href: '/situations/foundation-issues/' },
 ];
 
-const contactItems = city.cityContact
-  ? [
-      { label: 'Office', value: city.cityContact.office },
-      { label: 'Phone', value: city.cityContact.phone, href: `tel:${city.cityContact.phone.replace(/[^0-9]/g, '')}` },
-      { label: 'Address', value: city.cityContact.address },
-      ...(city.cityContact.website ? [{ label: 'Website', value: city.cityContact.website.replace('https://', '').replace('www.', ''), href: city.cityContact.website }] : []),
-    ]
-  : [
-      { label: 'Company', value: 'Saving KC Homebuyers' },
-      { label: 'Phone', value: '(816) 429-2900', href: 'tel:8164292900' },
-      { label: 'Address', value: '1705 Baltimore Ave, Kansas City, MO 64108' },
-      { label: 'Website', value: 'SavingKC.com', href: 'https://savingkc.com' },
-    ];
+const countyContacts: Record<string, { label: string; value: string; href?: string }[]> = {
+  wyandotte: [
+    { label: 'Office', value: 'Wyandotte County Appraiser' },
+    { label: 'Phone', value: '(913) 573-2810', href: 'tel:9135732810' },
+    { label: 'Address', value: '710 N 7th St, Kansas City, KS 66101' },
+    { label: 'Website', value: 'wycokck.org', href: 'https://www.wycokck.org' },
+  ],
+  johnson: [
+    { label: 'Office', value: 'Johnson County Appraiser' },
+    { label: 'Phone', value: '(913) 715-0725', href: 'tel:9137150725' },
+    { label: 'Address', value: '100 N Kansas Ave, Olathe, KS 66061' },
+    { label: 'Website', value: 'jocogov.org', href: 'https://www.jocogov.org' },
+  ],
+};
+
+const contactItems = countyContacts[county.slug] || [];
 
 const breadcrumbs = [
   { label: stateName, href: `/${stateSlug}/` },
@@ -83,7 +81,7 @@ const breadcrumbs = [
   { label: city.name },
 ];
 
-const title = `We Buy Houses in ${city.name}, ${stateAbbr}`;
+const title = `Sell Your House for Cash in ${city.name}, ${stateAbbr}`;
 const description = `We buy houses in ${city.name}, ${stateName}. ${city.neighborhoods.length} neighborhoods served. No repairs, no agents, no fees. Get a fair cash offer within 24 hours.`;
 const shortAnswer = `Yes, we buy houses in any condition in ${city.name}, ${stateName}. Whether your home needs major repairs, has code violations, or you simply need to sell quickly — we make a fair cash offer based on the local ${city.name} market and close on your schedule.`;
 
@@ -114,41 +112,8 @@ const situations = [
   countyPills={countyPills}
   relatedLinks={relatedLinks}
   canonical={`${brand.domain}/${stateSlug}/${county.slug}/${city.slug}/`}
-  heroVariant="cream"
-  heroHighlight=""
 >
-  <!-- NEIGHBORHOOD DIRECTORY -->
-  <section class="content-section">
-    <h2>Neighborhoods We Serve in {city.name}</h2>
-    <div class="answer-block">
-      <p>Saving KC buys homes in all {city.neighborhoods.length} neighborhoods across {city.name}, {stateName} — every condition, every situation. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
-    </div>
-    <div class="neighborhood-highlights">
-      {city.neighborhoods.map((n) => (
-        <div class="neighborhood-highlight">
-          <h3><a href={neighborhoodUrl(stateSlug, county.slug, city.slug, n.slug)}>{n.name}</a></h3>
-          <p class="neighborhood-meta">Median: {n.medianHomeValue}</p>
-          <p class="neighborhood-desc">{n.description}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <NeighborhoodAuthorityBlock
-    cityName={city.name}
-    authorityBlock={city.authorityBlock}
-    distanceFromOffice={city.distanceFromOffice}
-    coordinates={city.coordinates}
-    zipCodes={city.zipCodes}
-  />
-
-  <CalloutBox
-    type="critical"
-    title={`2026 ${county.name.toUpperCase()} TAX SALE`}
-    text={`The ${county.name} tax sale is scheduled for ${county.taxSaleDate2026 ? new Date(county.taxSaleDate2026 + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : county.taxSaleDates || county.taxSaleMonth + ' 2026'}. ${county.taxSalePattern}. Location: ${county.taxSaleLocation || county.courthouse.address}. If your ${city.name} property is on the delinquent list, selling before the auction protects your equity. Call SavingKC at (816) 429-2900.`}
-  />
-
-  <NeighborhoodComparisonTable neighborhoods={city.neighborhoods} cityName={city.name} />
+  <!-- DEEP SLOT CONTENT -->
 
   <section class="content-section">
     <h2>Common Property Issues We See in {city.name}</h2>
@@ -174,9 +139,6 @@ const situations = [
       title="EVERY CONDITION WELCOME"
       text={`We've bought hundreds of homes in the Kansas City metro. Foundation cracks, fire damage, mold, hoarder conditions, code violations — none of it stops us from making a fair offer. The condition of your ${city.name} home is our problem to solve, not yours.`}
     />
-    <div class="road-back-cta">
-      <p>Dealing with property issues in {city.name}? <strong>The Road Back starts here.</strong> Call SavingKC at <a href="tel:8164292900">(816) 429-2900</a> or <a href="/get-offer/">get your cash offer online</a>.</p>
-    </div>
   </section>
 
   <section class="content-section">
@@ -197,6 +159,31 @@ const situations = [
       </p>
     </div>
   </section>
+
+  <!-- Attractions -->
+  {(() => {
+    const cityAttractions = [...new Set(city.neighborhoods.flatMap((n) => n.landmarks))].slice(0, 4);
+    return cityAttractions.length > 0 ? (
+      <section class="content-section">
+        <h2>What Makes {city.name} a Great Place to Live?</h2>
+        <div class="section-body">
+          <p>
+            {city.name} offers a mix of local culture, outdoor spaces, and community landmarks
+            that make it more than just a place to own property. These are some of the spots
+            that residents value most.
+          </p>
+        </div>
+        <div class="attractions-grid">
+          {cityAttractions.map((a) => (
+            <div class="attraction-card">
+              <svg class="attraction-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{a}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    ) : null;
+  })()}
 
   <section class="content-section">
     <h2>Common Situations in {city.name}</h2>
@@ -230,9 +217,6 @@ const situations = [
         You walk away with the remaining equity — and a clean break from the property.
       </p>
     </div>
-    <div class="road-back-cta">
-      <p>Behind on {city.name} property taxes? <strong>The Road Back starts here.</strong> Call SavingKC at <a href="tel:8164292900">(816) 429-2900</a> or <a href="/get-offer/">get your cash offer online</a>.</p>
-    </div>
   </section>
 
   <section class="content-section">
@@ -251,8 +235,68 @@ const situations = [
         even visit the property.
       </p>
     </div>
-    <div class="road-back-cta">
-      <p>Inherited a {city.name} property? <strong>The Road Back starts here.</strong> Call SavingKC at <a href="tel:8164292900">(816) 429-2900</a> or <a href="/get-offer/">get your cash offer online</a>.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Understanding Your {city.name} Home's Value in Today's Market</h2>
+    <div class="section-body">
+      <p>
+        The median home value in {city.name} is {city.medianHomeValue}. That number represents
+        the midpoint — half the homes in {city.name} are worth more, half are worth less. But
+        median value and what a buyer will actually pay are two different things. If your home
+        needs foundation work, a new roof, or major mechanical updates, a retail buyer on the
+        MLS will either pass on your listing entirely or demand tens of thousands in concessions
+        after the inspection. The gap between what your home is "worth" and what you actually
+        walk away with after commissions, repairs, closing costs, and months of holding costs
+        can be staggering.
+      </p>
+      <p>
+        In {county.name}, property values have shifted significantly in recent years. Reassessments,
+        rising insurance costs, and interest rate changes have all affected what buyers are willing
+        to pay and what sellers can realistically expect. For homeowners sitting on deferred
+        maintenance or dealing with financial pressure, the traditional selling process often
+        costs more than it returns. A cash offer based on the current {city.name} market — not
+        an inflated Zestimate — gives you a realistic number you can plan around.
+      </p>
+      <p>
+        We calculate our offers using actual comparable sales in your {city.name} neighborhood,
+        not automated estimates. We factor in the property's condition, lot size, location within
+        the city, and current buyer demand. Our goal is a price that works for both sides — fair
+        enough that you walk away with real equity, practical enough that we can invest in the
+        repairs and bring the home back to market. That transparency is why {city.name}
+        homeowners trust us with their biggest asset.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>What Does the Cash Selling Process Look Like in {city.name}?</h2>
+    <div class="section-body">
+      <p>
+        Selling your {city.name} home to us is straightforward. You call us or fill out the
+        form on this page. We ask a few questions about the property — its age, condition,
+        any known issues, and your timeline. Within 24 hours, we schedule a walkthrough.
+        During the visit, we take notes on the home's condition and confirm the details
+        you shared. There are no inspectors, no appraisers, and no strangers walking
+        through your home for open houses.
+      </p>
+      <p>
+        After the walkthrough, we present a written cash offer. The offer includes our
+        purchase price, the estimated closing date, and a breakdown of how we arrived at
+        the number. If you accept, we open escrow with a local {county.name} title
+        company. The title company handles the lien search, pays off any outstanding
+        debts from the proceeds, and coordinates the closing. You sign the paperwork,
+        receive your funds via wire transfer or cashier's check, and you're done. No
+        repairs, no staging, no weeks of uncertainty.
+      </p>
+      <p>
+        Most {city.name} sellers close within 7 to 14 days of accepting our offer.
+        If you need more time — to find a new place, coordinate a move, or handle
+        personal matters — we work on your schedule. The closing date is yours to choose.
+        We've closed on homes in {city.name} where the seller needed to move the same
+        week, and we've closed on homes where the seller needed 60 days. Either way,
+        once you accept the offer, the price is locked and the deal is done.
+      </p>
     </div>
   </section>
 
@@ -308,61 +352,31 @@ const situations = [
   .sit-card:hover h3 { color: var(--red); }
   .sit-card p { font-size: 0.85rem; color: var(--grey-500); margin: 0; }
 
-  .road-back-cta {
-    margin-top: 20px;
-    padding: 16px 20px;
-    background: linear-gradient(135deg, #FFF8F0 0%, #FFF4E8 100%);
-    border-left: 4px solid #CC0000;
-    border-radius: 6px;
-  }
-  .road-back-cta p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.6;
-  }
-  .road-back-cta a {
-    color: #CC0000;
-    font-weight: 600;
-  }
-  .road-back-cta a:hover { text-decoration: underline; }
-
-  .answer-block {
-    font-size: 15px;
-    font-weight: 500;
-    color: #450a0a;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    padding: 20px;
-    background: #FEF2F1;
-    border-left: 4px solid #CC0000;
-    border-radius: 8px;
-  }
-  .answer-block p { margin: 0; color: #450a0a; }
-  .answer-block a { color: #CC0000; font-weight: 600; }
-
-  .neighborhood-highlights {
+  .attractions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 16px;
   }
-  .neighborhood-highlight {
-    padding: 20px;
-    border: 1px solid var(--grey-200);
+  .attraction-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #F0FDF4;
     border-radius: var(--radius);
-    transition: border-color 0.2s;
+    border: 1px solid #BBF7D0;
+    font-size: 0.9rem;
+    color: var(--grey-700);
   }
-  .neighborhood-highlight:hover { border-color: var(--red); }
-  .neighborhood-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
-  .neighborhood-highlight h3 a { color: var(--grey-900); text-decoration: none; }
-  .neighborhood-highlight h3 a:hover { color: var(--red); }
-  .neighborhood-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
-  .neighborhood-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
+  .attraction-icon {
+    color: #16A34A;
+    flex-shrink: 0;
+  }
 
   @media (max-width: 640px) {
     .issue-list { grid-template-columns: 1fr; }
     .sit-grid { grid-template-columns: 1fr; }
-    .neighborhood-highlights { grid-template-columns: 1fr; }
+    .attractions-grid { grid-template-columns: 1fr; }
   }
 </style>

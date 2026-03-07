@@ -1,0 +1,252 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CalloutBox from '@/components/CalloutBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import { countyUrl } from '@/lib/urls';
+import type { CountyData } from '@/types/geo';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  shortAnswer: string;
+  breadcrumbs: { label: string; href?: string }[];
+  countyPills: { label: string; href: string }[];
+  facts: { label: string; value: string }[];
+  sections: { heading: string; content: string; callout?: { type: string; text: string } }[];
+  calculatorBreakAfter?: number;
+  stateName: string;
+  counties: CountyData[];
+  stateSlug: string;
+  steps: { title: string; description: string }[];
+  comparison: { factor: string; traditional: string; cashOffer: string }[];
+  faqs: { question: string; answer: string }[];
+  relatedLinks?: { label: string; href: string }[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  heroTitle,
+  heroSubtitle,
+  shortAnswer,
+  breadcrumbs,
+  countyPills,
+  facts,
+  sections,
+  calculatorBreakAfter = 2,
+  stateName,
+  counties,
+  stateSlug,
+  steps,
+  comparison,
+  faqs,
+  relatedLinks,
+} = Astro.props;
+
+const beforeCalc = sections.slice(0, calculatorBreakAfter);
+const afterCalc = sections.slice(calculatorBreakAfter);
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <div class="container page-grid">
+    <article class="content-col">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <header class="hero">
+        <h1>{heroTitle}</h1>
+        <p class="hero-sub">{heroSubtitle}</p>
+      </header>
+
+      <div class="short-answer">
+        <p><strong>Short answer:</strong> {shortAnswer}</p>
+      </div>
+
+      <nav class="pill-nav" aria-label={`${stateName} counties`}>
+        {countyPills.map((pill) => (
+          <a href={pill.href} class="pill">{pill.label}</a>
+        ))}
+      </nav>
+
+      <div class="facts-bar">
+        {facts.map((f) => (
+          <div class="fact">
+            <span class="fact-label">{f.label}</span>
+            <span class="fact-value">{f.value}</span>
+          </div>
+        ))}
+      </div>
+
+      {beforeCalc.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+
+      {afterCalc.map((section) => (
+        <section class="content-section">
+          <h2>{section.heading}</h2>
+          {section.content.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+          {section.callout && (
+            <CalloutBox type={section.callout.type} text={section.callout.text} />
+          )}
+        </section>
+      ))}
+
+      <section class="content-section">
+        <h2>Counties We Serve in {stateName}</h2>
+        <div class="card-grid">
+          {counties.map((c) => (
+            <a href={countyUrl(stateSlug, c.slug)} class="location-card">
+              <h3>{c.name}</h3>
+              <p class="card-meta">{c.cities.length} cities | Median: {c.medianHomeValue}</p>
+              <p>{c.description.substring(0, 120)}...</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <ProcessSteps steps={steps} />
+      <ComparisonTable rows={comparison} />
+      <FAQ items={faqs} />
+
+      {relatedLinks && relatedLinks.length > 0 && (
+        <section class="content-section">
+          <h2>Related Resources</h2>
+          <div class="related-links">
+            {relatedLinks.map((link) => (
+              <a href={link.href} class="related-link">{link.label}</a>
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+
+    <aside class="sidebar-col">
+      <LeadForm />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .content-col { min-width: 0; }
+  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
+
+  .hero { margin-bottom: 24px; }
+  .hero h1 { font-size: 2.2rem; color: var(--grey-900); margin-bottom: 12px; }
+  .hero-sub { font-size: 1.1rem; color: var(--grey-600); line-height: 1.6; }
+
+  .short-answer {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .short-answer p { margin: 0; line-height: 1.6; }
+
+  .pill-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--grey-100);
+    color: var(--grey-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .pill:hover {
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: var(--grey-50);
+    border-radius: var(--radius);
+  }
+  .fact { text-align: center; }
+  .fact-label { display: block; font-size: 0.8rem; color: var(--grey-500); margin-bottom: 4px; }
+  .fact-value { display: block; font-size: 1.1rem; font-weight: 700; color: var(--grey-900); }
+
+  .content-section { margin-bottom: 40px; }
+  .content-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .location-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .location-card:hover {
+    border-color: var(--red);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+  .location-card h3 { font-size: 1.1rem; color: var(--grey-900); margin-bottom: 4px; }
+  .card-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
+  .location-card p { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .related-link {
+    padding: 8px 20px;
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .page-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar-col { position: static; }
+    .facts-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NetProceedsCalculator from '@/components/NetProceedsCalculator.astro';
+import SavingsTable from '@/components/SavingsTable.astro';
+
+const savingsRows = [
+  { scenario: 'Agent Commissions (6%)', traditionalCost: '$10,800', cashOfferCost: '$0', savings: '$10,800' },
+  { scenario: 'Pre-Sale Repairs', traditionalCost: '$25,000+', cashOfferCost: '$0', savings: '$25,000+' },
+  { scenario: 'Closing Costs (3%)', traditionalCost: '$5,400', cashOfferCost: '$0 — we pay', savings: '$5,400' },
+  { scenario: 'Inspection Concessions', traditionalCost: '$3,600', cashOfferCost: '$0', savings: '$3,600' },
+  { scenario: 'Staging & Photography', traditionalCost: '$3,500', cashOfferCost: '$0', savings: '$3,500' },
+  { scenario: 'Holding Costs (4 months)', traditionalCost: '$3,600', cashOfferCost: '$0', savings: '$3,600' },
+  { scenario: 'Seller Concessions (2%)', traditionalCost: '$3,600', cashOfferCost: '$0', savings: '$3,600' },
+];
+---
+
+<BaseLayout title="Calculator Test" description="Test page">
+  <div class="container" style="padding: 40px 0 80px; max-width: 720px; margin: 0 auto;">
+
+    <h1 style="font-size: 2rem; margin-bottom: 12px;">Calculator Options</h1>
+    <p style="color: #666; margin-bottom: 40px;">Two options — pick the one you remember.</p>
+
+    <h2 style="font-size: 1.1rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Option 1: Net Proceeds Calculator</h2>
+    <p style="color: #888; margin-bottom: 8px; font-size: 0.9rem;">3-button condition toggle, preset median price, side-by-side MLS vs Cash. Compact.</p>
+    <NetProceedsCalculator medianHomeValue="$180,000" cityName="Kansas City" />
+
+    <hr style="margin: 60px 0; border-color: #ddd;" />
+
+    <h2 style="font-size: 1.1rem; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Option 2: Savings Table</h2>
+    <p style="color: #888; margin-bottom: 8px; font-size: 0.9rem;">Static table — no interactivity. Shows line-by-line savings breakdown.</p>
+    <SavingsTable rows={savingsRows} />
+
+  </div>
+</BaseLayout>

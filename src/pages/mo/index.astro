@@ -1,14 +1,7 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
-import CalloutBox from '@/components/CalloutBox.astro';
-import FAQ from '@/components/FAQ.astro';
-import ComparisonTable from '@/components/ComparisonTable.astro';
-import ProcessSteps from '@/components/ProcessSteps.astro';
-import LeadForm from '@/components/LeadForm.astro';
+import StatePageTemplate from '@/components/StatePageTemplate.astro';
 import { getCountiesByState } from '@/data/counties';
 import { countyUrl } from '@/lib/urls';
-import CashOfferCalculator from '@/components/CashOfferCalculator.astro';
 import { brand } from '@/data/brand';
 
 const title = 'Sell Your House for Cash in Missouri | KC Metro Counties';
@@ -87,245 +80,23 @@ const relatedLinks = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonical={`${brand.domain}/mo/`}>
-  <div class="container page-grid">
-    <article class="content-col">
-      <Breadcrumbs items={[{ label: 'Missouri' }]} />
-
-      <header class="hero">
-        <h1>Sell Your House for Cash in Missouri</h1>
-        <p class="hero-sub">We buy houses across Jackson, Clay, and Platte counties on the Missouri side of the Kansas City metro. Get a fair cash offer and close on your timeline.</p>
-      </header>
-
-      <div class="short-answer">
-        <p><strong>Short answer:</strong> Yes, we buy houses in any condition across all three Missouri counties in the KC metro. Whether you are behind on taxes, dealing with probate, or just need to sell fast, we make fair cash offers and can close in as few as 7 days.</p>
-      </div>
-
-      <!-- County pills -->
-      <nav class="pill-nav" aria-label="Missouri counties">
-        {countyPills.map((pill) => (
-          <a href={pill.href} class="pill">{pill.label}</a>
-        ))}
-      </nav>
-
-      <!-- Facts bar -->
-      <div class="facts-bar">
-        {facts.map((f) => (
-          <div class="fact">
-            <span class="fact-label">{f.label}</span>
-            <span class="fact-value">{f.value}</span>
-          </div>
-        ))}
-      </div>
-
-      <!-- Sections 1-2 -->
-      {sections.slice(0, 2).map((section) => (
-        <section class="content-section">
-          <h2>{section.heading}</h2>
-          {section.content.split('\n\n').map((p) => (
-            <p>{p}</p>
-          ))}
-          {section.callout && (
-            <CalloutBox type={section.callout.type} text={section.callout.text} />
-          )}
-        </section>
-      ))}
-
-      <CashOfferCalculator stateName="Missouri" />
-
-      <!-- Sections 3-4 -->
-      {sections.slice(2).map((section) => (
-        <section class="content-section">
-          <h2>{section.heading}</h2>
-          {section.content.split('\n\n').map((p) => (
-            <p>{p}</p>
-          ))}
-          {section.callout && (
-            <CalloutBox type={section.callout.type} text={section.callout.text} />
-          )}
-        </section>
-      ))}
-
-      <!-- Counties We Serve -->
-      <section class="content-section">
-        <h2>Counties We Serve in Missouri</h2>
-        <div class="answer-block">
-          <p>Saving KC buys homes across all {counties.length} Missouri counties in the KC metro — every city, every neighborhood, every condition. Whether it's probate, back taxes, or a property that needs major repairs, we've bought homes in your area. Call <a href="tel:8164292900">(816) 429-2900</a> for a no-obligation cash offer.</p>
-        </div>
-        <div class="county-highlights">
-          {counties.map((c) => (
-            <div class="county-highlight">
-              <h3><a href={countyUrl('mo', c.slug)}>{c.name}</a></h3>
-              <p class="county-meta">{c.cities.length} cities · Median: {c.medianHomeValue} · Pop: {c.population}</p>
-              <p class="county-desc">{c.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <ProcessSteps steps={steps} />
-      <ComparisonTable rows={comparison} />
-      <FAQ items={faqs} />
-
-      <!-- Related links -->
-      <section class="content-section">
-        <h2>Related Resources</h2>
-        <div class="related-links">
-          {relatedLinks.map((link) => (
-            <a href={link.href} class="related-link">{link.label}</a>
-          ))}
-        </div>
-      </section>
-    </article>
-
-    <aside class="sidebar-col">
-      <LeadForm />
-    </aside>
-  </div>
-</BaseLayout>
-
-<style>
-  .page-grid {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 48px;
-    padding-top: 40px;
-    padding-bottom: 60px;
-  }
-  .content-col { min-width: 0; }
-  .sidebar-col { position: sticky; top: calc(var(--nav-height) + 24px); align-self: start; }
-
-  .hero {
-    margin-bottom: 24px;
-    background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
-    color: #fff;
-    padding: 36px 32px;
-    border-radius: var(--radius);
-  }
-  .hero h1 { font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
-  .hero-sub { font-size: 1.1rem; color: #CBD5E1; line-height: 1.6; }
-
-  .short-answer {
-    background: var(--cream);
-    border-left: 4px solid var(--red);
-    padding: 20px 24px;
-    border-radius: var(--radius);
-    margin-bottom: 24px;
-  }
-  .short-answer p { margin: 0; line-height: 1.6; }
-
-  .pill-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-  .pill {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 999px;
-    background: var(--grey-100);
-    color: var(--grey-700);
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-  .pill:hover {
-    background: var(--red);
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .facts-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
-    padding: 20px;
-    background: var(--grey-50);
-    border-radius: var(--radius);
-  }
-  .fact { text-align: center; }
-  .fact-label { display: block; font-size: 0.8rem; color: var(--grey-500); margin-bottom: 4px; }
-  .fact-value { display: block; font-size: 1.1rem; font-weight: 700; color: var(--grey-900); }
-
-  .content-section { margin-bottom: 40px; }
-  .content-section h2 {
-    font-size: 1.5rem;
-    color: var(--grey-900);
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--grey-200);
-  }
-  .content-section p { margin-bottom: 16px; line-height: 1.7; color: var(--grey-700); }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  .location-card {
-    display: block;
-    padding: 20px;
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .location-card:hover {
-    border-color: var(--red);
-    box-shadow: var(--shadow);
-    text-decoration: none;
-  }
-  .location-card h3 { font-size: 1.1rem; color: var(--grey-900); margin-bottom: 4px; }
-  .card-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
-  .location-card p { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
-
-  .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
-  .related-link {
-    padding: 8px 20px;
-    background: var(--grey-100);
-    border-radius: var(--radius);
-    font-weight: 500;
-    color: var(--grey-700);
-  }
-  .related-link:hover { background: var(--red); color: var(--white); text-decoration: none; }
-
-  .answer-block {
-    font-size: 15px;
-    font-weight: 500;
-    color: #450a0a;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    padding: 20px;
-    background: #FEF2F1;
-    border-left: 4px solid #CC0000;
-    border-radius: 8px;
-  }
-  .answer-block p { margin: 0; color: #450a0a; }
-  .answer-block a { color: #CC0000; font-weight: 600; }
-
-  .county-highlights {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 20px;
-  }
-  .county-highlight {
-    padding: 20px;
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius);
-    transition: border-color 0.2s;
-  }
-  .county-highlight:hover { border-color: var(--red); }
-  .county-highlight h3 { font-size: 1.1rem; margin-bottom: 4px; }
-  .county-highlight h3 a { color: var(--grey-900); text-decoration: none; }
-  .county-highlight h3 a:hover { color: var(--red); }
-  .county-meta { font-size: 0.85rem; color: var(--grey-500); margin-bottom: 8px; }
-  .county-desc { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; margin: 0; }
-
-  @media (max-width: 900px) {
-    .page-grid { grid-template-columns: 1fr; gap: 32px; }
-    .sidebar-col { position: static; }
-    .facts-bar { grid-template-columns: repeat(2, 1fr); }
-    .hero h1 { font-size: 1.8rem; }
-  }
-</style>
+<StatePageTemplate
+  title={title}
+  description={description}
+  canonical={`${brand.domain}/mo/`}
+  heroTitle="Sell Your House for Cash in Missouri"
+  heroSubtitle="We buy houses across Jackson, Clay, and Platte counties on the Missouri side of the Kansas City metro. Get a fair cash offer and close on your timeline."
+  shortAnswer="Yes, we buy houses in any condition across all three Missouri counties in the KC metro. Whether you are behind on taxes, dealing with probate, or just need to sell fast, we make fair cash offers and can close in as few as 7 days."
+  breadcrumbs={[{ label: 'Missouri' }]}
+  countyPills={countyPills}
+  facts={facts}
+  sections={sections}
+  calculatorBreakAfter={2}
+  stateName="Missouri"
+  counties={counties}
+  stateSlug="mo"
+  steps={steps}
+  comparison={comparison}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+/>

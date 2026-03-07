@@ -1,0 +1,357 @@
+---
+interface Props {
+  medianHomeValue?: string;
+  cityName?: string;
+}
+
+const { medianHomeValue = '$180,000', cityName = 'Kansas City' } = Astro.props;
+const defaultValue = parseInt(medianHomeValue.replace(/[$,]/g, '')) || 180000;
+---
+
+<div class="npc" data-default-value={defaultValue}>
+  <h3 class="npc-title">What Could You Walk Away With?</h3>
+  <p class="npc-sub">Based on the {cityName} median home value of <strong>{medianHomeValue}</strong></p>
+
+  <div class="npc-condition">
+    <label class="npc-label">Property Condition</label>
+    <div class="npc-toggle" role="radiogroup" aria-label="Property condition">
+      <button type="button" class="npc-opt" data-condition="0" aria-pressed="false">Major Issues</button>
+      <button type="button" class="npc-opt npc-opt--active" data-condition="1" aria-pressed="true">Needs Work</button>
+      <button type="button" class="npc-opt" data-condition="2" aria-pressed="false">Good Shape</button>
+    </div>
+  </div>
+
+  <div class="npc-results">
+    <div class="npc-col npc-col--mls">
+      <span class="npc-col-tag">List with Agent</span>
+      <span class="npc-col-time">3-6 months</span>
+      <div class="npc-lines">
+        <div class="npc-line"><span>Sale Price</span><span class="npc-v" data-field="mls-price"></span></div>
+        <div class="npc-line npc-line--neg"><span>Repairs</span><span class="npc-v" data-field="mls-repairs"></span></div>
+        <div class="npc-line npc-line--neg"><span>Commission (6%)</span><span class="npc-v" data-field="mls-comm"></span></div>
+        <div class="npc-line npc-line--neg"><span>Closing & Concessions</span><span class="npc-v" data-field="mls-closing"></span></div>
+        <div class="npc-line npc-line--neg"><span>Holding Costs</span><span class="npc-v" data-field="mls-holding"></span></div>
+      </div>
+      <div class="npc-net">
+        <span>You Keep</span>
+        <strong class="npc-v" data-field="mls-net"></strong>
+      </div>
+    </div>
+
+    <div class="npc-col npc-col--cash">
+      <span class="npc-col-tag npc-col-tag--cash">Saving KC Cash Offer</span>
+      <span class="npc-col-time npc-col-time--cash">7-14 days</span>
+      <div class="npc-lines">
+        <div class="npc-line"><span>Cash Offer</span><span class="npc-v" data-field="cash-offer"></span></div>
+        <div class="npc-line npc-line--pos"><span>Repairs</span><span>$0</span></div>
+        <div class="npc-line npc-line--pos"><span>Commission</span><span>$0</span></div>
+        <div class="npc-line npc-line--pos"><span>Closing Costs</span><span>$0</span></div>
+        <div class="npc-line npc-line--pos"><span>Holding Costs</span><span>$0</span></div>
+      </div>
+      <div class="npc-net npc-net--cash">
+        <span>You Keep</span>
+        <strong class="npc-v" data-field="cash-net"></strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="npc-cta">
+    <p>Want your exact number?</p>
+    <a href="/get-offer/" class="npc-btn">Get My Cash Offer</a>
+    <a href="tel:8164292900" class="npc-phone">(816) 429-2900</a>
+  </div>
+</div>
+
+<script>
+  function initNPC() {
+    document.querySelectorAll('.npc').forEach((calc) => {
+      const hv = parseInt((calc as HTMLElement).dataset.defaultValue || '180000');
+      const buttons = calc.querySelectorAll('.npc-opt');
+
+      // Condition tiers: [Major Issues, Needs Work, Good Shape]
+      const tiers = [
+        { repairs: 55000, discount: 0.25, closing: 0.05, holding: 0.025 },
+        { repairs: 35000, discount: 0.20, closing: 0.05, holding: 0.02 },
+        { repairs: 25000, discount: 0.15, closing: 0.04, holding: 0.015 },
+      ];
+
+      function fmt(n: number): string {
+        if (n < 0) return '-$' + Math.abs(n).toLocaleString();
+        return '$' + n.toLocaleString();
+      }
+
+      function setField(field: string, value: string) {
+        const el = calc.querySelector(`[data-field="${field}"]`);
+        if (el) el.textContent = value;
+      }
+
+      function update(ci: number) {
+        const t = tiers[ci];
+
+        // MLS
+        const comm = Math.round(hv * 0.06);
+        const mlsClosing = Math.round(hv * t.closing);
+        const mlsHolding = Math.round(hv * t.holding);
+        const mlsNet = hv - t.repairs - comm - mlsClosing - mlsHolding;
+
+        setField('mls-price', fmt(hv));
+        setField('mls-repairs', fmt(-t.repairs));
+        setField('mls-comm', fmt(-comm));
+        setField('mls-closing', fmt(-mlsClosing));
+        setField('mls-holding', fmt(-mlsHolding));
+        setField('mls-net', fmt(Math.max(mlsNet, 0)));
+
+        // Cash
+        const cashOffer = Math.round(hv * (1 - t.discount));
+        setField('cash-offer', fmt(cashOffer));
+        setField('cash-net', fmt(Math.max(cashOffer, 0)));
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          buttons.forEach((b) => {
+            b.classList.remove('npc-opt--active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('npc-opt--active');
+          btn.setAttribute('aria-pressed', 'true');
+          update(parseInt((btn as HTMLElement).dataset.condition || '1'));
+        });
+      });
+
+      // Init with "Needs Work"
+      update(1);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initNPC);
+  document.addEventListener('astro:page-load', initNPC);
+</script>
+
+<style>
+  .npc {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+
+  .npc-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--grey-900, #111);
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .npc-sub {
+    font-size: 0.88rem;
+    color: var(--grey-500, #666);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .npc-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--grey-600, #555);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .npc-toggle {
+    display: flex;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 20px;
+  }
+
+  .npc-opt {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: #fff;
+    color: var(--grey-600, #555);
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-right: 1px solid #E2E8F0;
+  }
+
+  .npc-opt:last-child {
+    border-right: none;
+  }
+
+  .npc-opt:hover {
+    background: #F1F5F9;
+  }
+
+  .npc-opt--active {
+    background: #CC0000;
+    color: #fff;
+  }
+
+  .npc-opt--active:hover {
+    background: #A50000;
+  }
+
+  .npc-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .npc-col {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .npc-col--cash {
+    border-color: #CC0000;
+    border-width: 2px;
+    background: #FEF2F1;
+  }
+
+  .npc-col-tag {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+    margin-bottom: 2px;
+  }
+
+  .npc-col-tag--cash {
+    color: #CC0000;
+  }
+
+  .npc-col-time {
+    display: block;
+    font-size: 0.68rem;
+    color: #94A3B8;
+    margin-bottom: 10px;
+  }
+
+  .npc-col-time--cash {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  .npc-lines {
+    margin-bottom: 10px;
+  }
+
+  .npc-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    padding: 3px 0;
+    color: var(--grey-700, #444);
+  }
+
+  .npc-line span:last-child {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  .npc-line--neg span:last-child {
+    color: #B91C1C;
+  }
+
+  .npc-line--pos span:last-child {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  .npc-net {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 2px solid #E2E8F0;
+  }
+
+  .npc-net span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--grey-500, #666);
+  }
+
+  .npc-net strong {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--grey-700, #444);
+  }
+
+  .npc-net--cash strong {
+    color: #CC0000;
+  }
+
+  .npc-cta {
+    text-align: center;
+    padding-top: 12px;
+  }
+
+  .npc-cta p {
+    font-size: 0.85rem;
+    color: var(--grey-500, #666);
+    margin-bottom: 10px;
+  }
+
+  .npc-btn {
+    display: inline-block;
+    background: #CC0000;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .npc-btn:hover {
+    background: #A50000;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .npc-phone {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #CC0000;
+    text-decoration: none;
+  }
+
+  @media (max-width: 500px) {
+    .npc {
+      padding: 20px 16px;
+    }
+
+    .npc-results {
+      grid-template-columns: 1fr;
+    }
+
+    .npc-opt {
+      font-size: 0.75rem;
+      padding: 9px 8px;
+    }
+
+    .npc-net strong {
+      font-size: 1.1rem;
+    }
+  }
+</style>

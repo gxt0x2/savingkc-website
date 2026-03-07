@@ -1,0 +1,520 @@
+---
+interface Props {
+  medianHomeValue?: string;
+  stateName?: string;
+}
+
+const { medianHomeValue = '$180,000', stateName = 'your area' } = Astro.props;
+const defaultValue = parseInt(medianHomeValue.replace(/[$,]/g, '')) || 180000;
+---
+
+<section class="snc-section" id="seller-net-calculator">
+  <div class="snc-container">
+    <div class="snc-header">
+      <h2>Seller Net Profit Calculator</h2>
+      <p class="snc-sub">See exactly what you walk away with — listing with an agent vs. selling to Saving KC. Adjust the sliders to match your property.</p>
+    </div>
+
+    <div class="snc-inputs">
+      <div class="snc-field">
+        <label for="sncHomeValue">Home Value (based on {stateName} market)</label>
+        <div class="snc-input-row">
+          <input type="range" id="sncHomeValue" min="50000" max="500000" step="5000" value={defaultValue} class="snc-slider" />
+          <output id="sncHomeValueOut" class="snc-output">{`$${defaultValue.toLocaleString()}`}</output>
+        </div>
+      </div>
+
+      <div class="snc-field">
+        <label for="sncCondition">Property Condition</label>
+        <div class="snc-input-row">
+          <input type="range" id="sncCondition" min="1" max="5" step="1" value="3" class="snc-slider snc-slider--condition" />
+          <output id="sncConditionOut" class="snc-output snc-output--condition">Fair</output>
+        </div>
+        <div class="snc-condition-labels">
+          <span>Poor</span>
+          <span>Below Avg</span>
+          <span>Fair</span>
+          <span>Average</span>
+          <span>Good</span>
+        </div>
+      </div>
+
+      <div class="snc-field">
+        <label for="sncOwed">Amount Owed (Mortgage + Liens + Back Taxes)</label>
+        <div class="snc-input-row">
+          <input type="range" id="sncOwed" min="0" max="400000" step="1000" value="60000" class="snc-slider" />
+          <output id="sncOwedOut" class="snc-output">$60,000</output>
+        </div>
+      </div>
+    </div>
+
+    <div class="snc-results">
+      <!-- Traditional Sale Column -->
+      <div class="snc-card">
+        <div class="snc-card-header">
+          <span class="snc-card-tag">Listing with Agent</span>
+          <span class="snc-card-time">3-6 months to close</span>
+        </div>
+        <div class="snc-breakdown">
+          <div class="snc-row"><span>Home Value</span><span id="snc-t-value" class="snc-val">$180,000</span></div>
+          <div class="snc-divider"></div>
+          <div class="snc-row snc-row--neg"><span>Pre-Sale Repairs</span><span id="snc-t-repairs">-$40,000</span></div>
+          <div class="snc-row snc-row--neg"><span>Agent Commission (6%)</span><span id="snc-t-comm">-$10,800</span></div>
+          <div class="snc-row snc-row--neg"><span>Seller Closing Costs (3%)</span><span id="snc-t-closing">-$5,400</span></div>
+          <div class="snc-row snc-row--neg"><span>Inspection Concessions</span><span id="snc-t-inspect">-$3,600</span></div>
+          <div class="snc-row snc-row--neg"><span>Seller Concessions (2%)</span><span id="snc-t-concessions">-$3,600</span></div>
+          <div class="snc-row snc-row--neg"><span>Staging & Photography</span><span id="snc-t-staging">-$3,500</span></div>
+          <div class="snc-row snc-row--neg"><span>Holding Costs (4 mo est.)</span><span id="snc-t-holding">-$3,600</span></div>
+          <div class="snc-divider"></div>
+          <div class="snc-row snc-row--neg"><span>Amount Owed</span><span id="snc-t-owed">-$60,000</span></div>
+        </div>
+        <div class="snc-total snc-total--trad">
+          <span>Your Net Profit</span>
+          <strong id="snc-t-net">$49,500</strong>
+        </div>
+      </div>
+
+      <!-- Cash Offer Column -->
+      <div class="snc-card snc-card--cash">
+        <div class="snc-card-header">
+          <span class="snc-card-tag snc-card-tag--cash">Saving KC Cash Offer</span>
+          <span class="snc-card-time snc-card-time--cash">Close in 7-14 days</span>
+        </div>
+        <div class="snc-breakdown">
+          <div class="snc-row"><span>Home Value</span><span id="snc-c-value" class="snc-val">$180,000</span></div>
+          <div class="snc-divider"></div>
+          <div class="snc-row snc-row--neg"><span>Our Discount</span><span id="snc-c-discount">-$36,000</span></div>
+          <div class="snc-row snc-row--pos"><span>Agent Commission</span><span>$0</span></div>
+          <div class="snc-row snc-row--pos"><span>Closing Costs</span><span>$0 — we pay</span></div>
+          <div class="snc-row snc-row--pos"><span>Inspection Concessions</span><span>$0</span></div>
+          <div class="snc-row snc-row--pos"><span>Seller Concessions</span><span>$0</span></div>
+          <div class="snc-row snc-row--pos"><span>Staging & Photography</span><span>$0</span></div>
+          <div class="snc-row snc-row--pos"><span>Holding Costs</span><span>$0</span></div>
+          <div class="snc-divider"></div>
+          <div class="snc-row snc-row--neg"><span>Amount Owed</span><span id="snc-c-owed">-$60,000</span></div>
+        </div>
+        <div class="snc-total snc-total--cash">
+          <span>Your Net Profit</span>
+          <strong id="snc-c-net">$84,000</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advantage banner -->
+    <div class="snc-advantage" id="snc-advantage">
+      <span id="snc-adv-text">With Saving KC you keep <strong id="snc-adv-amount">$34,500 more</strong> and close in days, not months.</span>
+    </div>
+
+    <p class="snc-disclaimer">Estimates only. Your actual cash offer is based on a property visit and current market conditions in {stateName}. <a href="/get-offer/">Get your real offer</a> or call <a href="tel:8164292900">(816) 429-2900</a>.</p>
+  </div>
+</section>
+
+<script>
+  function initSellerNetCalc() {
+    const hvInput = document.getElementById('sncHomeValue') as HTMLInputElement;
+    const condInput = document.getElementById('sncCondition') as HTMLInputElement;
+    const owedInput = document.getElementById('sncOwed') as HTMLInputElement;
+
+    if (!hvInput || !condInput || !owedInput) return;
+
+    const CONDITIONS = [
+      { label: 'Poor', repairs: 75000, discount: 0.25, inspection: 0.03 },
+      { label: 'Below Avg', repairs: 55000, discount: 0.22, inspection: 0.025 },
+      { label: 'Fair', repairs: 40000, discount: 0.20, inspection: 0.02 },
+      { label: 'Average', repairs: 30000, discount: 0.18, inspection: 0.015 },
+      { label: 'Good', repairs: 25000, discount: 0.15, inspection: 0.01 },
+    ];
+
+    function fmt(n: number): string {
+      if (n < 0) return '-$' + Math.abs(n).toLocaleString();
+      return '$' + n.toLocaleString();
+    }
+
+    function update() {
+      const hv = parseInt(hvInput.value);
+      const ci = parseInt(condInput.value) - 1; // 0-indexed
+      const owed = parseInt(owedInput.value);
+      const cond = CONDITIONS[ci];
+
+      // Update displays
+      (document.getElementById('sncHomeValueOut') as HTMLElement).textContent = fmt(hv);
+      (document.getElementById('sncConditionOut') as HTMLElement).textContent = cond.label;
+      (document.getElementById('sncOwedOut') as HTMLElement).textContent = fmt(owed);
+
+      // Traditional sale
+      const repairs = cond.repairs;
+      const commission = Math.round(hv * 0.06);
+      const closingCosts = Math.round(hv * 0.03);
+      const inspectConc = Math.round(hv * cond.inspection);
+      const sellerConc = Math.round(hv * 0.02);
+      const staging = 3500;
+      const holdingCosts = Math.round(hv * 0.005 * 4); // 4 months
+
+      const tradNet = hv - repairs - commission - closingCosts - inspectConc - sellerConc - staging - holdingCosts - owed;
+
+      (document.getElementById('snc-t-value') as HTMLElement).textContent = fmt(hv);
+      (document.getElementById('snc-t-repairs') as HTMLElement).textContent = fmt(-repairs);
+      (document.getElementById('snc-t-comm') as HTMLElement).textContent = fmt(-commission);
+      (document.getElementById('snc-t-closing') as HTMLElement).textContent = fmt(-closingCosts);
+      (document.getElementById('snc-t-inspect') as HTMLElement).textContent = fmt(-inspectConc);
+      (document.getElementById('snc-t-concessions') as HTMLElement).textContent = fmt(-sellerConc);
+      (document.getElementById('snc-t-staging') as HTMLElement).textContent = fmt(-staging);
+      (document.getElementById('snc-t-holding') as HTMLElement).textContent = fmt(-holdingCosts);
+      (document.getElementById('snc-t-owed') as HTMLElement).textContent = fmt(-owed);
+      (document.getElementById('snc-t-net') as HTMLElement).textContent = fmt(Math.max(tradNet, 0));
+
+      // Cash offer
+      const discount = Math.round(hv * cond.discount);
+      const cashOffer = hv - discount;
+      const cashNet = cashOffer - owed;
+
+      (document.getElementById('snc-c-value') as HTMLElement).textContent = fmt(hv);
+      (document.getElementById('snc-c-discount') as HTMLElement).textContent = fmt(-discount);
+      (document.getElementById('snc-c-owed') as HTMLElement).textContent = fmt(-owed);
+      (document.getElementById('snc-c-net') as HTMLElement).textContent = fmt(Math.max(cashNet, 0));
+
+      // Advantage banner
+      const diff = Math.max(cashNet, 0) - Math.max(tradNet, 0);
+      const advEl = document.getElementById('snc-advantage') as HTMLElement;
+      const advAmountEl = document.getElementById('snc-adv-amount') as HTMLElement;
+      const advTextEl = document.getElementById('snc-adv-text') as HTMLElement;
+
+      if (diff > 0) {
+        advEl.className = 'snc-advantage snc-advantage--cash';
+        advAmountEl.textContent = fmt(diff) + ' more';
+        advTextEl.innerHTML = `With Saving KC you keep <strong>${fmt(diff)} more</strong> and close in days, not months.`;
+      } else if (diff < 0) {
+        advEl.className = 'snc-advantage snc-advantage--trad';
+        advTextEl.innerHTML = `Traditional listing nets <strong>${fmt(Math.abs(diff))} more</strong> on paper — but takes 3-6 months, requires ${fmt(repairs)} in repairs upfront, and deals fall through 15-20% of the time.`;
+      } else {
+        advEl.className = 'snc-advantage snc-advantage--cash';
+        advTextEl.innerHTML = `<strong>Same net profit</strong> — but with Saving KC you close in days with zero out-of-pocket costs.`;
+      }
+
+      // Color the net totals
+      const tradNetEl = document.getElementById('snc-t-net') as HTMLElement;
+      const cashNetEl = document.getElementById('snc-c-net') as HTMLElement;
+      tradNetEl.style.color = tradNet <= 0 ? '#B91C1C' : '';
+      cashNetEl.style.color = cashNet <= 0 ? '#B91C1C' : '';
+    }
+
+    hvInput.addEventListener('input', update);
+    condInput.addEventListener('input', update);
+    owedInput.addEventListener('input', update);
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initSellerNetCalc);
+  document.addEventListener('astro:page-load', initSellerNetCalc);
+</script>
+
+<style>
+  .snc-section {
+    margin: 48px 0;
+    scroll-margin-top: 96px;
+  }
+
+  .snc-container {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .snc-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .snc-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--grey-900, #111);
+    margin-bottom: 8px;
+    border: none;
+    padding: 0;
+  }
+
+  .snc-sub {
+    font-size: 0.95rem;
+    color: var(--grey-500, #666);
+    max-width: 55ch;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Inputs */
+  .snc-inputs {
+    margin-bottom: 28px;
+  }
+
+  .snc-field {
+    margin-bottom: 20px;
+  }
+
+  .snc-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grey-700, #444);
+    margin-bottom: 8px;
+  }
+
+  .snc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .snc-slider {
+    flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #CBD5E1;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .snc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #CC0000;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .snc-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #CC0000;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .snc-output {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--grey-900, #111);
+    min-width: 100px;
+    text-align: right;
+  }
+
+  .snc-output--condition {
+    min-width: 90px;
+    color: #CC0000;
+    font-size: 0.95rem;
+  }
+
+  .snc-condition-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    padding: 0 2px;
+  }
+
+  .snc-condition-labels span {
+    font-size: 0.7rem;
+    color: var(--grey-400, #999);
+    text-align: center;
+    width: 0;
+    white-space: nowrap;
+  }
+
+  .snc-condition-labels span:first-child {
+    text-align: left;
+  }
+
+  .snc-condition-labels span:last-child {
+    text-align: right;
+  }
+
+  /* Results grid */
+  .snc-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .snc-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .snc-card--cash {
+    border-color: #CC0000;
+    border-width: 2px;
+    background: #FEF2F1;
+  }
+
+  .snc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .snc-card-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+  }
+
+  .snc-card-tag--cash {
+    color: #CC0000;
+  }
+
+  .snc-card-time {
+    font-size: 0.7rem;
+    color: #94A3B8;
+  }
+
+  .snc-card-time--cash {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  /* Breakdown rows */
+  .snc-breakdown {
+    margin-bottom: 12px;
+  }
+
+  .snc-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 5px 0;
+    color: var(--grey-700, #444);
+  }
+
+  .snc-row span:first-child {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .snc-row span:last-child {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .snc-row--neg span:last-child {
+    color: #B91C1C;
+  }
+
+  .snc-row--pos span:last-child {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  .snc-divider {
+    height: 1px;
+    background: #F1F5F9;
+    margin: 4px 0;
+  }
+
+  .snc-val {
+    font-weight: 600;
+    color: var(--grey-900, #111) !important;
+  }
+
+  /* Totals */
+  .snc-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0 4px;
+    border-top: 2px solid #E2E8F0;
+  }
+
+  .snc-total span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grey-500, #666);
+  }
+
+  .snc-total strong {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .snc-total--trad strong {
+    color: var(--grey-700, #444);
+  }
+
+  .snc-total--cash strong {
+    color: #CC0000;
+  }
+
+  /* Advantage banner */
+  .snc-advantage {
+    margin-top: 16px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .snc-advantage--cash {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #166534;
+  }
+
+  .snc-advantage--trad {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    color: #92400E;
+  }
+
+  .snc-advantage strong {
+    font-weight: 800;
+  }
+
+  .snc-disclaimer {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  .snc-disclaimer a {
+    color: #CC0000;
+  }
+
+  @media (max-width: 700px) {
+    .snc-container {
+      padding: 20px 16px;
+    }
+
+    .snc-results {
+      grid-template-columns: 1fr;
+    }
+
+    .snc-total strong {
+      font-size: 1.2rem;
+    }
+
+    .snc-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .snc-row {
+      font-size: 0.78rem;
+    }
+  }
+</style>
