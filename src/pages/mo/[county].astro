@@ -564,6 +564,29 @@ const jumpPills = [
     )}
   </section>
 
+  <!-- STATE LINE AUTHORITY BRIDGE -->
+  <section class="content-section" id="cross-state">
+    <h2>Missouri vs. Kansas: What KC Metro Sellers Need to Know</h2>
+    <div class="section-body">
+      <p>
+        The Kansas City metro spans two states with very different property laws. Missouri uses a <strong>tax lien sale</strong> under RSMo Chapter 140 with a 1-year redemption window, while Kansas uses <strong>judicial tax foreclosure</strong> under K.S.A. 79-2801 with no post-sale redemption. Probate also differs — Missouri (RSMo Chapter 473) typically requires supervised proceedings through the circuit court, while Kansas courts (K.S.A. Chapter 59) commonly grant unsupervised administration.
+      </p>
+      <p>
+        If you own property on the Kansas side, see our county-specific guides:
+      </p>
+    </div>
+    <div class="cross-state-links">
+      <a href="/ks/wyandotte/" class="cross-state-link">
+        <strong>Wyandotte County</strong>
+        <span>29th Judicial District · K.S.A. 79-2801 sheriff's sale · No post-sale redemption</span>
+      </a>
+      <a href="/ks/johnson/" class="cross-state-link">
+        <strong>Johnson County</strong>
+        <span>10th Judicial District · K.S.A. 79-2801 sheriff's sale · No post-sale redemption</span>
+      </a>
+    </div>
+  </section>
+
   <!-- CITIES SERVED -->
   <section class="content-section">
     <h2>Serving Every Neighborhood in {county.name}</h2>
@@ -585,6 +608,20 @@ const jumpPills = [
 </LocationHubTemplate>
 
 <style>
+  /* === Cross-State Links === */
+  .cross-state-links { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+  .cross-state-link {
+    display: block;
+    padding: 16px 20px;
+    border: 1px solid var(--grey-200);
+    border-left: 4px solid #6366F1;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cross-state-link:hover { border-color: #6366F1; box-shadow: var(--shadow); text-decoration: none; }
+  .cross-state-link strong { display: block; color: var(--grey-900); margin-bottom: 4px; }
+  .cross-state-link span { font-size: 0.85rem; color: var(--grey-500); }
+
   /* === Countdown Banner === */
   .countdown-banner {
     display: flex;

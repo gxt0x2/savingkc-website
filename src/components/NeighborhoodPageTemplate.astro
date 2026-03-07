@@ -165,7 +165,8 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
       <div class="section-body">
         <p>{neighborhood.localHook}</p>
         <p>
-          {neighborhood.name} is part of {city.name} in {county.name}, {county.stateName}.
+          {neighborhood.name} is part of {city.name} in{' '}
+          <a href={`/${county.state}/${county.slug}/`}>{county.name} ({county.probateCourtName})</a>, {county.stateName}.
           The median home value in {neighborhood.name} is {neighborhood.medianHomeValue},
           compared to {city.medianHomeValue} across {city.name} as a whole
           and {county.medianHomeValue} for {county.name}. These numbers matter
@@ -275,7 +276,7 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
     <section class="content-section">
       <h2>What Should {neighborhood.name} Homeowners Know About {county.name} Taxes?</h2>
       <div class="section-body">
-        <p>{county.taxLienInfo}</p>
+        <p>{county.taxLienInfo} For a complete breakdown of your options, see our <a href="/tax-delinquent/">{county.state === 'mo' ? 'RSMo Chapter 140' : 'K.S.A. 79-2801'} tax-delinquent property guide</a>.</p>
         <p>
           If you have back taxes, liens, or other title issues on your {neighborhood.name}
           property, that doesn't stop us from buying. We work with the title company
@@ -298,7 +299,7 @@ const commissionEstimate = medianNum > 0 ? `$${Math.round(medianNum * 0.055).toL
     <section class="content-section">
       <h2>How Do You Handle Inherited or Probate Properties in {neighborhood.name}?</h2>
       <div class="section-body">
-        <p>{county.probateInfo}</p>
+        <p>{county.probateInfo} Learn more in our <a href="/probate/">{county.state === 'mo' ? 'RSMo Chapter 473' : 'K.S.A. Chapter 59'} probate guide</a>.</p>
         <p>
           We buy inherited and probate properties in {neighborhood.name} at every
           stage of the process. Whether you've already been appointed personal

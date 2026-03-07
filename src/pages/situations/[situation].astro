@@ -77,6 +77,20 @@ const otherSituations = situations.filter((s) => s.slug !== situation.slug).slic
       )}
 
       <section class="content-section">
+        <h2>In-Depth Legal Guides</h2>
+        <div class="guide-links">
+          <a href="/probate/" class="guide-link">
+            <strong>Probate Guide</strong>
+            <span>RSMo Chapter 473 &amp; K.S.A. Chapter 59 — step-by-step probate process for inherited KC metro properties</span>
+          </a>
+          <a href="/tax-delinquent/" class="guide-link">
+            <strong>Tax-Delinquent Property Guide</strong>
+            <span>RSMo Chapter 140 &amp; K.S.A. 79-2801 — redemption rights, payment plans, and sale timelines</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="content-section">
         <h2>Other Situations We Handle</h2>
         <div class="other-grid">
           {otherSituations.map((s) => (
@@ -142,6 +156,19 @@ const otherSituations = situations.filter((s) => s.slug !== situation.slug).slic
     color: var(--grey-600);
     line-height: 1.6;
   }
+
+  .guide-links { display: flex; flex-direction: column; gap: 12px; }
+  .guide-link {
+    display: block;
+    padding: 16px 20px;
+    border: 1px solid var(--grey-200);
+    border-left: 4px solid var(--red);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .guide-link:hover { border-color: var(--red); box-shadow: var(--shadow); text-decoration: none; }
+  .guide-link strong { display: block; color: var(--grey-900); margin-bottom: 4px; }
+  .guide-link span { font-size: 0.9rem; color: var(--grey-600); line-height: 1.5; }
 
   .other-grid {
     display: grid;
