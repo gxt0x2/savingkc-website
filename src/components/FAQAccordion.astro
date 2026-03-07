@@ -12,25 +12,20 @@ const { items, title } = Astro.props;
 <div class="faq-accordion">
   {title && <h2>{title}</h2>}
   <div class="faq-list">
-    {items.map((item, i) => (
-      <div class="faq-item" data-faq-item>
-        <button
-          type="button"
-          class="faq-question"
-          aria-expanded={i === 0 ? 'true' : 'false'}
-          data-faq-toggle
-        >
+    {items.map((item) => (
+      <details class="faq-item" open>
+        <summary class="faq-question">
           <span>{item.question}</span>
           <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M19 9l-7 7-7-7" />
           </svg>
-        </button>
-        <div class="faq-answer" data-faq-answer>
+        </summary>
+        <div class="faq-answer">
           <div class="faq-answer-inner">
             {item.answer}
           </div>
         </div>
-      </div>
+      </details>
     ))}
   </div>
 </div>
@@ -47,57 +42,6 @@ const { items, title } = Astro.props;
     },
   })),
 })} />
-
-<script>
-  function initFAQ() {
-    const items = document.querySelectorAll('[data-faq-item]');
-
-    items.forEach((item) => {
-      const toggle = item.querySelector('[data-faq-toggle]');
-      const answer = item.querySelector('[data-faq-answer]') as HTMLElement;
-
-      if (!toggle || !answer) return;
-
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      if (!isOpen) {
-        answer.style.maxHeight = '0';
-        answer.style.overflow = 'hidden';
-      } else {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        answer.style.overflow = 'hidden';
-        item.classList.add('is-open');
-      }
-
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-
-        // Close all others
-        items.forEach((other) => {
-          const otherToggle = other.querySelector('[data-faq-toggle]');
-          const otherAnswer = other.querySelector('[data-faq-answer]') as HTMLElement;
-          if (other !== item && otherToggle && otherAnswer) {
-            otherToggle.setAttribute('aria-expanded', 'false');
-            otherAnswer.style.maxHeight = '0';
-            other.classList.remove('is-open');
-          }
-        });
-
-        if (expanded) {
-          toggle.setAttribute('aria-expanded', 'false');
-          answer.style.maxHeight = '0';
-          item.classList.remove('is-open');
-        } else {
-          toggle.setAttribute('aria-expanded', 'true');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-          item.classList.add('is-open');
-        }
-      });
-    });
-  }
-
-  initFAQ();
-  document.addEventListener('astro:after-swap', initFAQ);
-</script>
 
 <style>
   .faq-accordion {
@@ -126,7 +70,7 @@ const { items, title } = Astro.props;
     transition: all 0.2s;
   }
 
-  .faq-item.is-open {
+  .faq-item[open] {
     border-color: rgba(220, 38, 38, 0.2);
     background: rgba(250, 246, 237, 0.3);
     box-shadow: var(--shadow-md);
@@ -140,13 +84,15 @@ const { items, title } = Astro.props;
     padding: 16px 20px;
     text-align: left;
     font-weight: 500;
-    background: none;
-    border: none;
     cursor: pointer;
+    list-style: none;
     font-family: inherit;
     font-size: 1rem;
     transition: background 0.2s;
   }
+
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::marker { display: none; content: ''; }
 
   .faq-question:hover {
     background: rgba(249, 250, 251, 0.5);
@@ -163,7 +109,7 @@ const { items, title } = Astro.props;
     transition: transform 0.2s, color 0.2s;
   }
 
-  .faq-item.is-open .faq-chevron {
+  .faq-item[open] .faq-chevron {
     transform: rotate(180deg);
     color: var(--red);
   }
