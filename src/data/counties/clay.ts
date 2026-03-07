@@ -90,7 +90,7 @@ export const clay: CountyData = {
           landmarks: ['Liberty Square', 'Jesse James Bank Museum', 'William Jewell College'],
           medianHomeValue: '$210,000',
           distressFactors: [
-            'Victorian-era homes with original foundations and systems',
+            'Victorian-era homes with original limestone and hand-laid stone foundations and systems',
             'Historic district regulations limit exterior modifications',
             'Older sewer infrastructure prone to backups during heavy rain'
           ],

@@ -122,7 +122,7 @@ export const johnson: CountyData = {
           distressFactors: [
             'Early 1990s subdivisions have homes needing major updates',
             'High HOA fees in some communities',
-            'Foundation issues from the heavy clay soil common in south JoCo'
+            'Foundation issues from heavy clay soil on poured-concrete foundations common in south JoCo post-1970s builds'
           ],
           localHook:
             'Blue Valley schools are among the best in Kansas, and the mature subdivisions around Ironwoods Park are where families put down roots.'
@@ -205,7 +205,7 @@ export const johnson: CountyData = {
           landmarks: ['Johnson County Courthouse', 'Olathe Public Library', 'Cherry Street corridor'],
           medianHomeValue: '$215,000',
           distressFactors: [
-            'Turn-of-century homes with aging foundations and systems',
+            'Turn-of-century homes with aging limestone and rubble-stone foundations and original systems',
             'Narrow lots and limited garage space',
             'Some blocks have rental conversions reducing owner-occupancy'
           ],
@@ -407,7 +407,7 @@ export const johnson: CountyData = {
           distressFactors: [
             'Builder-grade construction from 2005-2015 showing wear',
             'K-10 expansion has increased traffic and noise for adjacent homes',
-            'Heavy clay soil causes persistent foundation movement in the area'
+            'Heavy clay soil causes persistent foundation movement on slab-on-grade and poured-concrete foundations in the area'
           ],
           localHook:
             'Black Hoof Park\'s lake, trails, and fishing spots anchor the neighborhood. Falcon Ridge is where south Lenexa families gather outdoors.'
@@ -532,7 +532,7 @@ export const johnson: CountyData = {
           distressFactors: [
             'Post-war homes with aging sewer laterals and galvanized water lines',
             'Older electrical panels that need upgrading for modern loads',
-            'Foundation settling from clay soil common on these blocks'
+            'Foundation settling from clay soil common on poured-concrete basements in these 1960s-70s blocks'
           ],
           localHook:
             'Tree-lined streets near Nall with the Streamway Park Trail out your back door. East Mission is quiet JoCo living at an accessible price.'

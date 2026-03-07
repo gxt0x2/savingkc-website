@@ -115,7 +115,7 @@ export const jackson: CountyData = {
           medianHomeValue: '$225,000',
           distressFactors: [
             'Pre-1940s housing stock with original plumbing and wiring',
-            'Foundation settling common in older stone and brick homes',
+            'Foundation settling common in older stone and brick homes with original limestone footings',
             'Mixed commercial-residential zoning can affect property values'
           ],
           localHook:
@@ -130,7 +130,7 @@ export const jackson: CountyData = {
           medianHomeValue: '$265,000',
           distressFactors: [
             '1920s-1940s bungalows often need updated electrical panels',
-            'Clay soil causes recurring foundation movement',
+            'Clay soil causes recurring foundation movement on 1920s-era limestone and rubble footings',
             'Aging sewer laterals require replacement on many blocks'
           ],
           localHook:
@@ -291,7 +291,7 @@ export const jackson: CountyData = {
           distressFactors: [
             'Victorian-era homes need extensive renovation',
             'Original knob-and-tube wiring still present in many homes',
-            'Foundation issues from aging limestone footings'
+            'Foundation issues from aging limestone footings and hand-laid stone common in pre-1940s Midtown homes'
           ],
           localHook:
             'Walk the same streets Harry Truman did. The Presidential Library and his family home are right in the neighborhood.'
@@ -391,7 +391,7 @@ export const jackson: CountyData = {
           distressFactors: [
             'Flood zone concerns near Little Blue River tributaries',
             'Septic systems on some older properties outside city sewer',
-            'Wooded lots create moisture and pest issues for foundations'
+            'Wooded lots create moisture and pest issues for poured-concrete foundations common in post-1960s Blue Springs builds'
           ],
           localHook:
             'Near Lake Tapawingo and Fleming Park. Fishing, hiking, and lake breezes without leaving the metro.'
@@ -531,7 +531,7 @@ export const jackson: CountyData = {
           distressFactors: [
             '1950s-1960s homes with original roofing and siding',
             'Declining retail corridors nearby affect neighborhood perception',
-            'Slab foundations with cracking from clay soil expansion'
+            'Slab-on-grade foundations with cracking from clay soil expansion, typical of 1970s-80s Raytown construction'
           ],
           localHook:
             'Minutes from Kauffman Stadium and Arrowhead. Catch a Royals or Chiefs game and be home before the traffic clears.'

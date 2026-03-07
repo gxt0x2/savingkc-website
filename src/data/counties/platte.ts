@@ -90,7 +90,7 @@ export const platte: CountyData = {
           landmarks: ['Platte County Courthouse', 'Platte City Square shops', 'Settler\'s Cemetery'],
           medianHomeValue: '$185,000',
           distressFactors: [
-            'Pre-1920s homes with original foundations and systems',
+            'Pre-1920s homes with original limestone and rubble-stone foundations and systems',
             'Historic structures may need lead paint and asbestos abatement',
             'Small lots with limited off-street parking'
           ],

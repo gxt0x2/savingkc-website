@@ -90,7 +90,7 @@ export const wyandotte: CountyData = {
           landmarks: ['Strawberry Hill Museum', 'St. John the Baptist Catholic Church', 'KC skyline overlook'],
           medianHomeValue: '$95,000',
           distressFactors: [
-            'Steep terrain creates foundation and drainage challenges',
+            'Steep terrain creates foundation and drainage challenges on pre-1930s limestone and rubble-stone footings',
             'Many homes are pre-1930s with original systems throughout',
             'Population loss has left some blocks with high vacancy'
           ],
