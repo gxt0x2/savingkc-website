@@ -127,31 +127,31 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://savingkc.com/mo/jackson/blue-springs/lees-summit/</loc>
+    <loc>https://savingkc.com/mo/jackson/lees-summit/</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://savingkc.com/mo/jackson/lees-summit/historic-downtown-lees-summit/</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://savingkc.com/mo/jackson/blue-springs/historic-downtown-lees-summit/</loc>
+    <loc>https://savingkc.com/mo/jackson/lees-summit/lakewood/</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://savingkc.com/mo/jackson/blue-springs/lakewood/</loc>
+    <loc>https://savingkc.com/mo/jackson/lees-summit/chapel-ridge-greenwood/</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://savingkc.com/mo/jackson/blue-springs/chapel-ridge-greenwood/</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://savingkc.com/mo/jackson/blue-springs/longview/</loc>
+    <loc>https://savingkc.com/mo/jackson/lees-summit/longview/</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

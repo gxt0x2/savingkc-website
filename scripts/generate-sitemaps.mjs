@@ -23,11 +23,12 @@ function parseCounty(filename) {
   // Extract city blocks by splitting on the city-level pattern
   const cities = [];
   // Find all city entries: they have slug, state, county, countySlug in sequence
-  const cityStartRegex = /\{\s*\n\s*name:\s*['"]([^'"]+)['"],\s*\n\s*slug:\s*'([^']+)',\s*\n\s*state:\s*'(?:mo|ks)',\s*\n\s*county:/g;
+  // Match city entries — name can use single quotes (with escapes) or double quotes
+  const cityStartRegex = /\{\s*\n\s*name:\s*(?:"([^"]+)"|'((?:[^'\\]|\\.)+)'),\s*\n\s*slug:\s*'([^']+)',\s*\n\s*state:\s*'(?:mo|ks)',\s*\n\s*county:/g;
   const cityStarts = [];
   let cm;
   while ((cm = cityStartRegex.exec(content)) !== null) {
-    cityStarts.push({ name: cm[1], slug: cm[2], index: cm.index });
+    cityStarts.push({ name: cm[1] || cm[2], slug: cm[3], index: cm.index });
   }
 
   for (let i = 0; i < cityStarts.length; i++) {
