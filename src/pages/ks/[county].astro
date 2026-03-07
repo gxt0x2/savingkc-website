@@ -1,6 +1,7 @@
 ---
 import LocationHubTemplate from '@/components/LocationHubTemplate.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
+import SellerNetCalculator from '@/components/SellerNetCalculator.astro';
 import { getCountiesByState, getCountyBySlug } from '@/data/counties';
 import { cityUrl, countyUrl } from '@/lib/urls';
 import { brand } from '@/data/brand';
@@ -494,6 +495,9 @@ const jumpPills = [
     </ul>
     <a href="/get-offer/" class="inline-cta">Get My Cash Offer →</a>
   </section>
+
+  <!-- SELLER NET CALCULATOR -->
+  <SellerNetCalculator medianHomeValue={county.medianHomeValue} stateName={`${county.name}, Kansas`} />
 
   <nav class="jump-bar">
     <span class="jump-bar__title">What would you like help on?</span>

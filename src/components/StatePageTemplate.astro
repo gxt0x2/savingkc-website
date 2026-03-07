@@ -5,6 +5,7 @@ import CalloutBox from '@/components/CalloutBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import ProcessSteps from '@/components/ProcessSteps.astro';
+import SellerNetCalculator from '@/components/SellerNetCalculator.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import { countyUrl } from '@/lib/urls';
 import type { CountyData } from '@/types/geo';
@@ -53,6 +54,9 @@ const {
 
 const beforeCalc = sections.slice(0, calculatorBreakAfter);
 const afterCalc = sections.slice(calculatorBreakAfter);
+
+// Use the first county's median home value for the state-level calculator
+const stateMedian = counties[0]?.medianHomeValue || '$185,000';
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical}>
@@ -96,6 +100,8 @@ const afterCalc = sections.slice(calculatorBreakAfter);
         </section>
       ))}
 
+      <!-- SELLER NET CALCULATOR -->
+      <SellerNetCalculator medianHomeValue={stateMedian} stateName={stateName} />
 
       {afterCalc.map((section) => (
         <section class="content-section">
