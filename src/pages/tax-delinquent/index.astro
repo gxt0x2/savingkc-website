@@ -8,6 +8,7 @@ import LeadForm from '@/components/LeadForm.astro';
 import { taxDelinquentData } from '@/data/problem-hubs/tax-delinquent';
 import { allCounties } from '@/data/counties';
 import { situations } from '@/data/situations';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 import { countyUrl, situationUrl } from '@/lib/urls';
 
@@ -48,6 +49,12 @@ const situationLabels = situations.map((s) => ({ slug: s.slug, title: s.title })
       {data.faqs && data.faqs.length > 0 && (
         <FAQ items={data.faqs} />
       )}
+
+      <section class="content-section">
+        <h2>Watch: Family Saved from Reverse Mortgage Foreclosure</h2>
+        <p>Mr. Jennings faced foreclosure due to back taxes and an unpaid reverse mortgage. See how we helped him walk away debt-free with cash in hand.</p>
+        <YouTubeEmbed videoId="ImGkkJ1lz6g" title="Kansas City Family Saved from Reverse Mortgage Foreclosure" />
+      </section>
 
       <section class="content-section">
         <h2>Counties We Serve</h2>

@@ -1,6 +1,7 @@
 ---
 import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
 import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 
 const reviews = [
@@ -41,6 +42,15 @@ const reviews = [
       </div>
     ))}
   </div>
+
+  <section class="video-testimonials">
+    <h2>Video Testimonials</h2>
+    <div class="video-grid">
+      <YouTubeEmbed videoId="bZyZYbI0sg4" title="Mr. Mills Testimonial — Behind on Taxes, Couldn't Afford Repairs" />
+      <YouTubeEmbed videoId="Hh4DhLm3DAQ" title="Mr. Jennings Testimonial — Reverse Mortgage in Shawnee, KS" />
+      <YouTubeEmbed videoId="QL5k3mhwieY" title="Kaitlynn Ellis, Accurate Title Company — Partner Testimonial" />
+    </div>
+  </section>
 
   <CalibratedQuestionCTA />
 </BrandPageTemplate>
@@ -95,6 +105,24 @@ const reviews = [
   .review-date {
     color: var(--grey-500);
     font-size: 0.875rem;
+  }
+
+  .video-testimonials {
+    margin-top: 40px;
+  }
+
+  .video-testimonials h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
   }
 
   @media (min-width: 768px) {

@@ -3,6 +3,7 @@ import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
 import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
 import FAQ from '@/components/FAQ.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 
 const faqs = [
@@ -152,6 +153,7 @@ const faqSchema = {
       </p>
     </div>
     <CalloutBox type="fact" text={`You can reach ${brand.ownerName} directly at ${brand.phoneFormatted}. When you call, you're talking to our team in Kansas City, not a call center in another state.`} />
+    <YouTubeEmbed videoId="GJ6mfaciuUc" title="Pros & Cons of Selling Your Home to a Cash Buyer" />
   </section>
 
   <!-- What happens to the houses -->

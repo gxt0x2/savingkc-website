@@ -6,8 +6,24 @@ import FAQ from '@/components/FAQ.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import ProcessSteps from '@/components/ProcessSteps.astro';
 import LeadForm from '@/components/LeadForm.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { situations, getSituationBySlug } from '@/data/situations';
 import { brand } from '@/data/brand';
+
+const situationVideos: Record<string, { id: string; title: string }> = {
+  'pre-foreclosure': { id: 'ImGkkJ1lz6g', title: 'Kansas City Family Saved from Reverse Mortgage Foreclosure' },
+  'behind-on-payments': { id: 'W7qa3kRcEzc', title: '(6 Min) Lifeline: The 6 Fastest Ways to Stop Foreclosure!' },
+  'inherited-property': { id: 'NYpK829fg7U', title: 'Kansas City Family Sells Inherited Home As-Is for Cash in Just 13 Days!' },
+  'divorce': { id: 'EyW0pWAJxZU', title: 'Is It the Right Time to Sell? 5 Signs You Shouldn\'t Ignore' },
+  'foundation-issues': { id: 'Bqv7pNW5CKE', title: 'How The Inspection Process Works With A Cash Buyer' },
+  'fire-damage': { id: 'Bqv7pNW5CKE', title: 'How The Inspection Process Works With A Cash Buyer' },
+  'water-damage': { id: 'Bqv7pNW5CKE', title: 'How The Inspection Process Works With A Cash Buyer' },
+  'mold': { id: 'Bqv7pNW5CKE', title: 'How The Inspection Process Works With A Cash Buyer' },
+  'hoarder-house': { id: 'Q3R1m5R4D4w', title: 'Cash Offer Process Explained (7 Minute Guide)' },
+  'vacant-property': { id: 'EyW0pWAJxZU', title: 'Is It the Right Time to Sell? 5 Signs You Shouldn\'t Ignore' },
+  'bad-tenants': { id: 'GJ6mfaciuUc', title: 'Pros & Cons of Selling Your Home to a Cash Buyer' },
+  'code-violations': { id: 'GJ6mfaciuUc', title: 'Pros & Cons of Selling Your Home to a Cash Buyer' },
+};
 
 export function getStaticPaths() {
   return situations.map((s) => ({
@@ -19,6 +35,7 @@ export function getStaticPaths() {
 const { situation } = Astro.props;
 
 const otherSituations = situations.filter((s) => s.slug !== situation.slug).slice(0, 6);
+const video = situationVideos[situation.slug];
 ---
 
 <BaseLayout title={situation.metaTitle} description={situation.metaDescription} canonical={`${brand.domain}/situations/${situation.slug}/`}>
@@ -74,6 +91,13 @@ const otherSituations = situations.filter((s) => s.slug !== situation.slug).slic
 
       {situation.faqs && situation.faqs.length > 0 && (
         <FAQ items={situation.faqs} />
+      )}
+
+      {video && (
+        <section class="content-section">
+          <h2>Watch: Related Video</h2>
+          <YouTubeEmbed videoId={video.id} title={video.title} />
+        </section>
       )}
 
       <section class="content-section">

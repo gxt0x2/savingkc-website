@@ -5,6 +5,7 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import CalloutBox from '@/components/CalloutBox.astro';
 import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
 import FAQ from '@/components/FAQ.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 
 const steps = [
@@ -129,6 +130,14 @@ const faqSchema = {
   </p>
 
   <StepTimeline steps={steps} />
+
+  <section class="content-section">
+    <h2>Watch: The Cash Buyer Closing Process</h2>
+    <div class="section-body">
+      <p>See exactly what happens from the moment you sign the contract to getting your funds. Ernest walks through every step of the closing process.</p>
+    </div>
+    <YouTubeEmbed videoId="nx04z2feHX8" title="Cash Buyer Closing Process: What Every Seller MUST Know!" />
+  </section>
 
   <!-- What Happens Between Offer and Closing -->
   <section class="content-section">

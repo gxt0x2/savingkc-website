@@ -8,6 +8,7 @@ import LeadForm from '@/components/LeadForm.astro';
 import { probateData } from '@/data/problem-hubs/probate';
 import { allCounties } from '@/data/counties';
 import { situations } from '@/data/situations';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 import { countyUrl, situationUrl } from '@/lib/urls';
 
@@ -48,6 +49,12 @@ const situationLabels = situations.map((s) => ({ slug: s.slug, title: s.title })
       {data.faqs && data.faqs.length > 0 && (
         <FAQ items={data.faqs} />
       )}
+
+      <section class="content-section">
+        <h2>Watch: Inherited Home Sold in 13 Days</h2>
+        <p>See how the McGrath family sold their inherited Kansas City home as-is for cash — no agent commissions, no repairs, closed in under two weeks.</p>
+        <YouTubeEmbed videoId="NYpK829fg7U" title="Kansas City Family Sells Inherited Home As-Is for Cash in Just 13 Days!" />
+      </section>
 
       <section class="content-section">
         <h2>Counties We Serve</h2>

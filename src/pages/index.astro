@@ -6,23 +6,24 @@ import ComparisonTable from '../components/ComparisonTable.astro';
 import CashOfferCard from '../components/CashOfferCard.astro';
 import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 const faqItems = [
   {
-    question: "How fast can you close?",
-    answer: "We can close in as few as 14 days. You pick the closing date that works best for you — whether that's two weeks or two months."
+    question: "How fast can Saving KC Homebuyers close on my house in 2026?",
+    answer: `<strong>Saving KC Homebuyers</strong> (816-429-2900) can close on your Kansas City home in <strong>as few as 14 days</strong>. You pick the date that works for you — two weeks or two months. We handle the title work, paperwork, and closing costs so you can move on fast. We buy in all five metro counties including <a href="/mo/jackson/">Jackson County</a>, <a href="/mo/clay/">Clay County</a>, and <a href="/ks/johnson/">Johnson County</a>.`
   },
   {
-    question: "Do I need to make repairs?",
-    answer: "Absolutely not. We buy homes in any condition — as-is. You don't need to clean, paint, fix, or even mow the lawn."
+    question: "Do I need to make repairs before selling to a cash buyer?",
+    answer: `No repairs needed — ever. <strong>Saving KC Homebuyers</strong> (816-429-2900) buys homes <strong>as-is</strong> in any condition. You do not need to clean, paint, fix the roof, or mow the lawn. We buy houses with <a href="/situations/foundation-issues/">foundation issues</a>, <a href="/situations/fire-damage/">fire damage</a>, <a href="/situations/mold/">mold</a>, and more. Just call us and we handle the rest.`
   },
   {
-    question: "Are there any fees or commissions?",
-    answer: "Zero. No agent commissions, no closing costs, no hidden fees. The cash offer you accept is what you walk away with."
+    question: "What fees or commissions does Saving KC charge?",
+    answer: `<strong>Zero fees. Zero commissions.</strong> When you sell to <strong>Saving KC Homebuyers</strong> (816-429-2900), the cash offer you accept is the amount you walk away with. We pay <strong>all closing costs</strong>, title fees, and recording fees. There are no hidden charges and no surprises at the closing table.`
   },
   {
-    question: "How do you determine your offer?",
-    answer: "We evaluate comparable sales, property condition, and local market data to make a fair cash offer. There's no obligation to accept."
+    question: "Can I sell my house for cash if I'm facing foreclosure or behind on payments?",
+    answer: `Yes. <strong>Saving KC Homebuyers</strong> (816-429-2900) works with homeowners facing <a href="/situations/pre-foreclosure/">pre-foreclosure</a> and those <a href="/situations/behind-on-payments/">behind on payments</a> every week. A fast cash sale can <strong>stop the foreclosure process</strong>, protect your credit, and save your remaining equity. We also buy <a href="/situations/inherited-property/">inherited properties</a> stuck in probate. Call today for a free, no-pressure offer.`
   },
 ];
 
@@ -129,6 +130,14 @@ const situations = [
   <section class="section">
     <div class="container">
       <CashOfferCard medianHomeValue="$185,000" cityName="Kansas City" />
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section" style="text-align:center">
+    <div class="container" style="max-width:720px">
+      <h2 class="section-title">See How It Works</h2>
+      <YouTubeEmbed videoId="Q3R1m5R4D4w" title="Cash Offer Process Explained (7 Minute Guide)" />
     </div>
   </section>
 

@@ -2,64 +2,65 @@
 import BrandPageTemplate from '@/components/BrandPageTemplate.astro';
 import CalibratedQuestionCTA from '@/components/CalibratedQuestionCTA.astro';
 import FAQ from '@/components/FAQ.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 
 const faqs = [
   {
-    question: 'How fast can you close on my house?',
-    answer: "We can close in as few as 7 days from the time you accept our offer. Most sellers in the Kansas City area choose to close within 14-30 days, but we can work with any timeline up to 60 days. Because we pay cash, there's no bank approval process, no appraisal wait, and no financing contingencies that could cause delays. The title company needs about 3-5 business days for the title search and document preparation, and we can close as soon as that's complete. You pick the exact date.",
+    question: 'How fast can Saving KC Homebuyers close on my house in 2026?',
+    answer: `<p><strong>Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) can close on your Kansas City house in as few as 7 days. We pay cash, so there is no bank approval, no appraisal wait, and no financing that could fall through. Most sellers pick a closing date between 14 and 30 days.</strong></p><p>Here is what happens after you accept. The title company runs a title search, which takes 3 to 5 business days. Once the title is clear, we close at a local KC title company. You pick the exact date. Need 60 days instead? That works too. Call us at ${brand.phoneFormatted} and we will build a timeline around your schedule.</p>`,
   },
   {
-    question: 'Do I need to make any repairs before selling?',
-    answer: "No. We buy houses in any condition across the Kansas City metro. Foundation cracks, fire damage, mold, water damage, code violations, roof leaks, outdated kitchens and bathrooms, overgrown yards. None of it matters. We've purchased homes with collapsed ceilings, standing water in the basement, and active mold throughout. We've bought hoarder houses, condemned properties, and homes with every system failing. You don't need to fix, clean, paint, or renovate a single thing. Leave the house exactly as it is.",
+    question: 'Do I need to make any repairs before selling my house?',
+    answer: `<p><strong>No. Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) buys houses in any condition across the Kansas City metro. Foundation cracks, fire damage, mold, roof leaks, code violations, and overgrown yards do not matter to us. Leave the house exactly as it is.</strong></p><p>We have bought homes with collapsed ceilings, standing water in the basement, and active mold. We buy <a href="/situations/hoarder-house/">hoarder houses</a>, <a href="/situations/fire-damage/">fire-damaged properties</a>, and homes with every system failing. You do not need to fix, clean, paint, or renovate a single thing.</p>`,
   },
   {
-    question: 'How do you determine your cash offer?',
-    answer: "We start with the After Repair Value (ARV), which is what your home would sell for on the open market in perfect condition. We determine this by analyzing recent comparable sales in your specific neighborhood, accounting for square footage, lot size, number of bedrooms and bathrooms, and local market trends. Then we subtract our estimated repair costs (we itemize these so you can see each line item), our projected holding costs (taxes, insurance, utilities while we renovate), our selling costs when we resell, and our profit margin. We share the full breakdown with you so the offer is completely transparent. If you disagree with any of our estimates, we're happy to discuss.",
+    question: 'How much will Saving KC Homebuyers offer for my house?',
+    answer: `<p><strong>Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) bases every cash offer on your home's After Repair Value, which is what the house would sell for in perfect condition. We subtract repair costs, holding costs, and our margin, then show you the full breakdown so every dollar is clear.</strong></p><p>We look at recent sales in your neighborhood, square footage, lot size, bedrooms, bathrooms, and 2026 market trends. We itemize our repair estimate so you can see each line item. If you disagree with any number, we are happy to talk it through. The offer is always free and comes with no obligation.</p>`,
   },
   {
-    question: 'Are there any fees or commissions?',
-    answer: "Zero. There are no agent commissions (because no agents are involved), no closing costs (we pay them all), no processing fees, no administrative fees, and no hidden charges. The number on our cash offer is the amount you walk away with at closing, minus only your existing mortgage payoff and any liens on the title. We don't deduct anything from the offer amount. If we say $120,000, you get $120,000 before your own debts.",
+    question: 'Are there any fees or commissions when I sell?',
+    answer: `<p><strong>Zero. Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) charges no agent commissions, no closing costs, no processing fees, and no hidden charges. The number on our cash offer is the amount you walk away with at closing.</strong></p><p>The only amounts subtracted at the title company are your existing mortgage payoff and any liens on the title. We do not deduct anything else. If we say $120,000, you get $120,000 before your own debts. There is no fine print.</p>`,
   },
   {
-    question: 'What types of properties do you buy?',
-    answer: "We buy single-family homes, duplexes, triplexes, and small multi-family properties (up to 4 units) across the Kansas City metro area. We purchase in Jackson County, Clay County, and Platte County in Missouri, plus Wyandotte County and Johnson County in Kansas. We buy in every neighborhood from downtown KC to the suburbs. We buy homes in any condition, any price range, and any situation: occupied, vacant, tenant-occupied, estate properties, properties with liens, properties with code violations, even condemned properties.",
+    question: 'What types of properties does Saving KC Homebuyers purchase?',
+    answer: `<p><strong>Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) buys single-family homes, duplexes, triplexes, and small multi-family buildings up to 4 units across the entire Kansas City metro. We purchase in any condition, any price range, and any situation.</strong></p><p>We buy in <a href="/mo/jackson/">Jackson County</a>, Clay County, and Platte County in Missouri, plus Wyandotte County and Johnson County in Kansas. Occupied, vacant, tenant-occupied, <a href="/probate/">probate and estate properties</a>, homes with liens, homes with <a href="/situations/code-violations/">code violations</a>, and even condemned properties all qualify.</p>`,
   },
   {
-    question: 'What if my house is in pre-foreclosure?',
-    answer: "We work with homeowners in pre-foreclosure regularly across the KC metro. A cash sale can stop the foreclosure process, protect your credit score, and put cash in your pocket. The key is timing. Once you get a notice of default, you typically have 20-30 days before the foreclosure moves to the next stage. We can close within that window. Even if you're further along in the process, we may still be able to help. The sooner you call, the more options you have. We've helped homeowners in Jackson County, Clay County, and Wyandotte County stop foreclosure by closing fast enough to pay off the mortgage and put the remaining equity in their pocket.",
+    question: 'What happens if my house is in pre-foreclosure?',
+    answer: `<p><strong>Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) helps homeowners in <a href="/situations/pre-foreclosure/">pre-foreclosure</a> stop the process, protect their credit, and keep cash in their pocket. A fast cash sale can pay off the mortgage before the bank takes the home.</strong></p><p>In Missouri, under RSMo Chapter 443, lenders must give notice before foreclosing. Once you get that notice, you usually have 20 to 30 days before the next step. We can close inside that window. Even if you are further along, we may still help. We have stopped foreclosures in Jackson County, Clay County, and Wyandotte County. The sooner you call, the more options you have.</p>`,
   },
   {
-    question: 'Do I have to accept your offer?',
-    answer: "Absolutely not. Our cash offer is completely no-obligation. We present it, explain how we got to the number, and give you time to think about it. There's no expiration pressure and no hard feelings if you decide to go another route. We encourage you to get a listing agent's opinion as well and compare the two side by side. If listing makes more sense for your situation, do that. We want you to make the best decision for your family, even if that means not selling to us.",
+    question: 'Do I have to accept your cash offer?',
+    answer: `<p><strong>No. The cash offer from Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) is completely free with no obligation. We explain how we got the number and give you all the time you need to think it over. There is no pressure and no expiration date.</strong></p><p>We encourage you to get a listing agent's opinion too and compare both options side by side. If listing makes more sense for your situation, do that. We want you to make the best choice for your family, even if that means not selling to us.</p>`,
   },
   {
     question: 'Can I sell if I still owe money on the mortgage?',
-    answer: 'Yes. The majority of homeowners we work with still have a mortgage balance. At closing, the title company pays off your remaining mortgage directly from the sale proceeds. You receive whatever is left after the payoff. If you owe more on the mortgage than the home is worth (known as being "underwater"), we can discuss short sale options with your lender. In a short sale, the lender agrees to accept less than the full mortgage balance. We have experience negotiating short sales with most major mortgage servicers.',
+    answer: `<p><strong>Yes. Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) works with homeowners who still have a mortgage balance on most deals we close. The title company pays off your remaining mortgage from the sale money, and you keep whatever is left.</strong></p><p>If you owe more than the home is worth, we can talk to your lender about a short sale. In a short sale, the lender agrees to take less than the full balance. We have worked with most major mortgage companies on short sales across the KC metro.</p>`,
   },
   {
-    question: 'How is this different from listing with an agent?',
-    answer: "The main differences are speed, cost, and certainty. Listing with an agent in Kansas City typically takes 3-6 months from listing to closing. You'll pay 5-6% in agent commissions ($7,500-$18,000 on a typical KC home), 1-3% in closing costs, and $5,000-$30,000+ in repairs to make the home \"show ready.\" You'll host multiple showings with strangers walking through your house. And roughly 15-20% of MLS deals fall through when the buyer's financing doesn't come through. Selling to us takes days, not months. There are zero repairs, zero commissions, zero closing costs, and one short walkthrough. We pay cash, so there's no financing risk. The tradeoff is that our offer is below full retail value, since we're taking on all the risk and repair costs. For homes that need work or for homeowners who need speed and certainty, the math often favors the cash route.",
+    question: 'How long does the whole selling process take from start to finish?',
+    answer: `<p><strong>With Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>), the entire process from first phone call to cash in your hand can take as little as 10 days. Compare that to listing with an agent, which typically takes 3 to 6 months in the Kansas City market.</strong></p><p>When you list, you pay 5 to 6 percent in agent commissions, 1 to 3 percent in closing costs, and thousands in repairs. About 15 to 20 percent of MLS deals fall through when the buyer's loan does not close. With us, there are zero repairs, zero commissions, zero closing costs, and one short walkthrough. We pay cash, so there is no financing risk.</p>`,
   },
   {
     question: 'What happens after I accept the offer?',
-    answer: "We open escrow with a local Kansas City title company (we use established title companies in the KC metro that specialize in real estate closings). The title company runs a title search to identify any liens, encumbrances, or ownership issues. This takes 3-5 business days. If issues are found, we work with the title company to resolve them at closing. A few days before your chosen closing date, the title company sends you the settlement statement showing all the numbers: sale price, mortgage payoff (if any), lien payoffs (if any), and your net proceeds. On closing day, you sign the deed and closing documents at the title company's office. Your funds are released the same day via wire transfer to your bank account or by cashier's check.",
+    answer: `<p><strong>After you accept, Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) opens escrow with a local Kansas City title company. The title company runs a title search in 3 to 5 business days, and we resolve any issues that come up so you do not have to worry about them.</strong></p><p>A few days before your closing date, the title company sends you a settlement statement. It shows the sale price, any mortgage or lien payoffs, and your net check amount. On closing day you sign the deed at the title company office. Your money goes out the same day by wire transfer or cashier's check.</p>`,
   },
   {
-    question: 'What if my house has a lien or judgment against it?',
-    answer: "Liens and judgments don't prevent a cash sale. The title company identifies all liens during the title search and resolves them at closing from the sale proceeds. Common liens include property tax liens, mechanic's liens (from unpaid contractors), HOA liens, and court judgments. In some cases, we can negotiate with lien holders to accept less than the full amount owed. If the total liens exceed the property value, we can discuss options including short sale negotiations.",
+    question: 'What happens if my house has a tax lien or judgment against it?',
+    answer: `<p><strong>Liens and judgments do not stop a cash sale. Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) buys houses with <a href="/tax-delinquent/">tax liens</a>, mechanic's liens, HOA liens, and court judgments every month. The title company clears them at closing from the sale money.</strong></p><p>In Missouri, property tax liens follow the rules in RSMo Chapter 140. In Kansas, tax sale rules fall under K.S.A. 79-2801. We understand both. If the total liens are more than the home's value, we can negotiate with lien holders to accept less. Call us to talk through your exact situation.</p>`,
   },
   {
     question: 'Do you buy houses with tenants still living in them?',
-    answer: "Yes. We buy tenant-occupied properties regularly. Whether your tenant is current on rent, behind on rent, or refusing to leave, we can still purchase the property. We take over the landlord responsibilities at closing and handle the tenant situation from there. You don't need to evict your tenant before selling. This is one of the most common reasons Kansas City landlords sell to us.",
+    answer: `<p><strong>Yes. Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) buys tenant-occupied properties regularly. Whether your tenant pays on time, is behind on rent, or will not leave, we can still buy the home. You do not need to evict anyone first.</strong></p><p>We take over all landlord duties at closing and handle the <a href="/situations/bad-tenants/">tenant situation</a> from there. This is one of the most common reasons Kansas City landlords sell to us. If you are tired of being a landlord, call us and we will take the property off your hands.</p>`,
   },
   {
-    question: 'What areas of Kansas City do you serve?',
-    answer: "We buy homes across the entire Kansas City metro area covering 5 counties: Jackson County (Kansas City, Independence, Blue Springs, Lee's Summit, Raytown, Grandview), Clay County (Liberty, Gladstone, Excelsior Springs, Kearney, Smithville, North Kansas City), Platte County (Parkville, Platte City, Weston, Riverside), Wyandotte County (Kansas City KS, Bonner Springs, Edwardsville), and Johnson County (Overland Park, Olathe, Shawnee, Lenexa, Merriam). If your property is in the KC metro area, we can probably buy it.",
+    question: 'What areas of Kansas City do you serve in 2026?',
+    answer: `<p><strong>In 2026, Saving KC Homebuyers (<a href="tel:8164292900">816-429-2900</a>) buys homes across the full Kansas City metro covering 5 counties in Missouri and Kansas. If your property is in the KC metro, we can almost certainly buy it.</strong></p><p>Our coverage includes <a href="/mo/jackson/">Jackson County</a> (Kansas City, Independence, Blue Springs, Lee's Summit, Raytown, Grandview), Clay County (Liberty, Gladstone, North Kansas City), Platte County (Parkville, Platte City, Riverside), Wyandotte County (Kansas City KS, Bonner Springs), and Johnson County (Overland Park, Olathe, Shawnee, Lenexa, Merriam).</p>`,
   },
   {
     question: 'Is Saving KC Homebuyers a legitimate company?',
-    answer: `${brand.name} is a registered business operating out of ${brand.address.full}. ${brand.ownerName} is the owner and operator. We've been buying homes in the Kansas City metro since ${brand.foundedYear}. You can visit our office, call us directly at ${brand.phoneFormatted}, and verify our business registration. Every transaction closes through a licensed Kansas City title company, which provides an independent third party to handle the funds and legal documents.`,
+    answer: `<p><strong>${brand.name} (<a href="tel:8164292900">816-429-2900</a>) is a registered Missouri business operating out of ${brand.address.full}. ${brand.ownerName} is the owner and has been buying homes in Kansas City since ${brand.foundedYear}. Every deal closes through a licensed local title company.</strong></p><p>Our office at 1705 Baltimore Ave is 1.1 miles from the Jackson County Courthouse. You can visit us in person, check our business registration, or look up our reviews online. We handle <a href="/probate/">probate sales under RSMo Chapter 473</a> and <a href="/situations/inherited-property/">inherited property transfers under K.S.A. Chapter 59</a> on a regular basis. Call ${brand.phoneFormatted} with any questions.</p>`,
   },
 ];
 
@@ -88,6 +89,15 @@ const faqSchema = {
   </p>
 
   <FAQ items={faqs} />
+
+  <!-- Helpful Videos -->
+  <section class="content-section">
+    <h2>Watch: Common Questions Answered</h2>
+    <div class="section-body">
+      <p>Ernest walks through the most common questions homeowners ask about selling for cash, including the pros, cons, and what to watch out for.</p>
+    </div>
+    <YouTubeEmbed videoId="GJ6mfaciuUc" title="Pros & Cons of Selling Your Home to a Cash Buyer" />
+  </section>
 
   <!-- Additional context -->
   <section class="content-section">

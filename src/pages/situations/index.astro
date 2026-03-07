@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import LeadForm from '@/components/LeadForm.astro';
+import YouTubeEmbed from '@/components/YouTubeEmbed.astro';
 import { brand } from '@/data/brand';
 
 const title = 'We Buy Houses in Any Situation - Kansas City Cash Home Buyer';
@@ -46,6 +47,12 @@ const allSituations = [
             </div>
           </a>
         ))}
+      </div>
+
+      <div class="yt-section">
+        <h2>Watch: 6 Ways to Stop Foreclosure</h2>
+        <p>If you are facing foreclosure or financial distress, this 6-minute video covers actionable options you can take right now.</p>
+        <YouTubeEmbed videoId="W7qa3kRcEzc" title="(6 Min) Lifeline: The 6 Fastest Ways to Stop Foreclosure!" />
       </div>
 
       <div class="cta-block">
@@ -113,6 +120,20 @@ const allSituations = [
   }
   .sit-card:hover h2 { color: var(--red); }
   .sit-card p { font-size: 0.9rem; color: var(--grey-500); margin: 0; line-height: 1.5; }
+
+  .yt-section {
+    margin-bottom: 40px;
+  }
+  .yt-section h2 {
+    font-size: 1.5rem;
+    color: var(--grey-900);
+    margin-bottom: 8px;
+  }
+  .yt-section p {
+    color: var(--grey-600);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
 
   .cta-block {
     text-align: center;

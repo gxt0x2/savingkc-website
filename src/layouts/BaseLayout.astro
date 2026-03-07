@@ -136,6 +136,27 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
         ]
       },
       {
+        "@type": "SiteNavigationElement",
+        "name": "Situations",
+        "url": "https://savingkc.com/situations/",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Probate Guide", "url": "https://savingkc.com/probate/" },
+          { "@type": "WebPage", "name": "Tax-Delinquent Guide", "url": "https://savingkc.com/tax-delinquent/" },
+          { "@type": "WebPage", "name": "Pre-Foreclosure", "url": "https://savingkc.com/situations/pre-foreclosure/" },
+          { "@type": "WebPage", "name": "Behind on Payments", "url": "https://savingkc.com/situations/behind-on-payments/" },
+          { "@type": "WebPage", "name": "Inherited Property", "url": "https://savingkc.com/situations/inherited-property/" },
+          { "@type": "WebPage", "name": "Divorce", "url": "https://savingkc.com/situations/divorce/" },
+          { "@type": "WebPage", "name": "Foundation Issues", "url": "https://savingkc.com/situations/foundation-issues/" },
+          { "@type": "WebPage", "name": "Fire Damage", "url": "https://savingkc.com/situations/fire-damage/" },
+          { "@type": "WebPage", "name": "Water Damage", "url": "https://savingkc.com/situations/water-damage/" },
+          { "@type": "WebPage", "name": "Mold Problems", "url": "https://savingkc.com/situations/mold/" },
+          { "@type": "WebPage", "name": "Hoarder House", "url": "https://savingkc.com/situations/hoarder-house/" },
+          { "@type": "WebPage", "name": "Vacant Property", "url": "https://savingkc.com/situations/vacant-property/" },
+          { "@type": "WebPage", "name": "Bad Tenants", "url": "https://savingkc.com/situations/bad-tenants/" },
+          { "@type": "WebPage", "name": "Code Violations", "url": "https://savingkc.com/situations/code-violations/" }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {
@@ -221,10 +242,56 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
             </div>
           </div>
         </div>
-        <a href="/#how-it-works">How It Works</a>
-        <a href="/#about">About Ernest</a>
-        <a href="/#reviews">Reviews</a>
-        <a href="/#faq">FAQ</a>
+        <div class="mega-trigger" id="sitMegaTrigger">
+          <button type="button" class="mega-btn" id="sitMegaBtn" aria-expanded="false" aria-haspopup="true">
+            Situations
+            <svg class="mega-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mega-dropdown mega-dropdown-sit" id="sitMegaDropdown">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <div class="mega-section-label">Featured Guides</div>
+                <div class="mega-county">
+                  <a href="/probate/" class="mega-guide">Probate Guide</a>
+                  <a href="/tax-delinquent/" class="mega-guide">Tax-Delinquent Guide</a>
+                </div>
+                <div class="mega-section-label">Financial Distress</div>
+                <div class="mega-county">
+                  <a href="/situations/pre-foreclosure/">Pre-Foreclosure</a>
+                  <a href="/situations/behind-on-payments/">Behind on Payments</a>
+                </div>
+                <div class="mega-section-label">Life Changes</div>
+                <div class="mega-county">
+                  <a href="/situations/inherited-property/">Inherited Property</a>
+                  <a href="/situations/divorce/">Divorce</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <div class="mega-section-label">Structural &amp; Damage</div>
+                <div class="mega-county">
+                  <a href="/situations/foundation-issues/">Foundation Issues</a>
+                  <a href="/situations/fire-damage/">Fire Damage</a>
+                  <a href="/situations/water-damage/">Water Damage</a>
+                  <a href="/situations/mold/">Mold Problems</a>
+                </div>
+                <div class="mega-section-label">Other Situations</div>
+                <div class="mega-county">
+                  <a href="/situations/hoarder-house/">Hoarder House</a>
+                  <a href="/situations/vacant-property/">Vacant Property</a>
+                  <a href="/situations/bad-tenants/">Bad Tenants</a>
+                  <a href="/situations/code-violations/">Code Violations</a>
+                </div>
+              </div>
+            </div>
+            <div class="mega-footer">
+              <a href="/situations/" class="mega-view-all">View All Situations →</a>
+            </div>
+          </div>
+        </div>
+        <a href="/how-it-works/">How It Works</a>
+        <a href="/about-us/">About</a>
+        <a href="/reviews/">Reviews</a>
+        <a href="/faq/">FAQ</a>
       </nav>
 
       <div class="nav-cta-desktop">
@@ -298,10 +365,40 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
           </div>
         </div>
 
-        <a href="/#how-it-works" class="mobile-nav-link">How It Works</a>
-        <a href="/#about" class="mobile-nav-link">About Ernest</a>
-        <a href="/#reviews" class="mobile-nav-link">Reviews</a>
-        <a href="/#faq" class="mobile-nav-link">FAQ</a>
+        <!-- Situations accordion -->
+        <div class="mobile-accordion">
+          <button type="button" class="mobile-nav-link mobile-accordion-trigger" id="mobileSitTrigger">
+            Situations
+            <svg class="mobile-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mobile-accordion-body" id="mobileSitBody">
+            <span class="mobile-county-label">Featured Guides</span>
+            <a href="/probate/">Probate Guide</a>
+            <a href="/tax-delinquent/">Tax-Delinquent Guide</a>
+            <span class="mobile-county-label">Financial Distress</span>
+            <a href="/situations/pre-foreclosure/">Pre-Foreclosure</a>
+            <a href="/situations/behind-on-payments/">Behind on Payments</a>
+            <span class="mobile-county-label">Life Changes</span>
+            <a href="/situations/inherited-property/">Inherited Property</a>
+            <a href="/situations/divorce/">Divorce</a>
+            <span class="mobile-county-label">Property Problems</span>
+            <a href="/situations/foundation-issues/">Foundation Issues</a>
+            <a href="/situations/fire-damage/">Fire Damage</a>
+            <a href="/situations/water-damage/">Water Damage</a>
+            <a href="/situations/mold/">Mold Problems</a>
+            <span class="mobile-county-label">Other Situations</span>
+            <a href="/situations/hoarder-house/">Hoarder House</a>
+            <a href="/situations/vacant-property/">Vacant Property</a>
+            <a href="/situations/bad-tenants/">Bad Tenants</a>
+            <a href="/situations/code-violations/">Code Violations</a>
+            <a href="/situations/" class="mobile-all-link">View All Situations →</a>
+          </div>
+        </div>
+
+        <a href="/how-it-works/" class="mobile-nav-link">How It Works</a>
+        <a href="/about-us/" class="mobile-nav-link">About</a>
+        <a href="/reviews/" class="mobile-nav-link">Reviews</a>
+        <a href="/faq/" class="mobile-nav-link">FAQ</a>
 
         <div class="mobile-cta">
           <a href="tel:8164292900" class="btn btn-secondary" style="width:100%">816-429-2900</a>
@@ -527,6 +624,53 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       text-decoration: none;
     }
 
+    /* ========== Situations Mega Menu ========== */
+    .mega-dropdown-sit {
+      width: min(640px, calc(100vw - 40px));
+    }
+    .mega-section-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--red);
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+    .mega-section-label:first-child {
+      margin-top: 0;
+    }
+    .mega-guide {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--grey-800);
+      padding: 4px 0 4px 10px;
+      border-left: 3px solid var(--red);
+      margin-bottom: 4px;
+    }
+    .mega-guide:hover {
+      color: var(--red);
+      text-decoration: none;
+    }
+    .mega-footer {
+      background: var(--grey-50, #f9fafb);
+      border-top: 1px solid var(--grey-200);
+      padding: 12px 32px;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      text-align: center;
+    }
+    .mega-view-all {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--red);
+    }
+    .mega-view-all:hover {
+      color: var(--red-dark);
+      text-decoration: none;
+    }
+
     /* ========== Mobile (≤900px) ========== */
     @media (max-width: 900px) {
       .nav-links-desktop,
@@ -744,6 +888,9 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
 
     function openMega() {
       if (megaTimer) clearTimeout(megaTimer);
+      // Close Situations mega if open
+      document.getElementById('sitMegaDropdown')?.classList.remove('open');
+      document.getElementById('sitMegaBtn')?.classList.remove('active');
       megaTimer = setTimeout(() => {
         megaDropdown?.classList.add('open');
         megaBtn?.classList.add('active');
@@ -767,14 +914,65 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       megaBtn.addEventListener('click', () => {
         const isOpen = megaDropdown?.classList.toggle('open');
         megaBtn.classList.toggle('active', !!isOpen);
+        // Close Situations if opening Service Areas
+        if (isOpen) {
+          document.getElementById('sitMegaDropdown')?.classList.remove('open');
+          document.getElementById('sitMegaBtn')?.classList.remove('active');
+        }
       });
     }
 
-    // Close mega on click outside
+    // Situations mega menu — hover with delay
+    const sitMegaTrigger = document.getElementById('sitMegaTrigger');
+    const sitMegaBtn = document.getElementById('sitMegaBtn');
+    const sitMegaDropdown = document.getElementById('sitMegaDropdown');
+    let sitMegaTimer = null;
+
+    function openSitMega() {
+      if (sitMegaTimer) clearTimeout(sitMegaTimer);
+      // Close Service Areas if open
+      megaDropdown?.classList.remove('open');
+      megaBtn?.classList.remove('active');
+      sitMegaTimer = setTimeout(() => {
+        sitMegaDropdown?.classList.add('open');
+        sitMegaBtn?.classList.add('active');
+      }, 150);
+    }
+
+    function closeSitMega() {
+      if (sitMegaTimer) clearTimeout(sitMegaTimer);
+      sitMegaTimer = setTimeout(() => {
+        sitMegaDropdown?.classList.remove('open');
+        sitMegaBtn?.classList.remove('active');
+      }, 150);
+    }
+
+    if (sitMegaTrigger) {
+      sitMegaTrigger.addEventListener('mouseenter', openSitMega);
+      sitMegaTrigger.addEventListener('mouseleave', closeSitMega);
+    }
+
+    if (sitMegaBtn) {
+      sitMegaBtn.addEventListener('click', () => {
+        const isOpen = sitMegaDropdown?.classList.toggle('open');
+        sitMegaBtn.classList.toggle('active', !!isOpen);
+        // Close Service Areas if open
+        if (isOpen) {
+          megaDropdown?.classList.remove('open');
+          megaBtn?.classList.remove('active');
+        }
+      });
+    }
+
+    // Close mega menus on click outside
     document.addEventListener('mousedown', (e) => {
       if (megaTrigger && !megaTrigger.contains(e.target)) {
         megaDropdown?.classList.remove('open');
         megaBtn?.classList.remove('active');
+      }
+      if (sitMegaTrigger && !sitMegaTrigger.contains(e.target)) {
+        sitMegaDropdown?.classList.remove('open');
+        sitMegaBtn?.classList.remove('active');
       }
     });
 
@@ -786,6 +984,17 @@ const { title, description = "Saving KC Homebuyers — We buy houses in Kansas C
       mobileAreasTrigger.addEventListener('click', () => {
         mobileAreasTrigger.classList.toggle('open');
         mobileAreasBody.classList.toggle('open');
+      });
+    }
+
+    // Mobile: Situations accordion
+    const mobileSitTrigger = document.getElementById('mobileSitTrigger');
+    const mobileSitBody = document.getElementById('mobileSitBody');
+
+    if (mobileSitTrigger && mobileSitBody) {
+      mobileSitTrigger.addEventListener('click', () => {
+        mobileSitTrigger.classList.toggle('open');
+        mobileSitBody.classList.toggle('open');
       });
     }
 
